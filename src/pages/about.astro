@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+---
+
+<BaseLayout
+  title="About ViFi — Our Mission"
+  description="ViFi is building AI voice agents that help businesses handle calls, assist customers, and streamline operations."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <h1
+            class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-6"
+          >
+            About <span
+              class="bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent"
+              >ViFi</span
+            >
+          </h1>
+
+          <div class="space-y-6 text-base sm:text-lg leading-relaxed text-muted">
+            <p>
+              ViFi is building AI-powered voice agents designed to help
+              businesses communicate more effectively. Our goal is to make it
+              easy for companies of any size to offer responsive, intelligent
+              phone-based experiences to their customers.
+            </p>
+
+            <p>
+              We believe that voice remains one of the most natural ways people
+              interact with businesses — and that AI can make those interactions
+              faster, more consistent, and available around the clock.
+            </p>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
+              What we're building
+            </h2>
+
+            <p>
+              ViFi's platform enables businesses to deploy AI voice agents that
+              can handle inbound calls, answer questions, route conversations,
+              and complete tasks — without requiring callers to navigate complex
+              phone trees or wait on hold.
+            </p>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
+              Our approach
+            </h2>
+
+            <ul class="list-disc pl-6 space-y-2">
+              <li>
+                <strong class="text-text">Voice-first:</strong> We focus on natural,
+                conversational voice experiences — not chatbots bolted onto a phone
+                line.
+              </li>
+              <li>
+                <strong class="text-text">Business-ready:</strong> Designed for real
+                business use cases with reliability and security in mind.
+              </li>
+              <li>
+                <strong class="text-text">Simple to adopt:</strong> We aim to make
+                setup straightforward so teams can get value quickly.
+              </li>
+            </ul>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
+              Get in touch
+            </h2>
+
+            <p>
+              ViFi is currently in development. If you're interested in learning
+              more or joining our early access program, reach out at
+              <a
+                href="mailto:hello@vifi.us"
+                class="text-primary hover:text-secondary transition-colors"
+                >hello@vifi.us</a
+              >.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

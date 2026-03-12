@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vifi.us/sitemap-index.xml

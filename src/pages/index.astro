@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import Hero from "../components/blocks/Hero.astro";
+import Features from "../components/blocks/Features.astro";
+import SignupForm from "../components/blocks/SignupForm.astro";
+---
+
+<BaseLayout
+  title="ViFi — AI Voice Agents Built for Business"
+  description="ViFi is building intelligent AI voice agents that help businesses handle calls, assist customers, and streamline operations."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main>
+      <Hero />
+      <Features />
+      <SignupForm />
+    </main>
+    <Footer />
+  </div>
+
+  <!-- Background ambient gradient -->
+  <div
+    class="pointer-events-none fixed inset-0 -z-10"
+    aria-hidden="true"
+  >
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

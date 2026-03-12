@@ -1,0 +1,65 @@
+---
+const features = [
+  {
+    icon: "mic",
+    title: "Natural Conversations",
+    description: "Human-like voice interactions powered by modern AI.",
+  },
+  {
+    icon: "zap",
+    title: "Fast Setup",
+    description: "Get started quickly with straightforward configuration.",
+  },
+  {
+    icon: "trending-up",
+    title: "Built to Scale",
+    description: "Handle growing call volumes without growing your team.",
+  },
+  {
+    icon: "shield",
+    title: "Security First",
+    description: "Designed with enterprise-grade security and privacy in mind.",
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  mic: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3",
+  zap: "M13 2 3 14h9l-1 10 10-12h-9l1-10z",
+  "trending-up": "M22 7 13.5 15.5 8.5 10.5 2 17",
+  shield: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+};
+---
+
+<section class="pb-16 sm:pb-24">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        features.map((feature) => (
+          <div class="flex items-start gap-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-primary/30">
+            <div class="mt-0.5 shrink-0 text-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d={iconPaths[feature.icon]} />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-text">{feature.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-muted">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

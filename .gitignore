@@ -1,4 +1,19 @@
-# Hugo build output
-public/
-resources/_gen/
-.hugo_build.lock
+# Astro
+dist/
+.astro/
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
