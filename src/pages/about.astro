@@ -2,11 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
 ---
 
 <BaseLayout
-  title="About ViFi — Our Mission"
-  description="ViFi is building AI voice agents that help businesses handle calls, assist customers, and streamline operations."
+  title="About ViFi — The AI Phone Assistant with Post-Call Intelligence"
+  description="ViFi is building the AI phone assistant that answers every call and briefs the owner after every conversation."
 >
   <div class="flex min-h-screen flex-col">
     <Header />
@@ -24,27 +25,51 @@ import Footer from "../components/site/Footer.astro";
 
           <div class="space-y-6 text-base sm:text-lg leading-relaxed text-muted">
             <p>
-              ViFi is building AI-powered voice agents designed to help
-              businesses communicate more effectively. Our goal is to make it
-              easy for companies of any size to offer responsive, intelligent
-              phone-based experiences to their customers.
+              Every day, small business owners miss calls they can't afford to
+              lose. They're with a customer, on a job site, or driving between
+              appointments. The phone rings, nobody answers, and the caller
+              moves on to the next business.
             </p>
 
             <p>
-              We believe that voice remains one of the most natural ways people
-              interact with businesses — and that AI can make those interactions
-              faster, more consistent, and available around the clock.
+              ViFi exists to solve that problem — not just by answering the
+              call, but by making sure the business owner knows exactly what
+              happened on every conversation.
             </p>
 
             <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
-              What we're building
+              What makes ViFi different
             </h2>
 
             <p>
-              ViFi's platform enables businesses to deploy AI voice agents that
-              can handle inbound calls, answer questions, route conversations,
-              and complete tasks — without requiring callers to navigate complex
-              phone trees or wait on hold.
+              Most AI phone tools focus on one thing: picking up when you can't.
+              That's important, but it's only half the problem. The other half
+              is what happens after the call ends. That's where ViFi stands
+              apart.
+            </p>
+
+            <p>
+              After every conversation, ViFi delivers a complete briefing —
+              a concise summary, the full word-for-word transcript, and a
+              recording. When you call back, you already know what was said,
+              what was asked, and what needs follow-up. No guessing, no "sorry,
+              remind me what you called about."
+            </p>
+
+            <p>
+              We call this <strong class="text-text">post-call intelligence</strong>,
+              and it's the core of everything we build.
+            </p>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
+              Who ViFi is for
+            </h2>
+
+            <p>
+              ViFi is built for small business owners and professionals who
+              depend on the phone to drive revenue — home service contractors,
+              medical practices, law firms, real estate agents, and anyone who
+              can't afford to miss a call or return one unprepared.
             </p>
 
             <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
@@ -53,17 +78,16 @@ import Footer from "../components/site/Footer.astro";
 
             <ul class="list-disc pl-6 space-y-2">
               <li>
-                <strong class="text-text">Voice-first:</strong> We focus on natural,
-                conversational voice experiences — not chatbots bolted onto a phone
-                line.
+                <strong class="text-text">Post-call first:</strong> We built ViFi
+                around what happens after the conversation, not just during it.
               </li>
               <li>
-                <strong class="text-text">Business-ready:</strong> Designed for real
-                business use cases with reliability and security in mind.
+                <strong class="text-text">Natural voice:</strong> Callers hear a
+                warm, professional voice — not a robotic phone tree.
               </li>
               <li>
-                <strong class="text-text">Simple to adopt:</strong> We aim to make
-                setup straightforward so teams can get value quickly.
+                <strong class="text-text">Ready in minutes:</strong> Forward your
+                calls and you're live. No hardware, no IT required.
               </li>
             </ul>
 
@@ -72,8 +96,8 @@ import Footer from "../components/site/Footer.astro";
             </h2>
 
             <p>
-              ViFi is currently in development. If you're interested in learning
-              more or joining our early access program, reach out at
+              ViFi is currently available through early access. If you're
+              interested in trying it or learning more, reach out at
               <a
                 href="mailto:hello@vifi.us"
                 class="text-primary hover:text-secondary transition-colors"
@@ -83,6 +107,11 @@ import Footer from "../components/site/Footer.astro";
           </div>
         </div>
       </section>
+
+      <CTABanner
+        heading="Ready to hear what you've been missing?"
+        description="Try ViFi free for 7 days. Answer every call, know every conversation."
+      />
     </main>
     <Footer />
   </div>

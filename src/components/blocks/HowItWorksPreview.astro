@@ -1,0 +1,61 @@
+---
+const steps = [
+  {
+    number: "1",
+    title: "Forward your calls",
+    description:
+      "Set up call forwarding from your existing business number to ViFi. Takes about two minutes.",
+  },
+  {
+    number: "2",
+    title: "ViFi answers",
+    description:
+      "When a call comes in, ViFi picks up with a professional greeting and handles the conversation naturally.",
+  },
+  {
+    number: "3",
+    title: "Get briefed",
+    description:
+      "After every call, you receive a summary, full transcript, and recording — instantly.",
+  },
+];
+---
+
+<section class="pb-16 sm:pb-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2
+      class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-12"
+    >
+      How it works
+    </h2>
+
+    <div class="space-y-8">
+      {
+        steps.map((step) => (
+          <div class="flex items-start gap-5">
+            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-white font-bold text-sm">
+              {step.number}
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-text mb-1">
+                {step.title}
+              </h3>
+              <p class="text-sm text-muted leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/how-it-works"
+        class="text-sm font-semibold text-primary hover:text-secondary transition-colors"
+      >
+        Learn more about how ViFi works &rarr;
+      </a>
+    </div>
+  </div>
+</section>

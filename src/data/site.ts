@@ -1,6 +1,8 @@
 export const siteConfig = {
   name: "ViFi",
-  tagline: "AI Voice Agents Built for Business",
+  tagline: "Answer every call. Know every conversation.",
+  description:
+    "ViFi is the AI phone assistant that answers every call and briefs the owner after every conversation. Post-call intelligence for small businesses.",
   email: "hello@vifi.us",
 
   googleForm: {

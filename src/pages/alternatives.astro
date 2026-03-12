@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import ComparisonTable from "../components/blocks/ComparisonTable.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+---
+
+<BaseLayout
+  title="ViFi vs Alternatives — How AI Phone Assistants Compare"
+  description="See how ViFi's post-call intelligence compares to basic AI receptionists, traditional voicemail, and human answering services."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="Not all AI phone tools are the same"
+        subtitle="Most solutions stop at answering the call. ViFi gives you the full picture of every conversation."
+      />
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <div class="space-y-6 text-base text-muted leading-relaxed">
+            <p>
+              When your phone rings and you can't pick up, something needs to
+              answer. You have options — voicemail, a human answering service,
+              or an AI phone assistant. But there's a meaningful difference
+              between tools that simply answer the call and tools that tell you
+              what happened on the call.
+            </p>
+            <p>
+              ViFi is built around a concept we call <strong class="text-text">
+              post-call intelligence</strong>. Every call ends with a briefing:
+              a concise summary, a full transcript, and a recording. You don't
+              listen to voicemail, you don't wait for a message slip, and you
+              don't call back blind. You know exactly what was said before you
+              pick up the phone to respond.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ComparisonTable />
+
+      <CTABanner
+        heading="See the difference for yourself"
+        description="Try ViFi free for 7 days. No credit card, no commitment."
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

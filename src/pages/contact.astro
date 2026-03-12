@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import SignupForm from "../components/blocks/SignupForm.astro";
+import { siteConfig } from "../data/site";
+---
+
+<BaseLayout
+  title="Contact ViFi — Get in Touch"
+  description="Have questions about ViFi? Reach out to our team or sign up for early access."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="Get in touch"
+        subtitle="We'd love to hear from you. Reach out with questions, feedback, or to learn more about ViFi."
+      />
+
+      <section class="pb-12">
+        <div class="mx-auto max-w-md px-6 text-center">
+          <p class="text-base text-muted mb-2">Email us directly at</p>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            class="text-lg font-semibold text-primary hover:text-secondary transition-colors"
+          >
+            {siteConfig.email}
+          </a>
+        </div>
+      </section>
+
+      <div class="border-t border-border mx-auto max-w-md">
+        <p class="text-center text-sm text-muted pt-10">
+          Or sign up for early access
+        </p>
+      </div>
+
+      <SignupForm />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

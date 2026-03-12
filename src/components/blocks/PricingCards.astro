@@ -1,0 +1,79 @@
+---
+import { pricingTiers } from "../../data/pricing";
+---
+
+<section class="pb-16 sm:pb-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pricingTiers.map((tier) => (
+          <div
+            class:list={[
+              "rounded-2xl border p-6 flex flex-col",
+              tier.highlighted
+                ? "border-primary/50 bg-primary/5 ring-1 ring-primary/20"
+                : "border-border bg-surface",
+            ]}
+          >
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-text">{tier.name}</h3>
+              {tier.badge && (
+                <span class="text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 rounded-full px-3 py-1">
+                  {tier.badge}
+                </span>
+              )}
+            </div>
+
+            <div class="mb-4">
+              <span class="text-3xl font-extrabold text-text">
+                {tier.price}
+              </span>
+              <span class="text-sm text-muted">{tier.period}</span>
+            </div>
+
+            <p class="text-sm text-muted mb-6">{tier.description}</p>
+
+            <ul class="space-y-3 mb-8 flex-1">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-muted">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-secondary mt-0.5 shrink-0"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/#early-access"
+              class:list={[
+                "block text-center rounded-full px-6 py-3 text-sm font-semibold transition",
+                tier.highlighted
+                  ? "bg-gradient-to-br from-primary to-secondary text-white shadow-[0_4px_32px_rgba(108,99,255,0.35)] hover:opacity-90"
+                  : "border border-border text-text hover:border-primary/40 hover:bg-primary/5",
+              ]}
+            >
+              {tier.cta}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="text-center text-sm text-muted mt-8">
+      All prices are early access estimates and may change before launch.
+      Every plan includes a 7-day free trial.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import FAQList from "../components/blocks/FAQList.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+---
+
+<BaseLayout
+  title="FAQ — ViFi AI Phone Assistant"
+  description="Answers to common questions about ViFi, how it works, pricing, setup, and more."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="Frequently asked questions"
+        subtitle="Everything you need to know about ViFi."
+      />
+      <FAQList />
+      <CTABanner
+        heading="Still have questions?"
+        description="Reach out to our team and we'll get back to you within 24 hours."
+        buttonText="Contact Us"
+        buttonHref="/contact"
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,88 @@
+---
+import {
+  comparisonCategories,
+  comparisonFeatures,
+} from "../../data/comparisons";
+---
+
+<section class="pb-16 sm:pb-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left py-4 pr-4 text-muted font-normal min-w-[180px]">
+              Feature
+            </th>
+            {
+              comparisonCategories.map((cat) => (
+                <th
+                  class:list={[
+                    "py-4 px-3 text-center font-semibold min-w-[140px]",
+                    cat.name === "ViFi" ? "text-primary" : "text-text",
+                  ]}
+                >
+                  {cat.name}
+                </th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            comparisonFeatures.map((row) => (
+              <tr class="border-b border-border/50">
+                <td class="py-4 pr-4 text-text">{row.feature}</td>
+                {comparisonCategories.map((cat) => {
+                  const value = row.values[cat.name];
+                  return (
+                    <td class="py-4 px-3 text-center">
+                      {value === true ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class={
+                            cat.name === "ViFi"
+                              ? "text-secondary inline-block"
+                              : "text-muted inline-block"
+                          }
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      ) : value === false ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="text-muted/40 inline-block"
+                        >
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                      ) : (
+                        <span class="text-muted text-xs">{value}</span>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

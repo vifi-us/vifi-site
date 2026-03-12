@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import BlogPostCard from "../components/blocks/BlogPostCard.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort(
+    (a, b) =>
+      b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+  );
+---
+
+<BaseLayout
+  title="Blog — ViFi"
+  description="Insights on AI phone assistants, post-call intelligence, and how small businesses can stop missing calls."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="Blog"
+        subtitle="Insights on AI phone assistants and small business communication."
+      />
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-4xl px-6">
+          {
+            posts.length > 0 ? (
+              <div class="grid gap-6 sm:grid-cols-2">
+                {posts.map((post) => (
+                  <BlogPostCard
+                    title={post.data.title}
+                    description={post.data.description}
+                    publishedAt={post.data.publishedAt}
+                    tags={post.data.tags}
+                    slug={post.id}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p class="text-center text-muted">
+                No posts yet. Check back soon.
+              </p>
+            )
+          }
+        </div>
+      </section>
+
+      <CTABanner
+        heading="Never miss a call again"
+        description="Try ViFi free for 7 days and see what post-call intelligence can do for your business."
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

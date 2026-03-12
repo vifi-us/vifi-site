@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import PricingCards from "../components/blocks/PricingCards.astro";
+import FAQList from "../components/blocks/FAQList.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+---
+
+<BaseLayout
+  title="ViFi Pricing — Plans for Every Business Size"
+  description="Simple, transparent pricing for ViFi's AI phone assistant. Start with a 7-day free trial — no credit card required."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="Simple, transparent pricing"
+        subtitle="Every plan includes post-call briefings, transcripts, and a 7-day free trial."
+        badge="Early Access"
+      />
+      <PricingCards />
+      <FAQList category="pricing" />
+      <CTABanner
+        heading="Start your free trial"
+        description="Try ViFi free for 7 days. No credit card required."
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>

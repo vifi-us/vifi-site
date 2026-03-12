@@ -1,0 +1,25 @@
+---
+interface Props {
+  industry: string;
+  headline: string;
+  description: string;
+}
+
+const { industry, headline, description } = Astro.props;
+---
+
+<section class="pt-16 pb-12 sm:pt-24 sm:pb-16">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <div class="mb-6 inline-flex items-center rounded-full border border-primary/35 bg-primary/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary/80">
+      {industry}
+    </div>
+    <h1
+      class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6"
+    >
+      {headline}
+    </h1>
+    <p class="mx-auto max-w-xl text-base sm:text-lg text-muted leading-relaxed">
+      {description}
+    </p>
+  </div>
+</section>

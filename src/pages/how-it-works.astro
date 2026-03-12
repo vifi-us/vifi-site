@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import HowItWorksSteps from "../components/blocks/HowItWorksSteps.astro";
+import AfterTheCall from "../components/blocks/AfterTheCall.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+---
+
+<BaseLayout
+  title="How ViFi Works — AI Phone Assistant for Small Business"
+  description="Forward your calls, ViFi answers professionally, and you get a full briefing after every conversation. Set up in minutes."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="How ViFi works"
+        subtitle="Three steps to never miss a call — and never call back blind."
+      />
+      <HowItWorksSteps />
+      <AfterTheCall />
+      <CTABanner
+        heading="Ready to stop missing calls?"
+        description="Set up ViFi in minutes and start getting briefed after every conversation."
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
+    >
+    </div>
+  </div>
+</BaseLayout>
