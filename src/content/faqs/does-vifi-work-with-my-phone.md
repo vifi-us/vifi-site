@@ -4,4 +4,4 @@ order: 13
 category: "product"
 ---
 
-Yes. You keep your existing business phone number and simply set up call forwarding to ViFi. Your callers won't notice any change — they'll call the same number they always have.
+Yes. You keep your existing business number and set up call forwarding to ViFi. Your callers won't notice any change. They'll dial the same number they always have.

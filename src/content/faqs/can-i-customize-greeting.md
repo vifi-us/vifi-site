@@ -4,4 +4,4 @@ order: 12
 category: "product"
 ---
 
-Yes. Every plan includes a custom greeting and custom AI instructions. You can include your business name, hours, and any specific information you want callers to hear — and tell ViFi how to handle different types of conversations.
+Yes. Every plan includes a custom greeting and custom instructions. You can set your business name, hours, and any specific details you want callers to hear. You can also tell ViFi how to handle different types of calls.

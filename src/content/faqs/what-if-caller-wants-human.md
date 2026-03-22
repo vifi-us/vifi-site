@@ -4,4 +4,4 @@ order: 14
 category: "product"
 ---
 
-ViFi handles the conversation naturally and captures everything the caller needs. If you're available and want to receive calls directly, you can configure ViFi to only answer when you don't pick up. After every ViFi-handled call, you'll get a full briefing so you can follow up personally with full context.
+You can configure ViFi to only pick up when you don't answer. If you're available, the call rings through to you as usual. When ViFi does handle a call, you get a full briefing so you can follow up personally with context.

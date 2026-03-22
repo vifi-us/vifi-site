@@ -6,7 +6,7 @@ export interface ComparisonCategory {
 export const comparisonCategories: ComparisonCategory[] = [
   {
     name: "ViFi",
-    description: "AI phone assistant with post-call intelligence",
+    description: "AI phone assistant with call recaps and transcripts",
   },
   {
     name: "Basic AI Receptionists",

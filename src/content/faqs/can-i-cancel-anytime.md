@@ -4,4 +4,4 @@ order: 22
 category: "pricing"
 ---
 
-Yes. There are no long-term contracts or cancellation fees. You can cancel anytime from your dashboard — no questions asked. Your service continues until the end of your current billing period.
+Yes. No long-term contracts, no cancellation fees. Cancel from your dashboard whenever you want. Your service continues until the end of your current billing period.
