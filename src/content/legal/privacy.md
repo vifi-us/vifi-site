@@ -39,7 +39,8 @@ We may collect the following categories of information:
   webhook payloads, and troubleshooting logs.
 
 When you join our early-access list, the form on `vifi.us` submits your name,
-work email, and company information through Google Forms.
+work email, and company information through a third-party form processing
+service.
 
 ## How We Use Information
 
@@ -66,12 +67,12 @@ following:
 ## How We Share Information
 
 We may share personal information with service providers and subprocessors that
-help us operate the service, such as hosting, storage, communications, email,
-analytics, security, AI, integration, and payment providers.
+help us operate the service, such as providers of hosting, storage,
+communications, email delivery, analytics, security, artificial intelligence,
+integrations, and payment processing.
 
-Depending on the feature and configuration, these providers may include Google,
-Twilio, LiveKit, Stripe, OpenAI, Deepgram, Cartesia, ElevenLabs, email
-providers, S3-compatible storage providers, and integration providers.
+These providers may change over time based on our business, technical, and
+operational needs.
 
 We may also disclose information when required by law, to protect safety or
 rights, to investigate misuse, or in connection with a merger, financing, or
