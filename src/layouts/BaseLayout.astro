@@ -17,10 +17,24 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="nightfall" data-mode="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Theme init: runs before rendering to prevent flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        var t = localStorage.getItem('vifi-theme');
+        var m = localStorage.getItem('vifi-mode');
+        var r = document.documentElement;
+        if (t === 'shoreline' || t === 'nightfall') r.setAttribute('data-theme', t);
+        if (m === 'light' || m === 'dark') r.setAttribute('data-mode', m);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+          r.setAttribute('data-mode', 'dark');
+      })();
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -44,14 +58,7 @@ const {
 
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKB6V11FV8"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EKB6V11FV8');
-    </script>
+    <!-- Analytics disabled until consent controls are implemented -->
   </head>
   <body
     class="min-h-screen bg-bg text-text font-sans antialiased overflow-x-hidden"
