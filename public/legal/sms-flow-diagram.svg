@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1020" font-family="system-ui, -apple-system, sans-serif" role="img" aria-label="ViFi A2P 10DLC SMS double opt-in flow diagram">
+  <title>ViFi A2P 10DLC SMS Double Opt-In Flow</title>
+  <desc>Six-step flow: consumer call, AI agent answer, verbal CTA, verbal request captured (not consent), ViFi sends confirmation SMS, consumer replies YES/STOP/no-reply, three branches resolve.</desc>
+
+  <rect width="820" height="1020" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="410" y="35" text-anchor="middle" font-size="22" font-weight="700" fill="#111">ViFi A2P 10DLC SMS Double Opt-In Flow</text>
+  <text x="410" y="60" text-anchor="middle" font-size="13" fill="#555">Verbal request on inbound call → SMS YES = legal consent → one content SMS → done</text>
+
+  <!-- Step 1 -->
+  <rect x="260" y="85" width="300" height="60" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="6"/>
+  <text x="410" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#0d47a1">Step 1</text>
+  <text x="410" y="130" text-anchor="middle" font-size="13" fill="#0d47a1">Consumer initiates inbound phone call to ViFi-powered business</text>
+
+  <line x1="410" y1="145" x2="410" y2="170" stroke="#333" stroke-width="2"/>
+  <polygon points="404,166 416,166 410,176" fill="#333"/>
+
+  <!-- Step 2 -->
+  <rect x="260" y="180" width="300" height="60" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="6"/>
+  <text x="410" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#1b5e20">Step 2</text>
+  <text x="410" y="225" text-anchor="middle" font-size="13" fill="#1b5e20">AI voice agent answers, identifies business, addresses question</text>
+
+  <line x1="410" y1="240" x2="410" y2="265" stroke="#333" stroke-width="2"/>
+  <polygon points="404,261 416,261 410,271" fill="#333"/>
+
+  <!-- Step 3 — verbal CTA -->
+  <rect x="180" y="275" width="460" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="6"/>
+  <text x="410" y="298" text-anchor="middle" font-size="14" font-weight="700" fill="#e65100">Step 3 — Verbal CTA from AI agent</text>
+  <text x="410" y="318" text-anchor="middle" font-size="12" font-style="italic" fill="#bf360c">"Want me to text you the booking link / directions / menu / call summary?"</text>
+  <text x="410" y="338" text-anchor="middle" font-size="11" fill="#5d4037">Captured in call recording &amp; transcript for audit</text>
+  <text x="410" y="352" text-anchor="middle" font-size="11" fill="#5d4037">Public reference: vifi.us/legal/messaging-policy/</text>
+
+  <line x1="410" y1="355" x2="410" y2="380" stroke="#333" stroke-width="2"/>
+  <polygon points="404,376 416,376 410,386" fill="#333"/>
+
+  <!-- Step 4 — request not consent -->
+  <rect x="200" y="390" width="420" height="55" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="6"/>
+  <text x="410" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#880e4f">Step 4 — Verbal yes is a REQUEST, not legal SMS consent</text>
+  <text x="410" y="431" text-anchor="middle" font-size="11" fill="#880e4f">Legal SMS consent is granted only at the SMS YES step below</text>
+
+  <line x1="410" y1="445" x2="410" y2="470" stroke="#333" stroke-width="2"/>
+  <polygon points="404,466 416,466 410,476" fill="#333"/>
+
+  <!-- Step 5 — ViFi sends confirmation SMS -->
+  <rect x="60" y="480" width="700" height="110" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="6"/>
+  <text x="410" y="505" text-anchor="middle" font-size="14" font-weight="700" fill="#4a148c">Step 5 — ViFi sends ONE consent confirmation SMS</text>
+  <text x="410" y="528" text-anchor="middle" font-size="11.5" font-family="ui-monospace, Menlo, monospace" fill="#311b92">ViFi: you asked us to text you the [booking link / directions / menu / summary] from your call with</text>
+  <text x="410" y="544" text-anchor="middle" font-size="11.5" font-family="ui-monospace, Menlo, monospace" fill="#311b92">[Business Name]. Reply YES to confirm and receive it, or STOP to opt out. Reply HELP for help.</text>
+  <text x="410" y="560" text-anchor="middle" font-size="11.5" font-family="ui-monospace, Menlo, monospace" fill="#311b92">Msg &amp; data rates may apply. Frequency: 1 confirmation + 1 content text per call.</text>
+  <text x="410" y="580" text-anchor="middle" font-size="10.5" fill="#5d4037">Sender = ViFi LLC (TCR-registered Brand). Business named in body for transparency context.</text>
+
+  <line x1="410" y1="590" x2="410" y2="615" stroke="#333" stroke-width="2"/>
+  <polygon points="404,611 416,611 410,621" fill="#333"/>
+
+  <!-- Step 6 — consumer reply decision -->
+  <rect x="260" y="625" width="300" height="55" fill="#fff" stroke="#000" stroke-width="2" rx="6"/>
+  <text x="410" y="648" text-anchor="middle" font-size="14" font-weight="700">Step 6 — Consumer's SMS reply</text>
+  <text x="410" y="667" text-anchor="middle" font-size="12">YES   |   STOP (or 6 synonyms)   |   no-reply 24h</text>
+
+  <!-- Three branches -->
+  <line x1="290" y1="680" x2="150" y2="730" stroke="#333" stroke-width="2"/>
+  <line x1="410" y1="680" x2="410" y2="730" stroke="#333" stroke-width="2"/>
+  <line x1="530" y1="680" x2="670" y2="730" stroke="#333" stroke-width="2"/>
+
+  <!-- YES branch -->
+  <rect x="40" y="735" width="220" height="155" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2" rx="6"/>
+  <text x="150" y="760" text-anchor="middle" font-size="13" font-weight="700" fill="#1b5e20">YES → "confirmed"</text>
+  <text x="150" y="782" text-anchor="middle" font-size="11" fill="#1b5e20">ONE content SMS sends:</text>
+  <text x="150" y="803" text-anchor="middle" font-size="10" font-family="ui-monospace, Menlo, monospace" fill="#1b5e20">ViFi: the booking link</text>
+  <text x="150" y="817" text-anchor="middle" font-size="10" font-family="ui-monospace, Menlo, monospace" fill="#1b5e20">you requested from your</text>
+  <text x="150" y="831" text-anchor="middle" font-size="10" font-family="ui-monospace, Menlo, monospace" fill="#1b5e20">call with [Business Name]:</text>
+  <text x="150" y="845" text-anchor="middle" font-size="10" font-family="ui-monospace, Menlo, monospace" fill="#1b5e20">[Booking Link]</text>
+  <text x="150" y="868" text-anchor="middle" font-size="10" fill="#33691e">Then flow is complete.</text>
+  <text x="150" y="882" text-anchor="middle" font-size="10" fill="#33691e">No further SMS sent.</text>
+
+  <!-- STOP branch -->
+  <rect x="300" y="735" width="220" height="155" fill="#ffcdd2" stroke="#c62828" stroke-width="2" rx="6"/>
+  <text x="410" y="760" text-anchor="middle" font-size="13" font-weight="700" fill="#b71c1c">STOP → "opted_out"</text>
+  <text x="410" y="782" text-anchor="middle" font-size="11" fill="#b71c1c">No further SMS to that number</text>
+  <text x="410" y="798" text-anchor="middle" font-size="11" fill="#b71c1c">for that business, ever.</text>
+  <text x="410" y="822" text-anchor="middle" font-size="10" fill="#3e2723">Honored within seconds via</text>
+  <text x="410" y="836" text-anchor="middle" font-size="10" fill="#3e2723">Twilio Advanced Opt-Out at the</text>
+  <text x="410" y="850" text-anchor="middle" font-size="10" fill="#3e2723">Messaging Service level.</text>
+  <text x="410" y="872" text-anchor="middle" font-size="10" fill="#3e2723">Re-enroll: consumer contacts</text>
+  <text x="410" y="886" text-anchor="middle" font-size="10" fill="#3e2723">business directly.</text>
+
+  <!-- no-reply branch -->
+  <rect x="560" y="735" width="220" height="155" fill="#e0e0e0" stroke="#616161" stroke-width="2" rx="6"/>
+  <text x="670" y="760" text-anchor="middle" font-size="13" font-weight="700" fill="#212121">No reply 24h → "expired"</text>
+  <text x="670" y="782" text-anchor="middle" font-size="11" fill="#212121">Pending consent expires.</text>
+  <text x="670" y="798" text-anchor="middle" font-size="11" fill="#212121">Content SMS discarded.</text>
+  <text x="670" y="822" text-anchor="middle" font-size="10" fill="#424242">Consumer is not contacted</text>
+  <text x="670" y="836" text-anchor="middle" font-size="10" fill="#424242">further. Flow restarts from</text>
+  <text x="670" y="850" text-anchor="middle" font-size="10" fill="#424242">Step 1 if consumer calls</text>
+  <text x="670" y="864" text-anchor="middle" font-size="10" fill="#424242">again and requests SMS.</text>
+
+  <!-- Footer -->
+  <line x1="60" y1="920" x2="760" y2="920" stroke="#bdbdbd" stroke-width="1"/>
+  <text x="410" y="945" text-anchor="middle" font-size="11" fill="#555">Frequency: 1 confirmation SMS + (at most) 1 content SMS per inbound call request. No recurring traffic.</text>
+  <text x="410" y="963" text-anchor="middle" font-size="11" fill="#555">Sender: ViFi LLC (TCR-registered Brand) | Use Case: LOW_VOLUME (Mixed) | HELP/STOP at every step</text>
+  <text x="410" y="985" text-anchor="middle" font-size="10.5" fill="#777">Public refs: vifi.us/legal/messaging-policy/ · vifi.us/legal/privacy/ · vifi.us/legal/terms/</text>
+  <text x="410" y="1005" text-anchor="middle" font-size="10" fill="#999">© ViFi LLC. Generated 2026-05-04 for A2P 10DLC Campaign resubmission evidence.</text>
+</svg>
