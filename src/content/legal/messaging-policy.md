@@ -1,12 +1,79 @@
 ---
 title: "Messaging Policy"
-description: "How ViFi-powered businesses obtain SMS consent, what messages are sent, and how to opt out."
-effectiveDate: 2026-05-04
+description: "How ViFi obtains SMS consent for both account-holder messages and consumer-facing messages, what messages are sent, and how to opt out."
+effectiveDate: 2026-05-05
 ---
 
-ViFi LLC ("ViFi") operates an AI voice phone-answering platform. When a consumer calls a small business that uses ViFi, our AI voice agent may offer to send a follow-up SMS with information the consumer requested during the call. This page documents the exact opt-in flow, message content, and consumer rights for that SMS program.
+ViFi LLC ("ViFi") sends SMS through two strictly separate channels:
 
-This policy is referenced from our [Privacy Policy](/legal/privacy/) and our [Terms of Service](/legal/terms/), and is provided as the public source-of-truth for SMS opt-in evidence under TCR / CTIA / 10DLC review.
+1. **Platform messaging** — ViFi → a ViFi account holder (e.g., the business owner who signed up for the ViFi platform). Used for sign-in codes (MFA), account verification, account alerts, and security notifications. Sent over a toll-free number registered to ViFi LLC.
+2. **Customer messaging (A2P 10DLC)** — ViFi → an end consumer who initiated a phone call to a ViFi-powered business. Used for transactional follow-up the consumer requested on the call (booking link, directions, menu, call summary). Sent through a per-tenant Messaging Service bound to ViFi's TCR-registered Campaign.
+
+Each channel has its own opt-in moment, consent capture, and disclosure surface, documented below. Both are referenced from our [Privacy Policy](/legal/privacy/) and [Terms of Service](/legal/terms/), and this page is the public source-of-truth for SMS opt-in evidence under TCR / Twilio Toll-Free Verification / CTIA / 10DLC review.
+
+---
+
+## Channel 1: Platform messaging (ViFi → account holders)
+
+### Who receives these messages
+
+Authenticated ViFi account holders only — the people who created an account at vifi.us, completed signup, and added a phone number for security purposes. End consumers who call a ViFi-powered business never receive platform-channel SMS.
+
+### Use cases
+
+- **Two-factor authentication (TWO_FACTOR_AUTHENTICATION)** — sign-in codes during login on a new device or after session expiry
+- **Account notifications (ACCOUNT_NOTIFICATIONS)** — phone-number ownership verification at signup, trial-ending reminders, payment failure alerts, subscription renewals, provisioning completion notifications
+- **Security alerts (SECURITY_ALERT)** — new sign-in detected from an unrecognized device, password change confirmations, suspicious activity warnings
+
+This channel is **strictly transactional**. ViFi does not send marketing, promotional, third-party, or unsolicited messages on this channel.
+
+### The opt-in moment
+
+The account holder's express SMS consent is captured at the phone-verification step inside the ViFi dashboard (Account → Security → Add phone number). Before the user can request a verification code, the UI displays the following disclosure directly above the **Send code** button:
+
+> By tapping **Send code**, you consent to receive SMS messages from ViFi at this number for sign-in codes, account alerts, and security notifications. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help.
+
+A render of the disclosure as it appears in the live UI is provided as evidence:
+
+![ViFi platform SMS consent disclosure shown at phone verification](/legal/platform-sms-consent.png)
+
+Direct image URL (for review evidence): [https://vifi.us/legal/platform-sms-consent.png](/legal/platform-sms-consent.png)
+
+The user's tap of **Send code** is the documented consent action. The user record's `phone_verified_at` timestamp captures the moment consent was granted. This consent applies only to the platform-messaging channel — it does not opt the user into any consumer-facing campaign.
+
+### Why opt-in is a service requirement
+
+Two-factor authentication via SMS is a security feature of the ViFi platform. Account holders who add a phone number do so explicitly to enable that feature. Account-state notifications (payment failure, trial ending) and security alerts (new sign-in) are part of the operational surface a business owner expects from a SaaS platform of this category. Opting out of these alerts via STOP is honored, but doing so disables MFA-via-SMS and removes the user from security-alert delivery — which is communicated in the disclosure and at opt-out time.
+
+### Frequency and content scope
+
+Frequency varies based on account state — typically a few messages per month for active accounts (one per sign-in event when MFA is required, occasional notifications, occasional security alerts). The platform does not send recurring promotional content, never markets to the recipient, and never shares the phone number with third parties.
+
+### Sender identification
+
+Every platform-channel message identifies ViFi by name and discloses the message purpose. Example samples:
+
+> ViFi: Your verification code is 438219. This code expires in 10 minutes. Don't share it with anyone.
+
+> ViFi: Your trial ends in 3 days. Upgrade at https://app.vifi.us/billing to keep your AI voice agent active. Reply STOP to opt out.
+
+> ViFi: New sign-in detected from a device in San Francisco, CA. If this wasn't you, secure your account: https://app.vifi.us/security. Reply STOP to opt out of security alerts.
+
+### Opting out
+
+Reply STOP (or any standard opt-out keyword: STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT, OPTOUT) to any platform-channel message. Twilio Advanced Opt-Out at the toll-free MS level honors the opt-out within seconds. The user can re-enable platform SMS by going back to Account → Security and re-verifying their phone number, which presents the consent disclosure again. STOP applies only to the platform channel; consumer-channel A2P consent is per-(phone, business) and unaffected.
+
+### Reference number
+
+The toll-free phone number used for platform messaging is owned by ViFi LLC and registered for Twilio Toll-Free Verification (currently in resubmission per TCR ruling).
+
+---
+
+## Channel 2: Customer messaging (consumer → ViFi-powered business)
+
+When a consumer calls a small business that uses ViFi, our AI voice agent may offer to send a follow-up SMS with information the consumer requested during the call. This is the A2P 10DLC channel and operates entirely separately from the platform-messaging channel above.
+
+This policy is the public source-of-truth for the A2P 10DLC opt-in flow as well; reviewers under TCR / CTIA / 10DLC use the sections below as evidence.
 
 ## Visual flow diagram
 
