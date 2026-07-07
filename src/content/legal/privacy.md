@@ -82,6 +82,25 @@ We do **not** sell, rent, or share mobile numbers, SMS opt-in data, or SMS
 consent records with third parties or affiliates for their own marketing or
 promotional purposes.
 
+All the above categories exclude text messaging originator opt-in data and
+consent; this information will not be shared with any third parties. No mobile
+information will be shared with third parties or affiliates for marketing or
+promotional purposes. Information sharing with subcontractors that support our
+services, such as customer service providers, is permitted.
+
+## SMS and Mobile Communications
+
+If you have opted in to receive SMS from ViFi or from a business using the
+ViFi platform, the following applies:
+
+- Message frequency varies by program; consumer-facing messages are limited to
+  at most one consent confirmation and one content message per phone call you
+  initiate. **Message and data rates may apply.**
+- Reply **STOP** to any message to opt out. Reply **HELP** for help, or contact
+  [support@vifi.us](mailto:support@vifi.us).
+- The full program description, opt-in flow, and consent handling are
+  documented in our [Messaging Policy](/legal/messaging-policy/).
+
 ## Cookies and Analytics
 
 We may use cookies and similar technologies for authentication, security,

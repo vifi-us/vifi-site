@@ -108,7 +108,7 @@ The consumer's verbal response is captured in the call recording and transcript.
 
 If the consumer verbally agrees on the call, ViFi sends one consent confirmation SMS to the consumer's number:
 
-> [Business Name] (via ViFi): you asked us to text you the [booking link / directions / menu / call summary] during your call. Reply YES to confirm and receive it, or STOP to opt out. Reply HELP for help. Msg & data rates may apply. Frequency: 1 confirmation + 1 content text per call.
+> ViFi: you asked us to text you the [booking link / directions / menu / call summary] from your call with [Business Name]. Reply YES to confirm and receive it, or STOP to opt out. Reply HELP for help. Msg & data rates may apply. Frequency: 1 confirmation + 1 content text per call.
 
 The consumer's reply determines what happens next.
 
@@ -118,11 +118,15 @@ ViFi advances the consumer's consent state to "confirmed" for that specific busi
 
 Example content SMS:
 
-> Acme Pizza (via ViFi): the booking link you requested during your call: https://acmepizza.example.com/book. Reply HELP for help, STOP to opt out. Msg & data rates may apply.
+> ViFi: the booking link you requested from your call with [Business Name]: [Booking Link]. Reply HELP for help, STOP to opt out. Msg & data rates may apply.
+
+Content links are always full, non-shortened HTTPS URLs on the business's own
+domain (their booking page, website, or maps listing). ViFi never uses public
+URL shorteners.
 
 ### Reply: STOP (or STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT, OPTOUT)
 
-ViFi advances the consumer's consent state to "opted_out" for that business, honored within seconds via Twilio Advanced Opt-Out at the Messaging Service level. No further SMS is sent to that number for that business. Re-enrollment requires the consumer to contact the business directly; ViFi does not auto-re-opt-in on START or any keyword in v1.
+ViFi advances the consumer's consent state to "opted_out" for that business, honored within seconds via Twilio Advanced Opt-Out at the Messaging Service level. The consumer receives one opt-out confirmation identifying ViFi, and no further SMS is sent to that number for that business. Replying START re-enables message delivery at the carrier level per industry standards, but ViFi will not send any further messages until the consumer initiates a new phone call to the business and requests SMS follow-up again — re-enrollment always restarts the full double opt-in flow.
 
 ### No reply within 24 hours
 
@@ -137,17 +141,25 @@ For each inbound phone call where the consumer requests SMS follow-up, the consu
 
 ViFi does **not** send recurring messages, marketing, promotional content, third-party offers, or messages unrelated to the consumer's specific call request. Messages contain only the item the consumer requested during their call (booking link, directions, menu, or call summary).
 
+## Auto-reply messages (verbatim)
+
+The program's keyword auto-replies are:
+
+- **Opt-in confirmation (after YES):** "ViFi: consent confirmed for [Business Name]. Max 1 confirmation + 1 content msg per call you make. Msg & data rates may apply. Reply HELP for help, STOP to opt out."
+- **Opt-out confirmation (after STOP):** "ViFi: you are unsubscribed and will receive no more messages from this number. For help contact support@vifi.us."
+- **Help (after HELP):** "ViFi: for help contact support@vifi.us or visit vifi.us/legal/messaging-policy. Reply STOP to opt out. Msg & data rates may apply."
+
 ## Help and contact
 
 For questions about the SMS program, the consumer can:
 
-- Reply HELP to any ViFi-sent message — the auto-reply identifies the business and provides their direct contact info plus ViFi platform support
+- Reply HELP to any ViFi-sent message — the auto-reply identifies ViFi and provides platform support contact (<support@vifi.us>) and a link to this policy
 - Email ViFi at <support@vifi.us>
 - Contact the business directly using the phone number the consumer originally called
 
 ## Consumer rights and data handling
 
-Mobile numbers, opt-in records, and consent state changes are retained by ViFi for compliance and audit purposes. ViFi does **not** sell, rent, or share mobile numbers, SMS opt-in data, or SMS consent records with third parties or affiliates for their own marketing or promotional purposes. See our [Privacy Policy](/legal/privacy/) for the full data-handling description.
+Mobile numbers, opt-in records, and consent state changes are retained by ViFi for compliance and audit purposes. ViFi does **not** sell, rent, or share mobile numbers, SMS opt-in data, or SMS consent records with third parties or affiliates for their own marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties; sharing with subcontractors that support the service, such as customer service providers, is permitted. See our [Privacy Policy](/legal/privacy/) for the full data-handling description.
 
 Consumers may request deletion of their consent and contact records by emailing <privacy@vifi.us>.
 
