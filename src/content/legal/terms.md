@@ -36,9 +36,12 @@ If you opt into SMS from ViFi or a participating business using the platform,
 you agree to receive the types of messages described in the applicable signup
 flow or customer program.
 
-Message frequency varies. Message and data rates may apply. Reply HELP for help
-and STOP to cancel. Carriers are not liable for delayed or undelivered
-messages. See our [Privacy Policy](/legal/privacy).
+Message frequency varies. Message and data rates may apply. Reply **HELP** for
+help and **STOP** to cancel. For SMS support, contact
+[support@vifi.us](mailto:support@vifi.us). Carriers are not liable for delayed
+or undelivered messages. See our [Privacy Policy](/legal/privacy) and
+[Messaging Policy](/legal/messaging-policy) for the full program terms and
+opt-in flow.
 
 You may not use the service to send SMS without the level of consent required
 for the applicable campaign or program. Purchased, scraped, or third-party
