@@ -103,9 +103,10 @@ cloud. We use this information to measure interest in ViFi, improve our
 website and product, and attribute signups to marketing campaigns. We do not
 use analytics data for third-party advertising, and we do not sell it.
 
-To opt out of analytics on our website, or to request deletion of analytics
-data about you, email [hello@vifi.us](mailto:hello@vifi.us). Where required
-by law, we will use non-essential analytics technologies only after consent.
+Our website honors the Global Privacy Control signal: if your browser sends
+it, we do not load analytics for your visit. To opt out of analytics another
+way, or to request deletion of analytics data about you, email
+[hello@vifi.us](mailto:hello@vifi.us).
 
 ## Retention
 

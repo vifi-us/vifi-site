@@ -13,7 +13,7 @@ When your phone rings and you can't answer, most callers don't leave a message. 
 
 ViFi is an AI phone assistant that answers your calls with a professional voice. But picking up is just the start.
 
-After every conversation, ViFi sends you a call recap: a short summary, the word-for-word transcript, and a recording. You get notified instantly by text, email, or both.
+After every conversation, ViFi sends you a call recap: a short summary, the word-for-word transcript, and an optional recording. You get notified instantly by email.
 
 When you call back, you already know who it was, what they need, and what to say. No guessing, no awkward "remind me what you called about."
 
@@ -30,4 +30,4 @@ If your phone is a revenue tool and you can't always be there to answer it, ViFi
 
 ## Try it today
 
-ViFi is now live. [Start your free trial](https://app.vifi.us/register) and your agent can be answering calls in minutes.
+ViFi is now live. <a href="https://app.vifi.us/register" data-cta="blog-welcome-inline">Start your free trial</a> and your agent can be answering calls in minutes.

@@ -17,6 +17,8 @@ export const navigation: NavItem[] = [
 export interface FooterLink {
   label: string;
   href: string;
+  /** Optional analytics placement id, rendered as data-cta. */
+  cta?: string;
 }
 
 export interface FooterSection {
@@ -33,7 +35,7 @@ export const footerNavigation: FooterSection[] = [
       { label: "Pricing", href: "/pricing" },
       { label: "Alternatives", href: "/alternatives" },
       { label: "FAQ", href: "/faq" },
-      { label: "Log in", href: siteConfig.loginUrl },
+      { label: "Log in", href: siteConfig.loginUrl, cta: "footer-login" },
     ],
   },
   {

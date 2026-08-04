@@ -12,12 +12,15 @@ import { siteConfig } from "../../data/site";
       >
     </a>
 
-    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <nav
+      class="hidden md:flex items-center gap-4 lg:gap-6"
+      aria-label="Main navigation"
+    >
       {
         navigation.map((item) => (
           <a
             href={item.href}
-            class="text-sm text-on-primary/70 hover:text-on-primary transition-colors"
+            class="whitespace-nowrap text-sm text-on-primary/70 hover:text-on-primary transition-colors"
           >
             {item.label}
           </a>
@@ -25,14 +28,15 @@ import { siteConfig } from "../../data/site";
       }
       <a
         href={siteConfig.loginUrl}
-        class="text-sm text-on-primary/70 hover:text-on-primary transition-colors"
+        data-cta="header-login"
+        class="whitespace-nowrap text-sm text-on-primary/70 hover:text-on-primary transition-colors"
       >
         Log in
       </a>
       <a
         href={siteConfig.registerUrl}
         data-cta="header"
-        class="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition hover:opacity-90"
+        class="whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition hover:opacity-90"
       >
         Start Free Trial
       </a>
@@ -68,6 +72,7 @@ import { siteConfig } from "../../data/site";
       }
       <a
         href={siteConfig.loginUrl}
+        data-cta="header-mobile-login"
         class="text-sm text-on-primary/70 hover:text-on-primary transition-colors py-1"
       >
         Log in

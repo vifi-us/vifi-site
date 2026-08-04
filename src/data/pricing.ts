@@ -84,12 +84,12 @@ export const pricingFAQs: PricingFAQ[] = [
   {
     question: "What happens if I use all my included minutes?",
     answer:
-      "ViFi keeps answering. Your callers will never hit a dead end. Additional minutes are billed at an overage rate based on your plan, and you can set usage alerts and spending limits from your dashboard.",
+      "By default, ViFi keeps answering — additional minutes are billed at an overage rate based on your plan. You can also set usage alerts or a hard spending limit from your dashboard.",
   },
   {
     question: "Can I change plans later?",
     answer:
-      "Yes. Upgrade or downgrade anytime from your dashboard. Charges are prorated automatically.",
+      "Yes. Upgrade anytime from your dashboard, and the charge is prorated automatically. To downgrade, contact support and we'll take care of it.",
   },
   {
     question: "Do I need a new phone number?",

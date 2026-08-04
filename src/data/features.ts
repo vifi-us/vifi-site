@@ -21,13 +21,13 @@ export const features: Feature[] = [
     icon: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3",
     title: "Call Recordings",
     description:
-      "Listen back to any call on demand. Hear the tone, the urgency, and the details that text alone can't capture.",
+      "Turn on recording and listen back to any call on demand. Hear the tone, the urgency, and the details that text alone can't capture.",
   },
   {
     icon: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 0 1-3.46 0",
     title: "Instant Notifications",
     description:
-      "Get a text or email the moment a call wraps up. You'll know what happened before you even check your phone.",
+      "Get an email recap the moment a call wraps up. You'll know what happened before you even check your phone.",
   },
   {
     icon: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3 M8 22h8",

@@ -32,7 +32,7 @@ export const spotlights: FeatureSpotlightData[] = [
     bullets: [
       "A summary, the caller's intent, and action items for every call",
       "Full word-for-word transcript, with optional recording",
-      "Instant recap by email or text, plus a daily digest",
+      "An instant recap by email the moment the call ends",
       "How the call went: sentiment on every conversation",
     ],
     icon: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
@@ -106,6 +106,6 @@ export const secondaryFeatures: SecondaryFeature[] = [
     icon: "M13 2 3 14h9l-1 10 10-12h-9l1-10z",
     title: "Live in minutes",
     description:
-      "Get a local number, or keep yours and forward calls. A guided setup walks you through it, then you test your agent with a call right from your browser.",
+      "A guided setup gets you a local number in minutes — or keep your number and forward calls to it. Then hear your agent take a test call right from your browser.",
   },
 ];
