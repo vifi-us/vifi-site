@@ -3,13 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import PageHero from "../components/blocks/PageHero.astro";
-import SignupForm from "../components/blocks/SignupForm.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
 import { siteConfig } from "../data/site";
 ---
 
 <BaseLayout
   title="Contact ViFi | Get in Touch"
-  description="Have questions about ViFi? Reach out to our team or sign up for early access."
+  description="Have questions about ViFi? Reach out to our team, or start your free trial."
 >
   <div class="flex min-h-screen flex-col">
     <Header />
@@ -31,13 +31,11 @@ import { siteConfig } from "../data/site";
         </div>
       </section>
 
-      <div class="border-t border-border mx-auto max-w-md">
-        <p class="text-center text-sm text-muted pt-10">
-          Or sign up for early access
-        </p>
-      </div>
-
-      <SignupForm />
+      <CTABanner
+        heading="Ready to try ViFi?"
+        description="Start your 7-day free trial. No credit card required."
+        ctaId="contact-banner"
+      />
     </main>
     <Footer />
   </div>

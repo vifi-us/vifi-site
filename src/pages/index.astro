@@ -9,7 +9,7 @@ import HowItWorksPreview from "../components/blocks/HowItWorksPreview.astro";
 import FeatureHighlights from "../components/blocks/FeatureHighlights.astro";
 import ComparisonTeaser from "../components/blocks/ComparisonTeaser.astro";
 import TrustStrip from "../components/blocks/TrustStrip.astro";
-import SignupForm from "../components/blocks/SignupForm.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
 ---
 
 <BaseLayout
@@ -26,7 +26,11 @@ import SignupForm from "../components/blocks/SignupForm.astro";
       <FeatureHighlights />
       <ComparisonTeaser />
       <TrustStrip />
-      <SignupForm />
+      <CTABanner
+        heading="Ready to answer every call?"
+        description="Set up your agent and hear it take a real call in minutes. Free for 7 days, no credit card required."
+        ctaId="home-banner"
+      />
     </main>
     <Footer />
   </div>

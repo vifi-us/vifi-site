@@ -1,3 +1,5 @@
+import { siteConfig } from "./site";
+
 export interface NavItem {
   label: string;
   href: string;
@@ -29,6 +31,7 @@ export const footerNavigation: FooterSection[] = [
       { label: "Pricing", href: "/pricing" },
       { label: "Alternatives", href: "/alternatives" },
       { label: "FAQ", href: "/faq" },
+      { label: "Log in", href: siteConfig.loginUrl },
     ],
   },
   {

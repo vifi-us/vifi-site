@@ -1,5 +1,6 @@
 ---
 import { pricingTiers } from "../../data/pricing";
+import { siteConfig } from "../../data/site";
 ---
 
 <section class="pb-16 sm:pb-24">
@@ -56,7 +57,8 @@ import { pricingTiers } from "../../data/pricing";
             </ul>
 
             <a
-              href="/#early-access"
+              href={siteConfig.registerUrl}
+              data-cta={`pricing-${tier.name.toLowerCase()}`}
               class:list={[
                 "block text-center rounded-full px-6 py-3 text-sm font-semibold transition",
                 tier.highlighted
@@ -72,8 +74,7 @@ import { pricingTiers } from "../../data/pricing";
     </div>
 
     <p class="text-center text-sm text-muted mt-8">
-      All prices are early access estimates and may change before launch.
-      Every plan includes a 7-day free trial.
+      Every plan includes a 7-day free trial. No credit card required.
     </p>
   </div>
 </section>

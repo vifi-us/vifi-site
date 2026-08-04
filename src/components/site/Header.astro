@@ -1,5 +1,6 @@
 ---
 import { navigation } from "../../data/navigation";
+import { siteConfig } from "../../data/site";
 ---
 
 <header class="sticky top-0 z-50 bg-primary backdrop-blur-lg py-7">
@@ -23,10 +24,17 @@ import { navigation } from "../../data/navigation";
         ))
       }
       <a
-        href="/#early-access"
+        href={siteConfig.loginUrl}
+        class="text-sm text-on-primary/70 hover:text-on-primary transition-colors"
+      >
+        Log in
+      </a>
+      <a
+        href={siteConfig.registerUrl}
+        data-cta="header"
         class="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition hover:opacity-90"
       >
-        Get Early Access
+        Start Free Trial
       </a>
     </nav>
 
@@ -59,10 +67,17 @@ import { navigation } from "../../data/navigation";
         ))
       }
       <a
-        href="/#early-access"
+        href={siteConfig.loginUrl}
+        class="text-sm text-on-primary/70 hover:text-on-primary transition-colors py-1"
+      >
+        Log in
+      </a>
+      <a
+        href={siteConfig.registerUrl}
+        data-cta="header-mobile"
         class="mt-2 inline-block rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent text-center transition hover:opacity-90"
       >
-        Get Early Access
+        Start Free Trial
       </a>
     </div>
   </nav>

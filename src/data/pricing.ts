@@ -24,8 +24,7 @@ export const pricingTiers: PricingTier[] = [
       "Custom greeting & instructions",
       "Email notifications",
     ],
-    cta: "Get Early Access",
-    badge: "Early Access",
+    cta: "Start Free Trial",
   },
   {
     name: "Growth",
@@ -39,7 +38,7 @@ export const pricingTiers: PricingTier[] = [
       "Call recordings",
       "SMS + email notifications",
     ],
-    cta: "Get Early Access",
+    cta: "Start Free Trial",
     highlighted: true,
     badge: "Most Popular",
   },
@@ -55,8 +54,7 @@ export const pricingTiers: PricingTier[] = [
       "Priority support",
       "API access",
     ],
-    cta: "Get Early Access",
-    badge: "Early Access",
+    cta: "Start Free Trial",
   },
 ];
 
