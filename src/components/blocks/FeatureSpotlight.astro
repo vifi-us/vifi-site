@@ -1,0 +1,82 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  bullets: string[];
+  icon: string;
+  reverse?: boolean;
+}
+
+const { eyebrow, title, description, bullets, icon, reverse = false } =
+  Astro.props;
+---
+
+<section class="pb-16 sm:pb-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="grid items-center gap-8 sm:grid-cols-2 sm:gap-12">
+      <div class:list={[reverse && "sm:order-2"]}>
+        <div
+          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-accent"
+          >
+            <path d={icon} />
+          </svg>
+        </div>
+        <p
+          class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent/80"
+        >
+          {eyebrow}
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight mb-4"
+        >
+          {title}
+        </h2>
+        <p class="text-base text-muted leading-relaxed">{description}</p>
+      </div>
+
+      <div
+        class:list={[
+          "rounded-2xl border border-border bg-surface p-6 sm:p-8",
+          reverse && "sm:order-1",
+        ]}
+      >
+        <ul class="space-y-4">
+          {
+            bullets.map((bullet) => (
+              <li class="flex items-start gap-3 text-sm text-muted leading-relaxed">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-accent mt-0.5 shrink-0"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {bullet}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

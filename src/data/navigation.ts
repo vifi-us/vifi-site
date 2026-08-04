@@ -6,6 +6,7 @@ export interface NavItem {
 }
 
 export const navigation: NavItem[] = [
+  { label: "Features", href: "/features" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
@@ -27,6 +28,7 @@ export const footerNavigation: FooterSection[] = [
   {
     title: "Product",
     links: [
+      { label: "Features", href: "/features" },
       { label: "How It Works", href: "/how-it-works" },
       { label: "Pricing", href: "/pricing" },
       { label: "Alternatives", href: "/alternatives" },
