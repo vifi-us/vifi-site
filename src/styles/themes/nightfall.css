@@ -1,0 +1,36 @@
+/* Nightfall — Purple/Cyan palette
+   Technical, modern, developer-facing. The original theme. */
+
+/* ── Light mode ────────────────────────────────────────────────────── */
+:root[data-theme="nightfall"] {
+  --color-bg: #f0eef8;
+  --color-surface: #ffffff;
+  --color-border: rgba(108, 99, 255, 0.12);
+  --color-text: #1a1a2e;
+  --color-muted: rgba(26, 26, 46, 0.55);
+  --color-primary: #2d2b55;
+  --color-accent: #6c63ff;
+  --color-accent-glow: rgba(108, 99, 255, 0.25);
+  --color-accent-glow-strong: rgba(108, 99, 255, 0.35);
+  --color-on-primary: #f0eef8;
+  --color-on-accent: #ffffff;
+  --color-ambient-1: rgba(108, 99, 255, 0.06);
+  --color-ambient-2: rgba(0, 212, 170, 0.05);
+}
+
+/* ── Dark mode ─────────────────────────────────────────────────────── */
+:root[data-theme="nightfall"][data-mode="dark"] {
+  --color-bg: #0a0a0f;
+  --color-surface: #12121a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text: #e8e8f0;
+  --color-muted: rgba(232, 232, 240, 0.55);
+  --color-primary: #16162a;
+  --color-accent: #6c63ff;
+  --color-accent-glow: rgba(108, 99, 255, 0.35);
+  --color-accent-glow-strong: rgba(108, 99, 255, 0.45);
+  --color-on-primary: #e8e8f0;
+  --color-on-accent: #ffffff;
+  --color-ambient-1: rgba(108, 99, 255, 0.12);
+  --color-ambient-2: rgba(0, 212, 170, 0.10);
+}

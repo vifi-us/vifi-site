@@ -2,11 +2,11 @@
 import { navigation } from "../../data/navigation";
 ---
 
-<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-lg py-7">
+<header class="sticky top-0 z-50 bg-primary backdrop-blur-lg py-7">
   <div class="mx-auto max-w-5xl px-6 flex items-center justify-between">
     <a href="/" class="text-[1.75rem] font-extrabold tracking-tight no-underline">
-      <span class="text-text">Vi</span><span
-        class="bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent"
+      <span class="text-on-primary">Vi</span><span
+        class="text-accent"
         >Fi</span
       >
     </a>
@@ -16,7 +16,7 @@ import { navigation } from "../../data/navigation";
         navigation.map((item) => (
           <a
             href={item.href}
-            class="text-sm text-muted hover:text-text transition-colors"
+            class="text-sm text-on-primary/70 hover:text-on-primary transition-colors"
           >
             {item.label}
           </a>
@@ -24,7 +24,7 @@ import { navigation } from "../../data/navigation";
       }
       <a
         href="/#early-access"
-        class="rounded-full bg-gradient-to-br from-primary to-secondary px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+        class="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition hover:opacity-90"
       >
         Get Early Access
       </a>
@@ -36,15 +36,15 @@ import { navigation } from "../../data/navigation";
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar1"></span>
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar2"></span>
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar3"></span>
+      <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar1"></span>
+      <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar2"></span>
+      <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar3"></span>
     </button>
   </div>
 
   <nav
     id="mobile-menu"
-    class="hidden md:hidden border-t border-border mt-4"
+    class="hidden md:hidden border-t border-on-primary/15 mt-4"
     aria-label="Mobile navigation"
   >
     <div class="mx-auto max-w-5xl px-6 py-4 flex flex-col gap-3">
@@ -52,7 +52,7 @@ import { navigation } from "../../data/navigation";
         navigation.map((item) => (
           <a
             href={item.href}
-            class="text-sm text-muted hover:text-text transition-colors py-1"
+            class="text-sm text-on-primary/70 hover:text-on-primary transition-colors py-1"
           >
             {item.label}
           </a>
@@ -60,7 +60,7 @@ import { navigation } from "../../data/navigation";
       }
       <a
         href="/#early-access"
-        class="mt-2 inline-block rounded-full bg-gradient-to-br from-primary to-secondary px-5 py-2.5 text-sm font-semibold text-white text-center transition hover:opacity-90"
+        class="mt-2 inline-block rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent text-center transition hover:opacity-90"
       >
         Get Early Access
       </a>
