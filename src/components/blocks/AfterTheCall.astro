@@ -16,13 +16,13 @@ const deliverables = [
     icon: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2 M12 19v3",
     title: "Call recording",
     description:
-      "Play back any call on demand. Hear the tone, urgency, and details that text alone can't capture.",
+      "Turn on recording and play back any call on demand. Hear the tone, urgency, and details that text alone can't capture.",
   },
   {
     icon: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9 M13.73 21a2 2 0 0 1-3.46 0",
     title: "Instant notification",
     description:
-      "Get a text or email the moment a call wraps up, even when you can't answer. You're always in the loop.",
+      "Get an email the moment a call wraps up, even when you can't answer. You're always in the loop.",
   },
 ];
 ---
@@ -45,7 +45,7 @@ const deliverables = [
         deliverables.map((item) => (
           <div class="rounded-2xl border border-border bg-surface p-6">
             <div class="flex items-center gap-3 mb-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -56,7 +56,7 @@ const deliverables = [
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="text-primary"
+                  class="text-accent"
                 >
                   <path d={item.icon} />
                 </svg>

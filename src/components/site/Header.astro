@@ -1,50 +1,105 @@
 ---
 import { navigation } from "../../data/navigation";
+import { siteConfig } from "../../data/site";
 ---
 
-<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-lg py-7">
+<header class="sticky top-0 z-50 bg-primary backdrop-blur-lg py-7">
   <div class="mx-auto max-w-5xl px-6 flex items-center justify-between">
     <a href="/" class="text-[1.75rem] font-extrabold tracking-tight no-underline">
-      <span class="text-text">Vi</span><span
-        class="bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent"
+      <span class="text-on-primary">Vi</span><span
+        class="text-accent"
         >Fi</span
       >
     </a>
 
-    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <div class="flex items-center gap-2 md:gap-3">
+      <nav
+        class="hidden md:flex items-center gap-4 lg:gap-6"
+        aria-label="Main navigation"
+      >
       {
         navigation.map((item) => (
           <a
             href={item.href}
-            class="text-sm text-muted hover:text-text transition-colors"
+            class="whitespace-nowrap text-sm text-on-primary/70 hover:text-on-primary transition-colors"
           >
             {item.label}
           </a>
         ))
       }
       <a
-        href="/#early-access"
-        class="rounded-full bg-gradient-to-br from-primary to-secondary px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+        href={siteConfig.loginUrl}
+        data-cta="header-login"
+        class="whitespace-nowrap text-sm text-on-primary/70 hover:text-on-primary transition-colors"
       >
-        Get Early Access
+        Log in
       </a>
-    </nav>
+      <a
+        href={siteConfig.registerUrl}
+        data-cta="header"
+        class="whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition hover:opacity-90"
+      >
+        Start Free Trial
+      </a>
+      </nav>
 
-    <button
-      id="mobile-menu-toggle"
-      class="md:hidden flex flex-col gap-1.5 p-2"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-    >
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar1"></span>
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar2"></span>
-      <span class="block h-0.5 w-6 bg-text transition-all duration-200" id="bar3"></span>
-    </button>
+      <button
+        id="theme-toggle"
+        type="button"
+        class="p-1.5 text-on-primary/70 hover:text-on-primary transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="dark:hidden"
+          aria-hidden="true"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="hidden dark:block"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M6.34 17.66l-1.41 1.41 M19.07 4.93l-1.41 1.41"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden flex flex-col gap-1.5 p-2"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar1"></span>
+        <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar2"></span>
+        <span class="block h-0.5 w-6 bg-on-primary transition-all duration-200" id="bar3"></span>
+      </button>
+    </div>
   </div>
 
   <nav
     id="mobile-menu"
-    class="hidden md:hidden border-t border-border mt-4"
+    class="hidden md:hidden border-t border-on-primary/15 mt-4"
     aria-label="Mobile navigation"
   >
     <div class="mx-auto max-w-5xl px-6 py-4 flex flex-col gap-3">
@@ -52,23 +107,46 @@ import { navigation } from "../../data/navigation";
         navigation.map((item) => (
           <a
             href={item.href}
-            class="text-sm text-muted hover:text-text transition-colors py-1"
+            class="text-sm text-on-primary/70 hover:text-on-primary transition-colors py-1"
           >
             {item.label}
           </a>
         ))
       }
       <a
-        href="/#early-access"
-        class="mt-2 inline-block rounded-full bg-gradient-to-br from-primary to-secondary px-5 py-2.5 text-sm font-semibold text-white text-center transition hover:opacity-90"
+        href={siteConfig.loginUrl}
+        data-cta="header-mobile-login"
+        class="text-sm text-on-primary/70 hover:text-on-primary transition-colors py-1"
       >
-        Get Early Access
+        Log in
+      </a>
+      <a
+        href={siteConfig.registerUrl}
+        data-cta="header-mobile"
+        class="mt-2 inline-block rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent text-center transition hover:opacity-90"
+      >
+        Start Free Trial
       </a>
     </div>
   </nav>
 </header>
 
 <script>
+  const themeToggle = document.getElementById("theme-toggle")!;
+  themeToggle.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.getAttribute("data-mode") === "dark" ? "light" : "dark";
+    root.setAttribute("data-mode", next);
+    // Persist for this origin and, on vifi.us, for the app subdomain too —
+    // app.vifi.us adopts the shared cookie into its own theme storage at boot.
+    localStorage.setItem("vifi-mode", next);
+    const domain = location.hostname.endsWith("vifi.us")
+      ? "; domain=.vifi.us"
+      : "";
+    const secure = location.protocol === "https:" ? "; secure" : "";
+    document.cookie = `vifi-mode=${next}${domain}; path=/; max-age=31536000; samesite=lax${secure}`;
+  });
+
   const toggle = document.getElementById("mobile-menu-toggle")!;
   const menu = document.getElementById("mobile-menu")!;
   const bar1 = document.getElementById("bar1")!;

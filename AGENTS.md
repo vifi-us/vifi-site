@@ -234,7 +234,12 @@ Performance is a core feature.
 - Keep bundle size small
 - Avoid shipping React where pure Astro works
 
-Do not add analytics, chat widgets, or trackers unless explicitly requested.
+Analytics: PostHog is loaded via `src/components/site/Analytics.astro`
+(explicitly requested for launch). It shares the app.vifi.us PostHog project
+for cross-subdomain journey tracking; a hostname guard disables it outside
+production. Do not add any other analytics, chat widgets, or trackers unless
+explicitly requested, and do not change the PostHog token/host without
+coordinating with the platform's PostHog configuration.
 
 ## Content Safety Rules
 

@@ -9,7 +9,7 @@ import HowItWorksPreview from "../components/blocks/HowItWorksPreview.astro";
 import FeatureHighlights from "../components/blocks/FeatureHighlights.astro";
 import ComparisonTeaser from "../components/blocks/ComparisonTeaser.astro";
 import TrustStrip from "../components/blocks/TrustStrip.astro";
-import SignupForm from "../components/blocks/SignupForm.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
 ---
 
 <BaseLayout
@@ -26,7 +26,11 @@ import SignupForm from "../components/blocks/SignupForm.astro";
       <FeatureHighlights />
       <ComparisonTeaser />
       <TrustStrip />
-      <SignupForm />
+      <CTABanner
+        heading="Ready to answer every call?"
+        description="Set up your agent and hear it take a real call in minutes. Free for 7 days, no credit card required."
+        ctaId="home-banner"
+      />
     </main>
     <Footer />
   </div>
@@ -36,10 +40,6 @@ import SignupForm from "../components/blocks/SignupForm.astro";
     class="pointer-events-none fixed inset-0 -z-10"
     aria-hidden="true"
   >
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(108,99,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);"
-    >
-    </div>
+    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

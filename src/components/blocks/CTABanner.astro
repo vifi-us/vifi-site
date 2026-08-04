@@ -1,16 +1,20 @@
 ---
+import { siteConfig } from "../../data/site";
+
 interface Props {
   heading: string;
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  ctaId?: string;
 }
 
 const {
   heading,
   description,
-  buttonText = "Get Early Access",
-  buttonHref = "/#early-access",
+  buttonText = "Start Free Trial",
+  buttonHref = siteConfig.registerUrl,
+  ctaId = "cta-banner",
 } = Astro.props;
 ---
 
@@ -33,7 +37,8 @@ const {
       }
       <a
         href={buttonHref}
-        class="inline-block rounded-full bg-gradient-to-br from-primary to-secondary px-8 py-3.5 text-base font-semibold text-white shadow-[0_4px_32px_rgba(108,99,255,0.35)] transition hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(108,99,255,0.45)]"
+        data-cta={ctaId}
+        class="inline-block rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-on-accent shadow-[0_4px_32px_var(--color-accent-glow)] transition hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_var(--color-accent-glow-strong)]"
       >
         {buttonText}
       </a>

@@ -1,9 +1,12 @@
+import { siteConfig } from "./site";
+
 export interface NavItem {
   label: string;
   href: string;
 }
 
 export const navigation: NavItem[] = [
+  { label: "Features", href: "/features" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
@@ -14,6 +17,8 @@ export const navigation: NavItem[] = [
 export interface FooterLink {
   label: string;
   href: string;
+  /** Optional analytics placement id, rendered as data-cta. */
+  cta?: string;
 }
 
 export interface FooterSection {
@@ -25,10 +30,12 @@ export const footerNavigation: FooterSection[] = [
   {
     title: "Product",
     links: [
+      { label: "Features", href: "/features" },
       { label: "How It Works", href: "/how-it-works" },
       { label: "Pricing", href: "/pricing" },
       { label: "Alternatives", href: "/alternatives" },
       { label: "FAQ", href: "/faq" },
+      { label: "Log in", href: siteConfig.loginUrl, cta: "footer-login" },
     ],
   },
   {

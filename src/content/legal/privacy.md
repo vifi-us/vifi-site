@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "How ViFi collects, uses, shares, and retains personal information for its website and communications platform."
-effectiveDate: 2026-04-24
+effectiveDate: 2026-08-04
 ---
 
 ViFi LLC ("ViFi," "we," "our," or "us") operates `vifi.us` and provides
@@ -38,9 +38,9 @@ We may collect the following categories of information:
 - integration, audit, and operational data, such as connected-service metadata,
   webhook payloads, and troubleshooting logs.
 
-When you join our early-access list, the form on `vifi.us` submits your name,
-work email, and company information through a third-party form processing
-service.
+When you create an account, your registration information is submitted to and
+processed by the ViFi platform at `app.vifi.us` and handled as described in
+this Policy.
 
 ## How We Use Information
 
@@ -103,9 +103,29 @@ ViFi platform, the following applies:
 
 ## Cookies and Analytics
 
-We may use cookies and similar technologies for authentication, security,
-preferences, and analytics. Where required by law, we will use non-essential
-analytics technologies only after consent.
+We use first-party cookies and similar technologies for authentication,
+security, preferences, and analytics.
+
+We use PostHog, a product-analytics service, to understand how visitors use
+`vifi.us` and the ViFi application at `app.vifi.us`. PostHog collects usage
+information such as pages viewed, referring pages and campaign parameters,
+clicks and scrolling, approximate location derived from IP address, device
+and browser information, and performance measurements. We also use PostHog
+session replay, which records how visitors interact with our pages; text
+typed into form fields is masked before it leaves your browser.
+
+Analytics data is collected under a first-party cookie set for `vifi.us` and
+its subdomains, shared between `vifi.us` and `app.vifi.us` so we can
+understand a single visit across our website and application. Analytics
+traffic is routed through our own subdomain (`t.vifi.us`) to PostHog's US
+cloud. We use this information to measure interest in ViFi, improve our
+website and product, and attribute signups to marketing campaigns. We do not
+use analytics data for third-party advertising, and we do not sell it.
+
+Our website honors the Global Privacy Control signal: if your browser sends
+it, we do not load analytics for your visit. To opt out of analytics another
+way, or to request deletion of analytics data about you, email
+[hello@vifi.us](mailto:hello@vifi.us).
 
 ## Retention
 

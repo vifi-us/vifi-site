@@ -13,64 +13,61 @@ export interface PricingTier {
 export const pricingTiers: PricingTier[] = [
   {
     name: "Starter",
-    price: "$99",
+    price: "$49",
     period: "/mo",
     description: "For solo operators who need every call covered.",
-    includedMinutes: 400,
+    includedMinutes: 100,
     features: [
-      "400 AI minutes included",
-      "Post-call briefings",
-      "Full transcripts",
+      "100 AI minutes + 100 texts included",
+      "Post-call summaries & transcripts",
+      "Caller memory",
+      "Knowledge base",
       "Custom greeting & instructions",
-      "Email notifications",
     ],
-    cta: "Get Early Access",
-    badge: "Early Access",
+    cta: "Start Free Trial",
   },
   {
     name: "Growth",
-    price: "$299",
+    price: "$149",
     period: "/mo",
-    description: "For busy teams that need the complete call record.",
-    includedMinutes: 1500,
+    description: "For busy teams that need room to grow.",
+    includedMinutes: 500,
     features: [
-      "1,500 AI minutes included",
+      "500 AI minutes + 500 texts included",
       "Everything in Starter",
-      "Call recordings",
-      "SMS + email notifications",
+      "Lower overage rates",
     ],
-    cta: "Get Early Access",
+    cta: "Start Free Trial",
     highlighted: true,
     badge: "Most Popular",
   },
   {
-    name: "Scale",
-    price: "$799",
+    name: "Business",
+    price: "$349",
     period: "/mo",
     description: "For high-volume businesses where every call counts.",
-    includedMinutes: 4800,
+    includedMinutes: 2000,
     features: [
-      "4,800 AI minutes included",
+      "2,000 AI minutes + 2,000 texts included",
       "Everything in Growth",
-      "Priority support",
-      "API access",
+      "Our lowest overage rates",
     ],
-    cta: "Get Early Access",
-    badge: "Early Access",
+    cta: "Start Free Trial",
   },
 ];
 
-// Overage rates per Standard AI Minute - not shown on the pricing page
-// but available for internal reference and other surfaces (e.g. docs, terms)
+// Overage rates - not shown on the pricing page but available for
+// internal reference and other surfaces (e.g. docs, terms)
 export interface OverageRate {
   tier: string;
   ratePerMinute: number;
+  ratePerSmsSegment: number;
 }
 
 export const overageRates: OverageRate[] = [
-  { tier: "Starter", ratePerMinute: 0.25 },
-  { tier: "Growth", ratePerMinute: 0.2 },
-  { tier: "Scale", ratePerMinute: 0.17 },
+  { tier: "Starter", ratePerMinute: 0.15, ratePerSmsSegment: 0.03 },
+  { tier: "Growth", ratePerMinute: 0.12, ratePerSmsSegment: 0.03 },
+  { tier: "Business", ratePerMinute: 0.1, ratePerSmsSegment: 0.02 },
 ];
 
 export interface PricingFAQ {
@@ -87,12 +84,12 @@ export const pricingFAQs: PricingFAQ[] = [
   {
     question: "What happens if I use all my included minutes?",
     answer:
-      "ViFi keeps answering. Your callers will never hit a dead end. Additional minutes are billed at an overage rate based on your plan, and we'll alert you as you get close to your limit.",
+      "By default, ViFi keeps answering — additional minutes are billed at an overage rate based on your plan. You can also set usage alerts or a hard spending limit from your dashboard.",
   },
   {
     question: "Can I change plans later?",
     answer:
-      "Yes. Upgrade or downgrade anytime from your dashboard. Changes take effect on your next billing cycle.",
+      "Yes. Upgrade anytime from your dashboard, and the charge is prorated automatically. To downgrade, contact support and we'll take care of it.",
   },
   {
     question: "Do I need a new phone number?",

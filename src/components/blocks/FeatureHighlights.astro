@@ -24,8 +24,8 @@ const displayFeatures: Feature[] = filter
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         displayFeatures.map((feature) => (
-          <div class="flex items-start gap-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-primary/30">
-            <div class="mt-0.5 shrink-0 text-primary">
+          <div class="flex items-start gap-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent/30">
+            <div class="mt-0.5 shrink-0 text-accent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -50,5 +50,14 @@ const displayFeatures: Feature[] = filter
         ))
       }
     </div>
+
+    <p class="mt-8 text-center">
+      <a
+        href="/features"
+        class="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+      >
+        See everything ViFi does &rarr;
+      </a>
+    </p>
   </div>
 </section>

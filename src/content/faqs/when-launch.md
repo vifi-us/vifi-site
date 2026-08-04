@@ -1,7 +1,7 @@
 ---
-question: "When will ViFi launch?"
+question: "Is ViFi available now?"
 order: 2
 category: "general"
 ---
 
-ViFi is in early access now. [Sign up here](/#early-access) to get notified when your spot is ready. Early access users help shape the product as we build it.
+Yes. ViFi is live. <a href="https://app.vifi.us/register" data-cta="faq-when-launch">Start a free trial</a> and your agent can be answering calls in minutes. Every plan starts with a 7-day free trial, no credit card required.

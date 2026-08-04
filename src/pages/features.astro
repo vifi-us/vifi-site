@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PageHero from "../components/blocks/PageHero.astro";
+import FeatureSpotlight from "../components/blocks/FeatureSpotlight.astro";
+import TrustStrip from "../components/blocks/TrustStrip.astro";
+import CTABanner from "../components/blocks/CTABanner.astro";
+import { spotlights, secondaryFeatures } from "../data/featurePage";
+---
+
+<BaseLayout
+  title="ViFi Features | An AI Agent That Remembers Every Caller"
+  description="Answer every call 24/7, remember every caller, and get a summary, transcript, and action items after each conversation. See everything ViFi does."
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <PageHero
+        title="What ViFi does"
+        subtitle="It answers every call, day and night. That's the easy part. Here's everything that happens next."
+      />
+
+      {
+        spotlights.map((spotlight, index) => (
+          <FeatureSpotlight {...spotlight} reverse={index % 2 === 1} />
+        ))
+      }
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-5xl px-6">
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-12"
+          >
+            And the rest of the toolkit
+          </h2>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {
+              secondaryFeatures.map((feature) => (
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent/30">
+                  <div class="mt-0.5 shrink-0 text-accent">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d={feature.icon} />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-text">
+                      {feature.title}
+                    </h3>
+                    <p class="mt-1 text-sm leading-relaxed text-muted">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <TrustStrip />
+      <CTABanner
+        heading="Put ViFi on your phone line"
+        description="Start your 7-day free trial. Set up in minutes, then hear your agent take a test call from your browser."
+        ctaId="features-banner"
+      />
+    </main>
+    <Footer />
+  </div>
+
+  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+    <div class="absolute inset-0 ambient-gradient"></div>
+  </div>
+</BaseLayout>

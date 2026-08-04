@@ -35,9 +35,9 @@ At ViFi, post-call intelligence means a complete record of every conversation:
 
 **The transcript.** The full word-for-word record. When you need specifics (an address, a part number, an exact description of the problem), it's all there. Searchable, shareable, permanent.
 
-**The recording.** The actual audio. Sometimes you need to hear tone of voice, urgency, or nuance that text can't fully convey. Every call is recorded and available on demand.
+**The recording.** The actual audio. Sometimes you need to hear tone of voice, urgency, or nuance that text can't fully convey. Turn on recording and every call is available on demand.
 
-**The notification.** Delivered the moment the call ends. By text, email, or both. You don't have to check an app or log into a dashboard. The information comes to you.
+**The notification.** Delivered to your inbox the moment the call ends. You don't have to check an app or log into a dashboard. The information comes to you.
 
 ## Why this matters more than you'd expect
 
