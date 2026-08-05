@@ -137,9 +137,9 @@ import { siteConfig } from "../../data/site";
     const root = document.documentElement;
     const next = root.getAttribute("data-mode") === "dark" ? "light" : "dark";
     root.setAttribute("data-mode", next);
-    // Persist for this origin and, on vifi.us, for the app subdomain too —
-    // app.vifi.us adopts the shared cookie into its own theme storage at boot.
-    localStorage.setItem("vifi-mode", next);
+    // The cookie is the single record of an explicit choice — written only
+    // here and by the app.vifi.us toggle, and read by both at boot. Without
+    // it, both properties follow the OS setting.
     const domain = location.hostname.endsWith("vifi.us")
       ? "; domain=.vifi.us"
       : "";

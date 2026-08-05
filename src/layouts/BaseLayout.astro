@@ -24,17 +24,17 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Theme init: runs before rendering to prevent flash of wrong theme.
-         Mode precedence: the vifi-mode cookie (shared on .vifi.us so the
-         choice follows the visitor between this site and app.vifi.us) >
-         localStorage (this origin only, e.g. local preview) > OS preference. -->
+         Mode policy: the vifi-mode cookie (shared on .vifi.us, written ONLY
+         when someone uses the theme toggle here or on app.vifi.us) is the
+         single record of an explicit choice. No cookie = follow the OS
+         setting, which resolves to light when no preference is expressed. -->
     <script is:inline>
       (function () {
         var t = localStorage.getItem('vifi-theme');
         var c = document.cookie.match(/(?:^|; )vifi-mode=(light|dark)/);
-        var m = (c && c[1]) || localStorage.getItem('vifi-mode');
         var r = document.documentElement;
         if (t === 'shoreline' || t === 'nightfall') r.setAttribute('data-theme', t);
-        if (m === 'light' || m === 'dark') r.setAttribute('data-mode', m);
+        if (c) r.setAttribute('data-mode', c[1]);
         else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
           r.setAttribute('data-mode', 'dark');
       })();
