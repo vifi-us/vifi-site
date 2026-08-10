@@ -114,13 +114,21 @@ and browser information, and performance measurements. We also use PostHog
 session replay, which records how visitors interact with our pages; text
 typed into form fields is masked before it leaves your browser.
 
-Analytics data is collected under a first-party cookie set for `vifi.us` and
-its subdomains, shared between `vifi.us` and `app.vifi.us` so we can
-understand a single visit across our website and application. Analytics
-traffic is routed through our own subdomain (`t.vifi.us`) to PostHog's US
-cloud. We use this information to measure interest in ViFi, improve our
-website and product, and attribute signups to marketing campaigns. We do not
-use analytics data for third-party advertising, and we do not sell it.
+PostHog data is collected under a first-party cookie set for `vifi.us` and its
+subdomains, shared between `vifi.us` and `app.vifi.us` so we can understand a
+single visit across our website and application. PostHog traffic is routed
+through our own subdomain (`t.vifi.us`) to PostHog's US cloud.
+
+We also use Google Analytics 4 on `vifi.us` to measure aggregate site traffic,
+acquisition sources, campaign performance, page engagement, and conversions.
+Google Analytics may collect page URLs, referring pages and campaign
+parameters, approximate location derived from IP address, and device and
+browser information. We disable Google Signals and advertising-personalization
+signals in our Google Analytics configuration.
+
+We use analytics information to measure interest in ViFi, improve our website
+and product, and attribute signups to marketing campaigns. We do not use
+analytics data for third-party advertising, and we do not sell it.
 
 Our website honors the Global Privacy Control signal: if your browser sends
 it, we do not load analytics for your visit. To opt out of analytics another
