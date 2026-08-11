@@ -61,7 +61,7 @@ const formattedDate = post.data.publishedAt.toLocaleDateString("en-US", {
               [&_ul]:text-muted [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:list-disc [&_ul]:mb-6
               [&_ol]:text-muted [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:list-decimal [&_ol]:mb-6
               [&_li]:leading-relaxed
-              [&_a]:text-accent [&_a]:hover:text-accent/80 [&_a]:transition-colors
+              [&_a]:text-link [&_a]:font-medium [&_a]:underline [&_a]:decoration-link/35 [&_a]:underline-offset-4 [&_a]:hover:decoration-link [&_a]:transition-colors
               [&_strong]:text-text
               [&_blockquote]:border-l-2 [&_blockquote]:border-accent/30 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-muted"
           >
@@ -71,7 +71,7 @@ const formattedDate = post.data.publishedAt.toLocaleDateString("en-US", {
           <div class="mt-12 pt-8 border-t border-border">
             <a
               href="/blog"
-              class="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+              class="text-sm font-semibold text-link underline decoration-link/35 underline-offset-4 transition-colors hover:decoration-link"
             >
               &larr; Back to blog
             </a>

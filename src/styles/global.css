@@ -16,13 +16,14 @@
 
   /* Text */
   --color-text: #2e4d5c;
-  --color-muted: rgba(46, 77, 92, 0.60);
+  --color-muted: rgba(46, 77, 92, 0.85);
 
   /* 30% structural */
   --color-primary: #2e4d5c;
 
   /* 10% accent */
   --color-accent: #f89f00;
+  --color-link: #2e4d5c;
   --color-accent-glow: rgba(248, 159, 0, 0.35);
   --color-accent-glow-strong: rgba(248, 159, 0, 0.45);
 
