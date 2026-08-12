@@ -16,11 +16,50 @@ export function getStaticPaths() {
 }
 
 const { solution } = Astro.props;
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: new URL("/", Astro.site).href,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: solution.industry,
+        item: pageUrl,
+      },
+    ],
+  },
+  ...(solution.faqs
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: solution.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        },
+      ]
+    : []),
+];
 ---
 
 <BaseLayout
-  title={`ViFi for ${solution.industry} | AI Phone Assistant`}
-  description={`${solution.headline}. ViFi answers calls, handles conversations, and briefs ${solution.industry.toLowerCase()} professionals after every call.`}
+  title={solution.searchTitle ?? `ViFi for ${solution.industry} | AI Phone Assistant`}
+  description={solution.searchDescription ?? `${solution.headline}. ViFi answers calls, handles conversations, and briefs ${solution.industry.toLowerCase()} professionals after every call.`}
+  structuredData={structuredData}
 >
   <div class="flex min-h-screen flex-col">
     <Header />
@@ -31,7 +70,56 @@ const { solution } = Astro.props;
         description={solution.description}
       />
       <PainPoints painPoints={solution.painPoints} />
+      {
+        solution.workflow && (
+          <section class="pb-16 sm:pb-24" aria-labelledby="home-services-workflow">
+            <div class="mx-auto max-w-4xl px-6">
+              <div class="mx-auto mb-10 max-w-2xl text-center">
+                <h2 id="home-services-workflow" class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
+                  How an AI receptionist fits your call workflow
+                </h2>
+                <p class="text-muted leading-relaxed">
+                  Start with one narrow use case, test realistic calls, and keep a clear path to a person for requests the assistant should not handle.
+                </p>
+              </div>
+              <ol class="grid gap-6 sm:grid-cols-3">
+                {solution.workflow.map((step, index) => (
+                  <li class="rounded-2xl border border-border bg-surface p-6">
+                    <span class="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-sm font-bold text-accent">
+                      {index + 1}
+                    </span>
+                    <h3 class="mb-2 font-semibold text-text">{step.title}</h3>
+                    <p class="text-sm leading-relaxed text-muted">{step.description}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+        )
+      }
       <FeatureHighlights filter={solution.relevantFeatures} />
+      {
+        solution.faqs && (
+          <section class="py-16 sm:py-24" aria-labelledby="home-services-faq">
+            <div class="mx-auto max-w-3xl px-6">
+              <h2 id="home-services-faq" class="mb-8 text-2xl sm:text-3xl font-extrabold tracking-tight">
+                AI receptionist questions from home-service teams
+              </h2>
+              <div class="space-y-4">
+                {solution.faqs.map((faq) => (
+                  <details class="rounded-2xl border border-border bg-surface p-6">
+                    <summary class="cursor-pointer font-semibold text-text">{faq.question}</summary>
+                    <p class="mt-4 leading-relaxed text-muted">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+              <p class="mt-8 text-muted">
+                Comparing options? Read our <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/blog/ai-receptionist-home-services-buyers-guide">AI receptionist buyer's guide for home services</a>.
+              </p>
+            </div>
+          </section>
+        )
+      }
       <CTABanner
         heading={`Stop missing ${solution.industry.toLowerCase()} calls`}
         description="Set up ViFi in minutes. Get a recap after every call."
