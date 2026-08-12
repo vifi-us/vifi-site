@@ -8,6 +8,16 @@ export interface Solution {
     description: string;
   }[];
   relevantFeatures: string[];
+  searchTitle?: string;
+  searchDescription?: string;
+  workflow?: {
+    title: string;
+    description: string;
+  }[];
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
 }
 
 export const solutions: Solution[] = [
@@ -39,6 +49,48 @@ export const solutions: Solution[] = [
       "Instant Notifications",
       "Full Transcripts",
       "Professional AI Voice",
+    ],
+    searchTitle: "AI Receptionist for Home Services | ViFi",
+    searchDescription:
+      "ViFi is an AI receptionist for plumbers, HVAC teams, electricians, roofers, and contractors. Answer overflow and after-hours calls, capture service details, and follow up with context.",
+    workflow: [
+      {
+        title: "Answer when the team cannot",
+        description:
+          "Use ViFi for overflow or after-hours coverage so a caller can explain the job instead of reaching a generic voicemail greeting.",
+      },
+      {
+        title: "Capture the service request",
+        description:
+          "Configure the questions that matter to your business, such as the caller's issue, location, timing, and preferred next step.",
+      },
+      {
+        title: "Review the call briefing",
+        description:
+          "After the call, use the summary, transcript, and recording to decide what needs attention and return the call with context.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is an AI receptionist for home services?",
+        answer:
+          "It is a voice assistant configured to answer business calls, ask approved intake questions, capture the caller's request, and hand the conversation record to the service team for follow-up.",
+      },
+      {
+        question: "Can ViFi cover calls only when I am busy or after hours?",
+        answer:
+          "Yes. You decide how calls reach ViFi, so you can use it for overflow, after-hours coverage, or a dedicated business line.",
+      },
+      {
+        question: "What details can a home-service business collect?",
+        answer:
+          "You can configure ViFi around the intake details your team needs, such as the caller's contact information, service issue, location, urgency, and requested next step.",
+      },
+      {
+        question: "What happens after a call?",
+        answer:
+          "ViFi provides a call summary, transcript, recording, and notification so your team can review the request and follow up with context.",
+      },
     ],
   },
   {

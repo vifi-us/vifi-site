@@ -7,6 +7,8 @@ interface Props {
   description: string;
   canonicalURL?: string;
   ogImage?: string;
+  ogType?: "website" | "article";
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -14,7 +16,27 @@ const {
   description,
   canonicalURL = Astro.url.href,
   ogImage = "/og-default.png",
+  ogType = "website",
+  structuredData,
 } = Astro.props;
+
+const siteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "ViFi",
+  url: new URL("/", Astro.site).href,
+  description:
+    "An AI phone assistant and virtual receptionist for small businesses.",
+};
+
+const jsonLd = [
+  ...(Astro.url.pathname === "/" ? [siteStructuredData] : []),
+  ...(Array.isArray(structuredData)
+    ? structuredData
+    : structuredData
+      ? [structuredData]
+      : []),
+];
 ---
 
 <!doctype html>
@@ -45,7 +67,7 @@ const {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
@@ -62,6 +84,16 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta name="generator" content={Astro.generator} />
+
+    {
+      jsonLd.map((entry) => (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(entry).replace(/</g, "\\u003c")}
+        />
+      ))
+    }
 
     <Analytics />
   </head>
