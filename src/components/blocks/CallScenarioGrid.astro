@@ -1,0 +1,49 @@
+---
+interface Scenario {
+  title: string;
+  description: string;
+  intake: string;
+}
+
+interface Props {
+  industry: string;
+  scenarios: Scenario[];
+}
+
+const { industry, scenarios } = Astro.props;
+const sectionId = `call-scenarios-${industry.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<section class="pb-16 sm:pb-24" aria-labelledby={sectionId}>
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mx-auto mb-10 max-w-2xl text-center">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">
+        Calls worth testing
+      </p>
+      <h2 id={sectionId} class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+        Build around real calls—not a scripted demo
+      </h2>
+      <p class="mt-4 leading-relaxed text-muted">
+        Start with a narrow call type, define the information the team needs,
+        and test the assistant's boundaries before routing more traffic.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        scenarios.map((scenario) => (
+          <article class="rounded-2xl border border-border bg-surface p-6">
+            <h3 class="text-lg font-bold text-text">{scenario.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted">
+              {scenario.description}
+            </p>
+            <p class="mt-5 border-t border-border/70 pt-5 text-sm leading-relaxed text-muted">
+              <span class="font-semibold text-text">Useful intake: </span>
+              {scenario.intake}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

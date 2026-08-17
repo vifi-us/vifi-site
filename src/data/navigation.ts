@@ -6,7 +6,7 @@ export interface NavItem {
 }
 
 export const navigation: NavItem[] = [
-  { label: "Home Services", href: "/solutions/home-services" },
+  { label: "Home Services", href: "/solutions/home-services/" },
   { label: "Features", href: "/features" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
@@ -42,7 +42,10 @@ export const footerNavigation: FooterSection[] = [
   {
     title: "Resources",
     links: [
-      { label: "Home Services", href: "/solutions/home-services" },
+      { label: "Home Services", href: "/solutions/home-services/" },
+      { label: "HVAC Companies", href: "/solutions/hvac/" },
+      { label: "Plumbing Companies", href: "/solutions/plumbing/" },
+      { label: "Electrical Contractors", href: "/solutions/electricians/" },
       { label: "Medical Practices", href: "/solutions/medical-practices" },
       { label: "Law Firms", href: "/solutions/legal" },
       { label: "Real Estate", href: "/solutions/real-estate" },

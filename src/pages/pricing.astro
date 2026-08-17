@@ -7,11 +7,32 @@ import PricingCards from "../components/blocks/PricingCards.astro";
 import FAQList from "../components/blocks/FAQList.astro";
 import CTABanner from "../components/blocks/CTABanner.astro";
 import HomeServicesPath from "../components/blocks/HomeServicesPath.astro";
+import { pricingTiers } from "../data/pricing";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "ViFi",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "An AI phone assistant that answers business calls and provides post-call summaries, transcripts, and recordings.",
+  url: new URL("/pricing/", Astro.site).href,
+  offers: pricingTiers.map((tier) => ({
+    "@type": "Offer",
+    name: `${tier.name} monthly plan`,
+    price: tier.price.replace("$", ""),
+    priceCurrency: "USD",
+    url: new URL("/pricing/", Astro.site).href,
+    description: `${tier.includedMinutes.toLocaleString()} included AI minutes per month`,
+  })),
+};
 ---
 
 <BaseLayout
   title="ViFi Pricing | Plans for Every Business Size"
   description="Simple, transparent pricing for ViFi's AI phone assistant. Every plan includes a 7-day free trial. No credit card required."
+  structuredData={structuredData}
 >
   <div class="flex min-h-screen flex-col">
     <Header />
@@ -26,6 +47,9 @@ import HomeServicesPath from "../components/blocks/HomeServicesPath.astro";
       <CTABanner
         heading="Start your free trial"
         description="Try ViFi free for 7 days. No credit card required."
+        buttonText="Start free — no card"
+        ctaId="pricing-banner"
+        ctaVersion="pricing-2026-08-v1"
       />
     </main>
     <Footer />

@@ -1,0 +1,40 @@
+---
+import { solutions } from "../../data/solutions";
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+const tradeSlugs = ["home-services", "hvac", "plumbing", "electricians"];
+const related = solutions.filter(
+  (solution) => tradeSlugs.includes(solution.slug) && solution.slug !== currentSlug,
+);
+---
+
+<nav class="pb-16 sm:pb-24" aria-label="Related home-service solutions">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="rounded-2xl border border-border bg-surface p-7 sm:p-9">
+      <p class="text-xs font-semibold uppercase tracking-widest text-accent">
+        Explore by trade
+      </p>
+      <h2 class="mt-2 text-xl font-extrabold tracking-tight sm:text-2xl">
+        Call-answering workflows for home-service teams
+      </h2>
+      <div class="mt-6 grid gap-3 sm:grid-cols-3">
+        {
+          related.map((solution) => (
+            <a
+              href={`/solutions/${solution.slug}/`}
+              class="rounded-xl border border-border px-4 py-3 text-sm font-semibold text-link transition hover:border-accent/40 hover:bg-accent/5"
+            >
+              {solution.slug === "home-services"
+                ? "All home services"
+                : solution.industry}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</nav>

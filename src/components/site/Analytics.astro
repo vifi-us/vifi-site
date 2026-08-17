@@ -72,8 +72,9 @@
       session_recording: { maskAllInputs: true },
     });
 
-    // Curated conversion event for clicks into the app (registration and
-    // login CTAs). Delegated, so one listener covers every current and
+    // Curated conversion events for clicks into the app. Registration and
+    // login stay separate so login activity cannot inflate signup intent.
+    // Delegated, so one listener covers every current and
     // future CTA. sendBeacon lets the capture survive same-tab navigation
     // once the SDK has loaded; clicks during the brief array.js load window
     // only reach the snippet's in-memory stub and are lost with the page —
@@ -83,20 +84,27 @@
       var target = event.target instanceof Element ? event.target : null;
       var anchor = target && target.closest('a[href^="https://app.vifi.us"]');
       if (!anchor || !window.posthog) return;
+      var destination = new URL(anchor.getAttribute("href"), location.href);
+      var eventName = destination.pathname.indexOf("/register") === 0
+        ? "marketing_cta_clicked"
+        : "marketing_login_clicked";
+      var ctaText = (anchor.textContent || "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .slice(0, 100);
+      var eventProperties = {
+        placement: anchor.getAttribute("data-cta") || "unlabeled",
+        cta_version: anchor.getAttribute("data-cta-version") || "unversioned",
+        cta_text: ctaText,
+        destination: destination.href,
+        page: location.pathname,
+      };
       window.posthog.capture(
-        "marketing_cta_clicked",
-        {
-          placement: anchor.getAttribute("data-cta") || "unlabeled",
-          destination: anchor.getAttribute("href"),
-          page: location.pathname,
-        },
+        eventName,
+        eventProperties,
         { transport: "sendBeacon" },
       );
-      window.gtag("event", "marketing_cta_clicked", {
-        placement: anchor.getAttribute("data-cta") || "unlabeled",
-        destination: anchor.getAttribute("href"),
-        page: location.pathname,
-      });
+      window.gtag("event", eventName, eventProperties);
     };
     document.addEventListener("click", captureCtaClick);
     // Middle-click opens in a new tab via auxclick without firing click.

@@ -5,6 +5,8 @@ import Footer from "../../components/site/Footer.astro";
 import SolutionHero from "../../components/blocks/SolutionHero.astro";
 import PainPoints from "../../components/blocks/PainPoints.astro";
 import FeatureHighlights from "../../components/blocks/FeatureHighlights.astro";
+import CallScenarioGrid from "../../components/blocks/CallScenarioGrid.astro";
+import TradeSolutionLinks from "../../components/blocks/TradeSolutionLinks.astro";
 import CTABanner from "../../components/blocks/CTABanner.astro";
 import { solutions } from "../../data/solutions";
 
@@ -16,6 +18,14 @@ export function getStaticPaths() {
 }
 
 const { solution } = Astro.props;
+const workflowId = `${solution.slug}-workflow`;
+const faqId = `${solution.slug}-faq`;
+const isHomeServiceTrade = [
+  "home-services",
+  "hvac",
+  "plumbing",
+  "electricians",
+].includes(solution.slug);
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const structuredData = [
@@ -72,11 +82,11 @@ const structuredData = [
       <PainPoints painPoints={solution.painPoints} />
       {
         solution.workflow && (
-          <section class="pb-16 sm:pb-24" aria-labelledby="home-services-workflow">
+          <section class="pb-16 sm:pb-24" aria-labelledby={workflowId}>
             <div class="mx-auto max-w-4xl px-6">
               <div class="mx-auto mb-10 max-w-2xl text-center">
-                <h2 id="home-services-workflow" class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
-                  How an AI receptionist fits your call workflow
+                <h2 id={workflowId} class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
+                  How ViFi fits your call workflow
                 </h2>
                 <p class="text-muted leading-relaxed">
                   Start with one narrow use case, test realistic calls, and keep a clear path to a person for requests the assistant should not handle.
@@ -97,13 +107,21 @@ const structuredData = [
           </section>
         )
       }
+      {
+        solution.callScenarios && (
+          <CallScenarioGrid
+            industry={solution.industry}
+            scenarios={solution.callScenarios}
+          />
+        )
+      }
       <FeatureHighlights filter={solution.relevantFeatures} />
       {
         solution.faqs && (
-          <section class="py-16 sm:py-24" aria-labelledby="home-services-faq">
+          <section class="py-16 sm:py-24" aria-labelledby={faqId}>
             <div class="mx-auto max-w-3xl px-6">
-              <h2 id="home-services-faq" class="mb-8 text-2xl sm:text-3xl font-extrabold tracking-tight">
-                AI receptionist questions from home-service teams
+              <h2 id={faqId} class="mb-8 text-2xl sm:text-3xl font-extrabold tracking-tight">
+                AI receptionist questions from {solution.industry.toLowerCase()}
               </h2>
               <div class="space-y-4">
                 {solution.faqs.map((faq) => (
@@ -113,16 +131,21 @@ const structuredData = [
                   </details>
                 ))}
               </div>
-              <p class="mt-8 text-muted">
-                Comparing options? Read our <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/blog/ai-receptionist-home-services-buyers-guide">AI receptionist buyer's guide for home services</a>.
-              </p>
+              {isHomeServiceTrade && (
+                <p class="mt-8 text-muted">
+                  Comparing options? Read our <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/blog/ai-receptionist-home-services-buyers-guide/">AI receptionist buyer's guide for home services</a>.
+                </p>
+              )}
             </div>
           </section>
         )
       }
+      {isHomeServiceTrade && <TradeSolutionLinks currentSlug={solution.slug} />}
       <CTABanner
-        heading={`Stop missing ${solution.industry.toLowerCase()} calls`}
-        description="Set up ViFi in minutes. Get a recap after every call."
+        heading="Test ViFi with your real call workflow"
+        description="Set up ViFi, make test calls, and review the briefing before changing your normal call flow."
+        ctaId={`solution-${solution.slug}-banner`}
+        ctaVersion="trade-pages-2026-08-v1"
       />
     </main>
     <Footer />

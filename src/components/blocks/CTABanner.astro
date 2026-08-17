@@ -7,6 +7,8 @@ interface Props {
   buttonText?: string;
   buttonHref?: string;
   ctaId?: string;
+  ctaVersion?: string;
+  note?: string;
 }
 
 const {
@@ -15,6 +17,8 @@ const {
   buttonText = "Start Free Trial",
   buttonHref = siteConfig.registerUrl,
   ctaId = "cta-banner",
+  ctaVersion = "site-cta-2026-08-v1",
+  note = "7-day free trial · No credit card required · Cancel anytime",
 } = Astro.props;
 ---
 
@@ -38,10 +42,12 @@ const {
       <a
         href={buttonHref}
         data-cta={ctaId}
+        data-cta-version={ctaVersion}
         class="inline-block rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-on-accent shadow-[0_4px_32px_var(--color-accent-glow)] transition hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_var(--color-accent-glow-strong)]"
       >
         {buttonText}
       </a>
+      {note && <p class="mt-4 text-xs text-muted">{note}</p>}
     </div>
   </div>
 </section>

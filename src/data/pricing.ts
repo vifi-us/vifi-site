@@ -24,7 +24,7 @@ export const pricingTiers: PricingTier[] = [
       "Knowledge base",
       "Custom greeting & instructions",
     ],
-    cta: "Start Free Trial",
+    cta: "Start free — no card",
   },
   {
     name: "Growth",
@@ -37,7 +37,7 @@ export const pricingTiers: PricingTier[] = [
       "Everything in Starter",
       "Lower overage rates",
     ],
-    cta: "Start Free Trial",
+    cta: "Start free — no card",
     highlighted: true,
     badge: "Most Popular",
   },
@@ -52,7 +52,7 @@ export const pricingTiers: PricingTier[] = [
       "Everything in Growth",
       "Our lowest overage rates",
     ],
-    cta: "Start Free Trial",
+    cta: "Start free — no card",
   },
 ];
 
