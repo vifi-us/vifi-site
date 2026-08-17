@@ -9,8 +9,8 @@ export const comparisonCategories: ComparisonCategory[] = [
     description: "AI phone assistant with call recaps and transcripts",
   },
   {
-    name: "Basic AI Receptionists",
-    description: "Answer and route calls with scripted responses",
+    name: "Other AI Receptionists",
+    description: "Automated voice products with provider-specific capabilities",
   },
   {
     name: "Traditional Voicemail",
@@ -29,75 +29,75 @@ export interface ComparisonFeature {
 
 export const comparisonFeatures: ComparisonFeature[] = [
   {
-    feature: "Answers every call 24/7",
+    feature: "Two-way conversation",
     values: {
       ViFi: true,
-      "Basic AI Receptionists": true,
-      "Traditional Voicemail": true,
-      "Human Answering Services": "Limited hours",
+      "Other AI Receptionists": true,
+      "Traditional Voicemail": false,
+      "Human Answering Services": true,
     },
   },
   {
-    feature: "Natural AI conversation",
+    feature: "Can ask follow-up questions",
     values: {
       ViFi: true,
-      "Basic AI Receptionists": "Scripted only",
+      "Other AI Receptionists": "Varies",
       "Traditional Voicemail": false,
-      "Human Answering Services": false,
+      "Human Answering Services": true,
     },
   },
   {
-    feature: "Post-call briefing",
+    feature: "Uses your approved business information",
     values: {
       ViFi: true,
-      "Basic AI Receptionists": false,
+      "Other AI Receptionists": "Varies",
       "Traditional Voicemail": false,
-      "Human Answering Services": "Basic notes",
+      "Human Answering Services": "Depends on training",
+    },
+  },
+  {
+    feature: "Post-call summary",
+    values: {
+      ViFi: "Included",
+      "Other AI Receptionists": "Varies",
+      "Traditional Voicemail": false,
+      "Human Answering Services": "Message notes",
     },
   },
   {
     feature: "Full transcript",
     values: {
-      ViFi: true,
-      "Basic AI Receptionists": false,
+      ViFi: "Included",
+      "Other AI Receptionists": "Varies",
       "Traditional Voicemail": false,
-      "Human Answering Services": false,
-    },
-  },
-  {
-    feature: "Call recording",
-    values: {
-      ViFi: true,
-      "Basic AI Receptionists": "Some",
-      "Traditional Voicemail": true,
       "Human Answering Services": "Rarely",
     },
   },
   {
-    feature: "Instant notifications",
+    feature: "Conversation recording",
     values: {
-      ViFi: true,
-      "Basic AI Receptionists": "Some",
-      "Traditional Voicemail": "Delayed",
-      "Human Answering Services": "Varies",
+      ViFi: "Optional",
+      "Other AI Receptionists": "Varies",
+      "Traditional Voicemail": "Message only",
+      "Human Answering Services": "Provider-specific",
     },
   },
   {
-    feature: "Setup in minutes",
+    feature: "Human judgment for unusual calls",
     values: {
-      ViFi: true,
-      "Basic AI Receptionists": "Hours/days",
-      "Traditional Voicemail": true,
-      "Human Answering Services": "Days/weeks",
+      ViFi: "Escalation needed",
+      "Other AI Receptionists": "Escalation needed",
+      "Traditional Voicemail": false,
+      "Human Answering Services": "Strongest",
     },
   },
   {
-    feature: "No per-minute fees",
+    feature: "Common pricing model",
     values: {
-      ViFi: true,
-      "Basic AI Receptionists": false,
-      "Traditional Voicemail": true,
-      "Human Answering Services": false,
+      ViFi: "Plan + included minutes",
+      "Other AI Receptionists": "Varies",
+      "Traditional Voicemail": "Phone-plan feature",
+      "Human Answering Services": "Often per call/minute",
     },
   },
 ];

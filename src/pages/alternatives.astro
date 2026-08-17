@@ -5,33 +5,67 @@ import Footer from "../components/site/Footer.astro";
 import PageHero from "../components/blocks/PageHero.astro";
 import ComparisonTable from "../components/blocks/ComparisonTable.astro";
 import CTABanner from "../components/blocks/CTABanner.astro";
+
+const faqs = [
+  {
+    question: "Is an AI receptionist always better than a human answering service?",
+    answer:
+      "No. A human service may be the better fit when calls regularly require judgment, empathy, or unusual decisions. AI is strongest when the workflow and escalation boundaries can be written and tested clearly.",
+  },
+  {
+    question: "Can a small business start with after-hours calls only?",
+    answer:
+      "Yes. A limited after-hours or overflow rollout is a practical way to test caller experience, intake accuracy, and the handoff to your team before routing more calls.",
+  },
+  {
+    question: "How should I compare answering-service prices?",
+    answer:
+      "Use the same real call sample for every option. Include the base plan, included calls or minutes, overages, transfers, recordings, phone numbers, setup, and the staff time needed to review and act on each message.",
+  },
+  {
+    question: "Can I keep my existing business number with ViFi?",
+    answer:
+      "Yes. You can forward calls from the number customers already know and choose which call paths ViFi covers.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
 ---
 
 <BaseLayout
-  title="ViFi vs Alternatives | How AI Phone Assistants Compare"
-  description="See how ViFi compares to basic AI receptionists, traditional voicemail, and human answering services."
+  title="AI Receptionist vs Answering Service vs Voicemail | ViFi"
+  description="Compare AI receptionists, human answering services, and voicemail by caller experience, handoff quality, setup, pricing model, and operational fit."
+  structuredData={structuredData}
 >
   <div class="flex min-h-screen flex-col">
     <Header />
     <main class="flex-1">
       <PageHero
-        title="Not all AI phone tools are the same"
-        subtitle="Most solutions stop at picking up. ViFi tells you what happened on the call."
+        title="AI receptionist, answering service, or voicemail?"
+        subtitle="Choose the call workflow that gives your callers a clear next step and your team a useful handoff."
       />
 
       <section class="pb-16 sm:pb-24">
         <div class="mx-auto max-w-3xl px-6">
           <div class="space-y-6 text-base text-muted leading-relaxed">
             <p>
-              When you can't pick up, something needs to answer. You've got
-              options: voicemail, a human answering service, or an AI phone
-              assistant. The real question is what happens after the call.
+              The best choice depends on the calls you receive, not which
+              category sounds newest. Voicemail is simple. Human services can
+              handle nuance. AI receptionists can provide consistent coverage
+              and structured call records when the workflow is well defined.
             </p>
             <p>
-              ViFi gives you a briefing after every conversation: a short
-              summary, the full transcript, and a recording. No voicemail
-              to listen to, no waiting for a message slip. You know what was
-              said before you pick up the phone to respond.
+              Compare the complete path: what the caller experiences, which
+              questions get asked, what happens when the request falls outside
+              the script, and what your team receives after the call.
             </p>
           </div>
         </div>
@@ -39,9 +73,105 @@ import CTABanner from "../components/blocks/CTABanner.astro";
 
       <ComparisonTable />
 
+      <section class="pb-16 sm:pb-24" aria-labelledby="which-option-fits">
+        <div class="mx-auto max-w-5xl px-6">
+          <h2 id="which-option-fits" class="text-center text-2xl font-extrabold tracking-tight sm:text-3xl">
+            Which call-answering option fits your business?
+          </h2>
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <article class="rounded-2xl border border-border bg-surface p-6">
+              <h3 class="text-lg font-bold text-text">Choose voicemail when</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Call volume is low, callers are comfortable leaving messages,
+                and someone reliably returns every call with enough context.
+              </p>
+            </article>
+            <article class="rounded-2xl border border-border bg-surface p-6">
+              <h3 class="text-lg font-bold text-text">Choose a human service when</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Calls vary widely and frequently require empathy, judgment,
+                negotiation, or decisions that cannot be reduced to written rules.
+              </p>
+            </article>
+            <article class="rounded-2xl border border-accent/45 bg-accent/5 p-6">
+              <h3 class="text-lg font-bold text-text">Test an AI receptionist when</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Calls follow repeatable patterns, coverage gaps are predictable,
+                and structured summaries would make follow-up faster and clearer.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24" aria-labelledby="comparison-checklist">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 id="comparison-checklist" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+            Compare the handoff, not just the pickup
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted">
+            Run the same realistic calls through every option and score the
+            output. A good demo voice is not enough if the message your team
+            receives is incomplete or the caller is promised something the
+            business cannot deliver.
+          </p>
+          <ul class="mt-8 space-y-4 text-muted">
+            {[
+              "Did the caller understand who or what answered?",
+              "Were the required contact, location, and request details captured?",
+              "Did the conversation stay inside approved business information?",
+              "Was an uncertain or safety-sensitive request escalated correctly?",
+              "Could a team member act without replaying the entire call?",
+              "Can the business review the transcript, recording, and configuration changes?",
+            ].map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-1 text-accent" aria-hidden="true">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-8 leading-relaxed text-muted">
+            For a complete test plan, use the <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/blog/ai-receptionist-home-services-buyers-guide/">home-services AI receptionist buyer's guide</a>.
+          </p>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24" aria-labelledby="pricing-comparison">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 id="pricing-comparison" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+            Compare cost with your real call pattern
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted">
+            Avoid headline-price comparisons. Use one representative month and
+            include base fees, included calls or minutes, overages, transfers,
+            recordings, setup, phone numbers, and the internal time required to
+            turn each message into work. Review <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/pricing/">ViFi's published plans</a> using the same calculation.
+          </p>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24" aria-labelledby="alternatives-faq">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 id="alternatives-faq" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+            Common comparison questions
+          </h2>
+          <div class="mt-8 space-y-4">
+            {faqs.map((faq) => (
+              <details class="rounded-2xl border border-border bg-surface p-6">
+                <summary class="cursor-pointer font-semibold text-text">{faq.question}</summary>
+                <p class="mt-4 leading-relaxed text-muted">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CTABanner
-        heading="See the difference for yourself"
-        description="Try ViFi free for 7 days. No credit card, no commitment."
+        heading="Test ViFi with the calls your business receives"
+        description="Configure one narrow workflow, make realistic test calls, and review every briefing before routing live traffic."
+        buttonText="Start free — no card"
+        ctaId="alternatives-banner"
+        ctaVersion="alternatives-2026-08-v1"
       />
     </main>
     <Footer />

@@ -14,23 +14,41 @@ interface Props {
 const {
   title,
   description,
-  canonicalURL = Astro.url.href,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   ogImage = "/og-default.png",
   ogType = "website",
   structuredData,
 } = Astro.props;
 
+const siteUrl = new URL("/", Astro.site).href;
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}#organization`,
+  name: "ViFi",
+  alternateName: "ViFi AI Phone Assistant",
+  url: siteUrl,
+  email: "hello@vifi.us",
+  description:
+    "ViFi provides an AI phone assistant and post-call briefings for small businesses.",
+};
+
 const siteStructuredData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteUrl}#website`,
   name: "ViFi",
-  url: new URL("/", Astro.site).href,
+  alternateName: "ViFi AI Phone Assistant",
+  url: siteUrl,
+  publisher: { "@id": `${siteUrl}#organization` },
   description:
     "An AI phone assistant and virtual receptionist for small businesses.",
 };
 
 const jsonLd = [
-  ...(Astro.url.pathname === "/" ? [siteStructuredData] : []),
+  ...(Astro.url.pathname === "/"
+    ? [organizationStructuredData, siteStructuredData]
+    : []),
   ...(Array.isArray(structuredData)
     ? structuredData
     : structuredData
