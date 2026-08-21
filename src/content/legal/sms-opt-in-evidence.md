@@ -14,9 +14,12 @@ visual.
 - **Brand and sole sender:** ViFi LLC
 - **Traffic purpose:** one ViFi-controlled, low-volume, one-time customer-care
   program
-- **Reviewer test number:** +1 (678) 750-4279, a ViFi-owned internal pilot
-  SMS-capable source number for coordinated testing after a fresh test call and
-  voice instruction
+- **Pre-approval reviewer proof:** this public evidence page and the supporting
+  diagram; no public SMS enrollment surface is offered before approval
+- **Fail-closed rollout:** all program outbound remains disabled while the
+  Campaign status is not **VERIFIED**; after verification, outbound is enabled
+  only for one consented internal canary, and customer-provisioned numbers
+  remain disabled until that canary passes
 - **Message control:** ViFi centrally controls every message; ViFi account
   holders cannot write, edit, brand, or directly send program messages
 
@@ -40,17 +43,16 @@ presents this instruction by voice without interruption:
 At runtime, ViFi replaces **[ViFi SMS number]** only with the ViFi-owned,
 SMS-capable source number assigned to the disclosure-pending record. The value
 is not customer-supplied or customer-configurable and does not add customer
-branding or content. For coordinated reviewer testing, the replacement is
-**+1 (678) 750-4279**.
+branding or content.
 
 The initial record cannot authorize SMS. Only after the full disclosure
 finishes and the activation endpoint succeeds does it become an authorizable
 pending request and its 15-minute window begin.
 
 The disclosure is reproduced here solely so reviewers can verify it. This page
-is not an SMS signup surface and does not invite visitors to text the reviewer
-number without a fresh test call, phone-follow-up request, and voice
-instruction.
+and the supporting diagram are the pre-approval reviewer proof. They are not an
+SMS signup surface and do not invite a visitor to send YES based on a page
+visit.
 
 A spoken answer, an inbound call, a page visit, or possession of a phone number
 is not SMS consent. ViFi does not send a confirmation request asking a

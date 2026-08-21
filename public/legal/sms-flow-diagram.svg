@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1090" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" role="img" aria-labelledby="title description">
   <title id="title">ViFi one-time customer-care SMS opt-in flow</title>
-  <desc id="description">After a fresh phone-follow-up request, the initial disclosure record cannot authorize SMS. The voice instruction says: After this message ends, to opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Only after the full voice disclosure finishes and activation succeeds does a 15-minute window open. An exact YES sent during that window to the identified ViFi-owned SMS number authorizes one opt-in confirmation and one fixed ViFi customer-care receipt. ViFi sends no SMS before an accepted YES. A YES during playback, late, replayed, or unsolicited sends nothing. STOP applies globally to the ViFi program and HELP provides ViFi support.</desc>
+  <desc id="description">After a fresh phone-follow-up request, the initial disclosure record cannot authorize SMS. The voice instruction says: After this message ends, to opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Only after the full voice disclosure finishes and activation succeeds does a 15-minute window open. An exact YES sent during that window to the identified ViFi-owned SMS number authorizes one opt-in confirmation and one fixed ViFi customer-care receipt. ViFi sends no SMS before an accepted YES. A YES during playback, late, replayed, or unsolicited sends nothing. STOP applies globally to the ViFi program and HELP provides ViFi support. Before approval, the public evidence and this diagram are the reviewer proof. All outbound remains disabled until the Campaign is VERIFIED; after verification, outbound is enabled only for one consented internal canary, and customer-provisioned numbers remain disabled until it passes.</desc>
 
   <rect width="900" height="1090" fill="#fafafa"/>
 
@@ -17,8 +17,8 @@
   <text x="450" y="241" text-anchor="middle" font-size="11.5" fill="#1e3a8a">Reply STOP to opt out or HELP for help.</text>
   <text x="450" y="259" text-anchor="middle" font-size="11.5" fill="#1e3a8a">Terms are at vifi dot us slash legal slash terms.</text>
   <text x="450" y="277" text-anchor="middle" font-size="11.5" fill="#1e3a8a">Privacy is at vifi dot us slash legal slash privacy.</text>
-  <text x="450" y="299" text-anchor="middle" font-size="11" fill="#475569">[ViFi SMS number] = ViFi-owned SMS-capable source only; reviewer: +1 (678) 750-4279.</text>
-  <text x="450" y="317" text-anchor="middle" font-size="10.5" fill="#475569">During playback the record cannot authorize; the window opens after the full disclosure finishes + activation succeeds.</text>
+  <text x="450" y="299" text-anchor="middle" font-size="11" fill="#475569">[ViFi SMS number] is dynamically replaced only with a ViFi-owned SMS-capable source.</text>
+  <text x="450" y="317" text-anchor="middle" font-size="10.5" fill="#475569">Pre-approval reviewer proof = public evidence + this diagram; no public SMS enrollment.</text>
 
   <line x1="450" y1="330" x2="450" y2="354" stroke="#374151" stroke-width="2"/>
   <polygon points="443,348 457,348 450,359" fill="#374151"/>
@@ -64,5 +64,5 @@
   <text x="648" y="995" text-anchor="middle" font-size="11.5" fill="#166534">support@vifi.us · STOP remains available</text>
   <text x="648" y="1012" text-anchor="middle" font-size="11" fill="#14532d">No duplicate application-generated auto-reply.</text>
 
-  <text x="450" y="1065" text-anchor="middle" font-size="11" fill="#64748b">Reviewer evidence only · coordinated number +1 (678) 750-4279 after a fresh test call and full disclosure.</text>
+  <text x="450" y="1065" text-anchor="middle" font-size="11" fill="#64748b">Outbound disabled until VERIFIED · then internal canary only · customer numbers after pass.</text>
 </svg>

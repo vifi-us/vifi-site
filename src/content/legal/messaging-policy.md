@@ -40,8 +40,16 @@ interruption:
 At runtime, ViFi replaces **[ViFi SMS number]** only with the ViFi-owned,
 SMS-capable source number assigned to the disclosure-pending record. It is not
 a customer or account-holder field and cannot introduce customer branding or
-content. The reviewer number for the coordinated internal pilot is
-**+1 (678) 750-4279**.
+content.
+
+ViFi enforces a fail-closed rollout. All program outbound remains disabled
+while the Campaign status is not **VERIFIED**. After verification, outbound is
+enabled only for one consented internal canary through the full flow.
+Customer-provisioned numbers remain disabled until that canary passes. Before
+those gates pass, the public
+[SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/) and
+[SMS Flow Diagram](https://vifi.us/legal/sms-flow-diagram.svg) are the reviewer
+proof of the proposed program. No public SMS enrollment surface is offered.
 
 The 15-minute authorizable window does not begin during playback. Only after
 the full disclosure finishes and the activation endpoint succeeds does the
