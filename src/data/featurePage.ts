@@ -54,7 +54,7 @@ export const spotlights: FeatureSpotlightData[] = [
     eyebrow: "Consent-based texting",
     title: "A one-time receipt when a caller asks",
     description:
-      "After making a fresh phone-follow-up request, a caller can opt in by texting YES. ViFi sends the registered opt-in confirmation and one fixed customer-care receipt, then stops.",
+      "After making a fresh phone-follow-up request, a caller can opt in by texting YES. ViFi sends one opt-in confirmation and one fixed customer-care receipt, then stops.",
     bullets: [
       "No outbound SMS before the caller texts YES",
       "Two messages per YES: opt-in confirmation plus one fixed receipt",

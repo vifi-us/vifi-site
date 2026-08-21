@@ -44,9 +44,9 @@ collected by a ViFi account holder for this program.
 1. The caller makes a fresh phone-follow-up request and ViFi presents the voice
    instruction above. No SMS has been sent.
 2. The recipient texts **YES** to the identified ViFi number.
-3. The program sends the currently registered opt-in confirmation:
+3. At Campaign submission, ViFi will register this opt-in confirmation:
 
-   > ViFi: opt-in confirmed. You will receive the content you requested shortly. Reply HELP for help, STOP to opt out.
+   > ViFi: Opt-in confirmed. You will receive one requested follow-up text. Msg & data rates may apply. Reply HELP for help or STOP to opt out.
 
 4. ViFi sends exactly one centrally controlled customer-care receipt:
 

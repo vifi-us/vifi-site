@@ -59,18 +59,18 @@ disclosure above. No SMS is sent by ViFi at this step.
 The consumer sends **YES** to the identified ViFi number. This inbound message
 is the opt-in event and the one-time customer-care request.
 
-The Campaign's currently registered keyword setting is:
+The Campaign's proposed keyword setting for submission is:
 
 ```text
 optInKeywords=[YES]
 ```
 
-### Step 3: Registered opt-in confirmation
+### Step 3: Confirmation registered at Campaign submission
 
-After YES, the program sends the currently registered opt-in confirmation,
-verbatim:
+After YES, the program sends the confirmation registered at Campaign
+submission, verbatim:
 
-> ViFi: opt-in confirmed. You will receive the content you requested shortly. Reply HELP for help, STOP to opt out.
+> ViFi: Opt-in confirmed. You will receive one requested follow-up text. Msg & data rates may apply. Reply HELP for help or STOP to opt out.
 
 This confirmation occurs after consent. It is not an outbound opt-in
 solicitation.
@@ -94,7 +94,7 @@ marketing message, additional follow-up, free-form reply, or recurring series.
 
 For one accepted YES, ViFi sends exactly two outbound messages:
 
-1. one registered opt-in confirmation; and
+1. one opt-in confirmation registered at Campaign submission; and
 2. one fixed customer-care receipt.
 
 There are no recurring messages. A distinct later YES following a fresh,
