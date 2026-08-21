@@ -1,7 +1,7 @@
 ---
 title: "Terms of Service"
 description: "Terms governing access to vifi.us and the ViFi communications platform."
-effectiveDate: 2026-04-24
+effectiveDate: 2026-08-21
 ---
 
 These Terms of Service ("Terms") govern your access to and use of `vifi.us` and
@@ -24,28 +24,47 @@ that occurs under your account.
 ## Customer Compliance Responsibilities
 
 You are responsible for obtaining any notices, disclosures, and consents
-required for calls, SMS, recordings, and customer-data processing.
+required for calls, recordings, and customer-data processing under your
+control.
 
-You must maintain any opt-in evidence, scripts, screenshots, logs, or records
-needed to demonstrate compliance with applicable law, carrier rules, and
-third-party provider requirements.
+ViFi exclusively controls its consumer-facing customer-care SMS program,
+including its consent disclosure, message content, frequency, and suppression
+records. Account holders may not draft, edit, brand, or directly send messages
+through that program; solicit consent on ViFi's behalf; or use provisioned
+numbers to send customer-authored SMS outside the ViFi-controlled flow.
 
 ## Messaging Terms
 
-If you opt into SMS from ViFi or a participating business using the platform,
-you agree to receive the types of messages described in the applicable signup
-flow or customer program.
+ViFi is the sole sender of the ViFi customer-care SMS program. The program is
+optional and consent is not a condition of purchase. After making a fresh
+phone-follow-up request and receiving ViFi's voice disclosure, a consumer opts
+in by texting **YES** to the identified ViFi number. ViFi sends no SMS before
+the consumer sends YES.
 
-Message frequency varies. Message and data rates may apply. Reply **HELP** for
-help and **STOP** to cancel. For SMS support, contact
-[support@vifi.us](mailto:support@vifi.us). Carriers are not liable for delayed
-or undelivered messages. See our [Privacy Policy](/legal/privacy) and
-[Messaging Policy](/legal/messaging-policy) for the full program terms and
-opt-in flow.
+Each distinct inbound YES following that disclosed flow is a new one-time
+request. For each YES, ViFi sends two outbound messages: one automatic opt-in
+confirmation and one fixed customer-care receipt. The receipt is:
 
-You may not use the service to send SMS without the level of consent required
-for the applicable campaign or program. Purchased, scraped, or third-party
-lists may not be used with the service.
+> ViFi: Your one-time phone follow-up request has been recorded. Reply HELP for help or STOP to opt out. Msg & data rates may apply.
+
+The program is not recurring and does not send marketing or customer-authored
+content. Message and data rates may apply. Carriers are not liable for delayed
+or undelivered messages.
+
+Reply **HELP** for help or contact
+[support@vifi.us](mailto:support@vifi.us). Reply **STOP** to opt out globally
+from the ViFi customer-care SMS program. ViFi applies that suppression across
+all numbers used for the program. After STOP, text **START** or **UNSTOP** to
+remove the carrier transport block. START or UNSTOP does not authorize a ViFi
+receipt. The consumer must then make a fresh phone-follow-up request, receive
+the voice instruction, and text YES for a new one-time request.
+
+See the [Messaging Policy](https://vifi.us/legal/messaging-policy/),
+[SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/), and
+[Privacy Policy](https://vifi.us/legal/privacy/) for the complete disclosure
+and data practices.
+
+Purchased, scraped, or third-party lists may not be used with any ViFi service.
 
 ## Call Recording
 
