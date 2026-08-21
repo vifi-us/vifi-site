@@ -35,7 +35,7 @@ The flow begins when a caller makes a fresh phone-follow-up request during an
 inbound call. ViFi creates a non-authorizable disclosure-pending record and
 presents this instruction by voice without interruption:
 
-> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. To opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
+> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. After this message ends, to opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
 
 At runtime, ViFi replaces **[ViFi SMS number]** only with the ViFi-owned,
 SMS-capable source number assigned to the disclosure-pending record. The value
@@ -108,9 +108,10 @@ ViFi then sends exactly one centrally controlled content message, verbatim:
 
 > ViFi: Your one-time phone follow-up request has been recorded. Reply HELP for help or STOP to opt out. Msg & data rates may apply.
 
-This is the only customer-care receipt template. If campaign registration asks
-for two content samples, this exact sample is duplicated; ViFi does not invent
-a second use case or template.
+This is the only customer-care receipt template. The Campaign's two
+`MessageSamples` are exactly the opt-in confirmation quoted in Step 3 and the
+fixed customer-care receipt quoted above. They are not two distinct content
+use cases and contain no customer-controlled fields.
 
 ### Step 5: Complete
 

@@ -35,7 +35,7 @@ an inbound call answered by ViFi. ViFi creates a non-authorizable
 disclosure-pending record and reads the following instruction without
 interruption:
 
-> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. To opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
+> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. After this message ends, to opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
 
 At runtime, ViFi replaces **[ViFi SMS number]** only with the ViFi-owned,
 SMS-capable source number assigned to the disclosure-pending record. It is not
