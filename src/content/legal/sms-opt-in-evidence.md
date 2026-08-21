@@ -14,8 +14,9 @@ visual.
 - **Brand and sole sender:** ViFi LLC
 - **Traffic purpose:** one ViFi-controlled, low-volume, one-time customer-care
   program
-- **Pre-approval reviewer proof:** this public evidence page and the supporting
-  diagram; no public SMS enrollment surface is offered before approval
+- **Pre-submission reviewer proof:** this public evidence page and the
+  supporting diagram are published before Campaign submission; publication
+  does not enable outbound or create a public SMS enrollment surface
 - **Fail-closed rollout:** all program outbound remains disabled while the
   Campaign status is not **VERIFIED**; after verification, outbound is enabled
   only for one consented internal canary, and customer-provisioned numbers
@@ -50,8 +51,8 @@ finishes and the activation endpoint succeeds does it become an authorizable
 pending request and its 15-minute window begin.
 
 The disclosure is reproduced here solely so reviewers can verify it. This page
-and the supporting diagram are the pre-approval reviewer proof. They are not an
-SMS signup surface and do not invite a visitor to send YES based on a page
+and the supporting diagram are the pre-submission reviewer proof. They are not
+an SMS signup surface and do not invite a visitor to send YES based on a page
 visit.
 
 A spoken answer, an inbound call, a page visit, or possession of a phone number

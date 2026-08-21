@@ -42,6 +42,11 @@ SMS-capable source number assigned to the disclosure-pending record. It is not
 a customer or account-holder field and cannot introduce customer branding or
 content.
 
+ViFi publishes this policy, the SMS Opt-In Evidence page, and the supporting
+diagram before Campaign submission so reviewers can access the exact proposed
+flow. Publishing those pages does not enable program outbound or create a
+public SMS enrollment surface.
+
 ViFi enforces a fail-closed rollout. All program outbound remains disabled
 while the Campaign status is not **VERIFIED**. After verification, outbound is
 enabled only for one consented internal canary through the full flow.
