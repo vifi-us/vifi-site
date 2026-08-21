@@ -95,16 +95,22 @@ services, such as customer service providers, is permitted.
 ## SMS and Mobile Communications
 
 ViFi sends no customer-care SMS before a consumer with a fresh phone-follow-up
-request texts **YES** after ViFi's voice disclosure. Consent is optional and is
-not a condition of purchase. Each distinct inbound YES following that flow is a
-new one-time request. ViFi sends two outbound messages: one automatic opt-in
-confirmation and one fixed ViFi customer-care receipt. The program is not
-recurring. **Message and data rates may apply.**
+request texts **YES** to the disclosed ViFi-owned SMS number within 15 minutes
+after the full disclosure finishes and activation succeeds. The initial
+disclosure-pending record is non-authorizable, so YES during voice playback
+sends no program message. Consent is optional and is not a condition of
+purchase. ViFi sends no SMS before an accepted YES. The first timely accepted
+YES consumes the pending request and triggers two outbound messages: one
+automatic opt-in confirmation and one fixed ViFi customer-care receipt. The
+request expires after 15 minutes; a late, replayed, or unsolicited YES sends no
+program message. The program is not recurring. **Message and data rates may
+apply.**
 
-ViFi records inbound YES, HELP, and STOP events, timestamps, involved phone
-numbers, provider message identifiers, delivery status, and suppression status
-as needed to operate, secure, and audit the program. SMS opt-in data and consent
-records are not provided to account holders for marketing or promotional use.
+ViFi records inbound YES, HELP, and STOP events, disclosure and expiry
+timestamps, involved phone numbers, provider message identifiers, delivery
+status, and suppression status as needed to operate, secure, and audit the
+program. SMS opt-in data and consent records are not provided to account
+holders for marketing or promotional use.
 
 Reply **STOP** to opt out globally from the ViFi customer-care SMS program.
 Reply **HELP** for help, or contact

@@ -37,13 +37,20 @@ numbers to send customer-authored SMS outside the ViFi-controlled flow.
 
 ViFi is the sole sender of the ViFi customer-care SMS program. The program is
 optional and consent is not a condition of purchase. After making a fresh
-phone-follow-up request and receiving ViFi's voice disclosure, a consumer opts
-in by texting **YES** to the identified ViFi number. ViFi sends no SMS before
-the consumer sends YES.
+phone-follow-up request, a consumer hears ViFi's voice disclosure and the
+ViFi-owned, SMS-capable source number for that request. The disclosed number is
+a ViFi-controlled routing value, not customer-supplied branding or content. A
+non-authorizable disclosure-pending record exists during playback. Only after
+the full disclosure finishes and activation succeeds does a 15-minute window
+open. A consumer opts in by texting **YES** to the disclosed number during that
+window. ViFi sends no SMS before the consumer sends an accepted YES.
 
-Each distinct inbound YES following that disclosed flow is a new one-time
-request. For each YES, ViFi sends two outbound messages: one automatic opt-in
-confirmation and one fixed customer-care receipt. The receipt is:
+The pending request expires 15 minutes after the full disclosure finishes and
+activation succeeds. The first timely accepted YES consumes it. A YES during
+playback, a late YES, a YES without an authorizable pending request, or a
+replayed YES sends no program message. For each accepted request, ViFi sends two
+outbound messages: one automatic opt-in confirmation and one fixed
+customer-care receipt. The receipt is:
 
 > ViFi: Your one-time phone follow-up request has been recorded. Reply HELP for help or STOP to opt out. Msg & data rates may apply.
 
@@ -57,7 +64,9 @@ from the ViFi customer-care SMS program. ViFi applies that suppression across
 all numbers used for the program. After STOP, text **START** or **UNSTOP** to
 remove the carrier transport block. START or UNSTOP does not authorize a ViFi
 receipt. The consumer must then make a fresh phone-follow-up request, receive
-the voice instruction, and text YES for a new one-time request.
+the full voice instruction, wait until the full disclosure finishes and
+activation succeeds, and text YES to the disclosed ViFi number within 15
+minutes for a new one-time request.
 
 See the [Messaging Policy](https://vifi.us/legal/messaging-policy/),
 [SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/), and

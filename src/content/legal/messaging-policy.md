@@ -26,43 +26,71 @@ messages, missed-call solicitations, or recurring message series.
 ## How a recipient opts in
 
 The sole opt-in action is an inbound text whose entire body is **YES**
-(case-insensitive). ViFi sends no SMS before the recipient takes that action.
+(case-insensitive), received during an activated, unexpired pending request.
+The initial disclosure-pending record is non-authorizable, so a YES sent during
+voice playback cannot opt in and sends no program message.
 
 A valid flow begins when a caller makes a fresh phone-follow-up request during
-an inbound call answered by ViFi. ViFi then reads this instruction:
+an inbound call answered by ViFi. ViFi creates a non-authorizable
+disclosure-pending record and reads the following instruction without
+interruption:
 
-> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. To opt in, text YES to the number you called. Consent is optional and is not a condition of purchase. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
+> ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. To opt in, text YES within 15 minutes to this ViFi number: [ViFi SMS number]. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
+
+At runtime, ViFi replaces **[ViFi SMS number]** only with the ViFi-owned,
+SMS-capable source number assigned to the disclosure-pending record. It is not
+a customer or account-holder field and cannot introduce customer branding or
+content. The reviewer number for the coordinated internal pilot is
+**+1 (678) 750-4279**.
+
+The 15-minute authorizable window does not begin during playback. Only after
+the full disclosure finishes and the activation endpoint succeeds does the
+record become an authorizable pending request and the 15-minute window begin.
 
 A spoken answer on a call, merely visiting a page, placing a call, or providing
 a phone number is not SMS consent. Consent occurs only when the recipient sends
-**YES** to the ViFi number identified in the instruction. ViFi does not use
+**YES** to the identified ViFi number before that pending request expires. The
+request expires 15 minutes after the full disclosure finishes and activation
+succeeds. A YES during playback, a late YES, a YES without an authorizable
+pending request, or a replayed YES sends no program message. ViFi does not use
 web-form leads, purchased lists, scraped numbers, third-party lists, or consent
 collected by a ViFi account holder for this program.
 
 ## Exact message flow
 
-1. The caller makes a fresh phone-follow-up request and ViFi presents the voice
-   instruction above. No SMS has been sent.
-2. The recipient texts **YES** to the identified ViFi number.
-3. At Campaign submission, ViFi will register this opt-in confirmation:
+1. The caller makes a fresh phone-follow-up request. ViFi creates a
+   non-authorizable disclosure-pending record, identifies its ViFi-owned SMS
+   number, and presents the full voice instruction above without interruption.
+   No SMS has been sent, and YES cannot authorize during playback.
+2. After the full disclosure finishes, ViFi calls the activation endpoint. If
+   activation succeeds, the record becomes one authorizable pending request
+   and its 15-minute window begins. Failed activation leaves no authorizable
+   request.
+3. Within that 15-minute window, the recipient texts **YES** to the identified
+   ViFi number. The first accepted YES consumes the pending request. A YES
+   during playback, late, repeated, or unsolicited sends nothing.
+4. For the accepted YES, ViFi sends the opt-in confirmation registered at
+   Campaign submission:
 
    > ViFi: Opt-in confirmed. You will receive one requested follow-up text. Msg & data rates may apply. Reply HELP for help or STOP to opt out.
 
-4. ViFi sends exactly one centrally controlled customer-care receipt:
+5. ViFi sends exactly one centrally controlled customer-care receipt:
 
    > ViFi: Your one-time phone follow-up request has been recorded. Reply HELP for help or STOP to opt out. Msg & data rates may apply.
 
-5. The flow is complete. ViFi sends no additional content for that request.
+6. The flow is complete. ViFi sends no additional content for that request.
 
 The receipt has no variable fields, embedded links, embedded phone numbers, or
-customer-specific branding. Each distinct inbound YES following the disclosed
-phone-follow-up flow is a new one-shot consumer request.
+customer-specific branding. A new one-shot request requires a fresh
+phone-follow-up request and disclosure; an inbound YES cannot create a request
+by itself.
 
 ## Frequency
 
-Following each valid YES opt-in, ViFi sends two outbound messages: one automatic
-opt-in confirmation and one fixed customer-care receipt. Messages are not
-recurring. ViFi does not send reminders or follow-up series for the request.
+Following each timely, accepted YES opt-in, ViFi sends two outbound messages:
+one automatic opt-in confirmation and one fixed customer-care receipt. Messages
+are not recurring. ViFi does not send reminders or follow-up series for the
+request. If the pending request expires, ViFi sends no message.
 
 ## HELP
 
@@ -87,13 +115,16 @@ another program number to work around that choice.
 After STOP, the recipient must first text **START** or **UNSTOP** to remove the
 transport-level block. START or UNSTOP does not authorize a ViFi content
 message. The recipient must then make a fresh phone-follow-up request, receive
-the ViFi voice instruction, and text **YES** to create a new one-time request.
+the ViFi voice instruction, wait until the full disclosure finishes and
+activation succeeds, and then text **YES** to the disclosed ViFi number within
+15 minutes to authorize a new one-time request.
 
 ## Privacy and consent records
 
 ViFi records the recipient's inbound YES, HELP, and STOP events, the number to
-which the keyword was sent, timestamps, message identifiers, delivery state,
-and the related request as needed to operate and audit the program.
+which the keyword was sent, disclosure and expiry timestamps, message
+identifiers, delivery state, and the related request as needed to operate and
+audit the program.
 
 ViFi does not sell, rent, or share mobile numbers, SMS opt-in data, or SMS
 consent records with third parties or affiliates for their marketing or
