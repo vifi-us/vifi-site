@@ -140,5 +140,4 @@ will post the updated version here and update the effective date.
 
 ## Contact
 
-Questions about these Terms may be sent to
-[hello@vifi.us](mailto:hello@vifi.us).
+Questions about these Terms may be sent to <!--email_off-->hello@vifi.us<!--/email_off-->.

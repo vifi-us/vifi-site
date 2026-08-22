@@ -150,8 +150,7 @@ analytics data for third-party advertising, and we do not sell it.
 
 Our website honors the Global Privacy Control signal: if your browser sends
 it, we do not load analytics for your visit. To opt out of analytics another
-way, or to request deletion of analytics data about you, email
-[hello@vifi.us](mailto:hello@vifi.us).
+way, or to request deletion of analytics data about you, email <!--email_off-->hello@vifi.us<!--/email_off-->.
 
 ## Retention
 
@@ -171,7 +170,7 @@ deletion, restriction, portability, or objection, and to opt out of certain
 sharing or limit certain uses of sensitive personal information where
 applicable.
 
-To submit a privacy request, email [hello@vifi.us](mailto:hello@vifi.us). We
+To submit a privacy request, email <!--email_off-->hello@vifi.us<!--/email_off-->. We
 may need to verify your request before responding.
 
 ## International Transfers
@@ -198,5 +197,4 @@ changes, we will post the updated version here and update the effective date.
 
 ## Contact
 
-Questions about this Policy can be sent to
-[hello@vifi.us](mailto:hello@vifi.us).
+Questions about this Policy can be sent to <!--email_off-->hello@vifi.us<!--/email_off-->.
