@@ -113,8 +113,8 @@ program. SMS opt-in data and consent records are not provided to account
 holders for marketing or promotional use.
 
 Reply **STOP** to opt out globally from the ViFi customer-care SMS program.
-Reply **HELP** for help, or contact
-[support@vifi.us](mailto:support@vifi.us). The full disclosure and exact message
+Reply **HELP** for help, or contact <!--email_off-->support@vifi.us<!--/email_off-->.
+The full disclosure and exact message
 flow appear in our
 [Messaging Policy](https://vifi.us/legal/messaging-policy/) and
 [SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/).

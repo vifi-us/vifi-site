@@ -110,10 +110,10 @@ request. If the pending request expires, ViFi sends no message.
 Recipients may text **HELP** at any time. The program sends this automatic
 response:
 
-> ViFi: For help with the ViFi one-time customer-care text program, email support@vifi.us. Reply STOP to opt out. Msg & data rates may apply.
+> ViFi: For help with the ViFi one-time customer-care text program, email <!--email_off-->support@vifi.us<!--/email_off-->. Reply STOP to opt out. Msg & data rates may apply.
 
 ViFi does not send a duplicate application-generated HELP reply. Consumers may
-also email [support@vifi.us](mailto:support@vifi.us) for assistance.
+also email <!--email_off-->support@vifi.us<!--/email_off--> for assistance.
 
 ## STOP and global suppression
 
@@ -171,4 +171,4 @@ ViFi LLC
 
 139 Brisbane Dr, Acworth, GA 30101
 
-[support@vifi.us](mailto:support@vifi.us)
+<p><!--email_off--><a href="mailto:support@vifi.us">support@vifi.us</a><!--/email_off--></p>
