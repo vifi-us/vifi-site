@@ -1,0 +1,19 @@
+ViFi Direct reviewer proof manifest
+Revision: vifi-direct-reviewer-proof-v1
+Generated: 2026-08-22 UTC
+Program key: vifi-direct-v1
+Sole sender: ViFi LLC
+Platform contract commit: 343ea65ad6bf46e825b18d249e8ee8dc5cea006a
+Site base commit: 2054f70066ef0c4bfad030259e62c881087c959d
+Rendered internal canary number: +1 678-750-4279
+Disclosure template SHA-256: c4fe97318e026b499fb3bd5ffddb870e6d5aa179106197e3ec9709239f1e5045
+
+Artifact SHA-256 values:
+48f5ebe5b6fc13eb34a9d38c16c9d47989719d5e6abc32553358a3d6426001fe  vifi-direct-opt-in-proof.png
+d732e111b32d5d562e2caa01e0557cb3a93703a48ee8d39a6c79a65792d14c94  vifi-direct-registered-messages-proof.png
+7778238a285fce33ec51e3e990e0fedff86e32eeac84ae55272c89f30c1d9bd1  vifi-direct-opt-in-proof.mp4
+88892a6d96462d0c92df2299e483c2d2c090d3f2f4ed957d31a743a5c8bb95ec  vifi-direct-verbal-cta.mp3
+19791f05c9b5a1e85d50597aeed6a337e93f33cca62afbfdaddaad444d87b26b  vifi-direct-verbal-cta.txt
+bc87f889b82c7ece2a3d87a85df0c071eba3332c75f13fc13d8f1c8408c7c99d  vifi-direct-verbal-cta.vtt
+
+These files are code-derived pre-approval reviewer evidence. They do not create a request, consent record, or SMS. The registered message display is an explicitly labeled simulation, not a record of live sends.
