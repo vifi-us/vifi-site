@@ -51,15 +51,16 @@ export const spotlights: FeatureSpotlightData[] = [
     icon: "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z",
   },
   {
-    eyebrow: "Missed calls & texting",
-    title: "Turn missed calls into conversations",
+    eyebrow: "Consent-based texting",
+    title: "A one-time receipt when a caller asks",
     description:
-      "When a call doesn't connect, ViFi texts the caller back automatically and emails you the details. The conversation keeps moving instead of ending at a ring with no answer.",
+      "After a fresh phone-follow-up request, the 15-minute window begins only after the full voice disclosure finishes and activation succeeds. A timely YES to the disclosed ViFi SMS number triggers one opt-in confirmation and one fixed customer-care receipt, then ViFi stops.",
     bullets: [
-      "Automatic text-back to callers you miss",
-      "An email to you the moment a call is missed",
-      "Two-way SMS inbox to keep the conversation going",
-      "Your agent can text callers helpful details mid-call",
+      "No outbound SMS before a timely accepted YES",
+      "YES during playback, late, or repeated sends nothing",
+      "Two messages per timely accepted request",
+      "No business-authored, free-form, marketing, or recurring texts",
+      "HELP is always available and STOP applies across the ViFi program",
     ],
     icon: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z",
   },

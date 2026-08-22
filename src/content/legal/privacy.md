@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "How ViFi collects, uses, shares, and retains personal information for its website and communications platform."
-effectiveDate: 2026-08-04
+effectiveDate: 2026-08-21
 ---
 
 ViFi LLC ("ViFi," "we," "our," or "us") operates `vifi.us` and provides
@@ -14,10 +14,14 @@ website, submit forms, create an account, or use the ViFi platform.
 If you are a website visitor or account holder, this Policy applies directly to
 our collection and use of your personal information.
 
-If you call or text with one of our business customers, ViFi may process your
-call, transcript, SMS, and related data on that customer's behalf. In those
-cases, the business customer may also have its own privacy notice, and your
-rights request may need to be directed to that business customer.
+If you call a phone number powered by ViFi, ViFi may process call metadata,
+transcripts, summaries, and recordings on an account holder's behalf. That
+account holder may have its own privacy notice for the call.
+
+ViFi separately operates the customer-care SMS program described in our
+[Messaging Policy](https://vifi.us/legal/messaging-policy/). ViFi is the sole
+sender and controls that program's consent, fixed content, and opt-out records.
+Account holders do not author, brand, or directly send those messages.
 
 ## Information We Collect
 
@@ -90,16 +94,30 @@ services, such as customer service providers, is permitted.
 
 ## SMS and Mobile Communications
 
-If you have opted in to receive SMS from ViFi or from a business using the
-ViFi platform, the following applies:
+ViFi sends no customer-care SMS before a consumer with a fresh phone-follow-up
+request texts **YES** to the disclosed ViFi-owned SMS number within 15 minutes
+after the full disclosure finishes and activation succeeds. The initial
+disclosure-pending record is non-authorizable, so YES during voice playback
+sends no program message. Consent is optional and is not a condition of
+purchase. ViFi sends no SMS before an accepted YES. The first timely accepted
+YES consumes the pending request and triggers two outbound messages: one
+automatic opt-in confirmation and one fixed ViFi customer-care receipt. The
+request expires after 15 minutes; a late, replayed, or unsolicited YES sends no
+program message. The program is not recurring. **Message and data rates may
+apply.**
 
-- Message frequency varies by program; consumer-facing messages are limited to
-  at most one consent confirmation and one content message per phone call you
-  initiate. **Message and data rates may apply.**
-- Reply **STOP** to any message to opt out. Reply **HELP** for help, or contact
-  [support@vifi.us](mailto:support@vifi.us).
-- The full program description, opt-in flow, and consent handling are
-  documented in our [Messaging Policy](/legal/messaging-policy/).
+ViFi records inbound YES, HELP, and STOP events, disclosure and expiry
+timestamps, involved phone numbers, provider message identifiers, delivery
+status, and suppression status as needed to operate, secure, and audit the
+program. SMS opt-in data and consent records are not provided to account
+holders for marketing or promotional use.
+
+Reply **STOP** to opt out globally from the ViFi customer-care SMS program.
+Reply **HELP** for help, or contact
+[support@vifi.us](mailto:support@vifi.us). The full disclosure and exact message
+flow appear in our
+[Messaging Policy](https://vifi.us/legal/messaging-policy/) and
+[SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/).
 
 ## Cookies and Analytics
 

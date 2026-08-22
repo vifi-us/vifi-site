@@ -18,7 +18,7 @@ export const pricingTiers: PricingTier[] = [
     description: "For solo operators who need every call covered.",
     includedMinutes: 100,
     features: [
-      "100 AI minutes + 100 texts included",
+      "100 AI minutes + 100 eligible ViFi SMS segments included",
       "Post-call summaries & transcripts",
       "Caller memory",
       "Knowledge base",
@@ -33,7 +33,7 @@ export const pricingTiers: PricingTier[] = [
     description: "For busy teams that need room to grow.",
     includedMinutes: 500,
     features: [
-      "500 AI minutes + 500 texts included",
+      "500 AI minutes + 500 eligible ViFi SMS segments included",
       "Everything in Starter",
       "Lower overage rates",
     ],
@@ -48,7 +48,7 @@ export const pricingTiers: PricingTier[] = [
     description: "For high-volume businesses where every call counts.",
     includedMinutes: 2000,
     features: [
-      "2,000 AI minutes + 2,000 texts included",
+      "2,000 AI minutes + 2,000 eligible ViFi SMS segments included",
       "Everything in Growth",
       "Our lowest overage rates",
     ],
