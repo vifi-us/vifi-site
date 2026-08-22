@@ -136,10 +136,10 @@ phone-follow-up request and voice disclosure.
 
 The program's automatic HELP response is:
 
-> ViFi: For help with the ViFi one-time customer-care text program, email support@vifi.us. Reply STOP to opt out. Msg & data rates may apply.
+> ViFi: For help with the ViFi one-time customer-care text program, email <!--email_off-->support@vifi.us<!--/email_off-->. Reply STOP to opt out. Msg & data rates may apply.
 
 ViFi sends no duplicate application-generated HELP message. Reviewers and
-recipients may also contact [support@vifi.us](mailto:support@vifi.us).
+recipients may also contact <!--email_off-->support@vifi.us<!--/email_off-->.
 
 ## STOP behavior and scope
 
@@ -183,6 +183,6 @@ ViFi LLC
 
 139 Brisbane Dr, Acworth, GA 30101
 
-[support@vifi.us](mailto:support@vifi.us)
+<p><!--email_off--><a href="mailto:support@vifi.us">support@vifi.us</a><!--/email_off--></p>
 
 +1 (678) 232-1627

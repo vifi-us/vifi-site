@@ -58,8 +58,8 @@ The program is not recurring and does not send marketing or customer-authored
 content. Message and data rates may apply. Carriers are not liable for delayed
 or undelivered messages.
 
-Reply **HELP** for help or contact
-[support@vifi.us](mailto:support@vifi.us). Reply **STOP** to opt out globally
+Reply **HELP** for help or contact <!--email_off-->support@vifi.us<!--/email_off-->.
+Reply **STOP** to opt out globally
 from the ViFi customer-care SMS program. ViFi applies that suppression across
 all numbers used for the program. After STOP, text **START** or **UNSTOP** to
 remove the carrier transport block. START or UNSTOP does not authorize a ViFi
