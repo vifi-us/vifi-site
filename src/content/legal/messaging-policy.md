@@ -1,7 +1,7 @@
 ---
 title: "Messaging Policy"
 description: "How consumers opt in to ViFi's customer-care SMS program, what ViFi sends, and how HELP and STOP work."
-effectiveDate: 2026-08-21
+effectiveDate: 2026-08-22
 ---
 
 This policy describes ViFi LLC's ("ViFi") ViFi-controlled A2P 10DLC
@@ -42,10 +42,11 @@ SMS-capable source number assigned to the disclosure-pending record. It is not
 a customer or account-holder field and cannot introduce customer branding or
 content.
 
-ViFi publishes this policy, the SMS Opt-In Evidence page, and the supporting
-diagram before Campaign submission so reviewers can access the exact proposed
-flow. Publishing those pages does not enable program outbound or create a
-public SMS enrollment surface.
+ViFi publishes this policy, the SMS Opt-In Evidence page, a full-size rendered
+CTA screenshot, a captioned recording with exact disclosure audio and
+transcript, and the supporting diagram before Campaign resubmission so reviewers
+can access the exact proposed flow. Publishing those artifacts does not enable
+program outbound or create a public SMS enrollment surface.
 
 ViFi enforces a fail-closed rollout. All program outbound remains disabled
 while the Campaign status is not **VERIFIED**. After verification, outbound is
@@ -82,8 +83,8 @@ collected by a ViFi account holder for this program.
 3. Within that 15-minute window, the recipient texts **YES** to the identified
    ViFi number. The first accepted YES consumes the pending request. A YES
    during playback, late, repeated, or unsolicited sends nothing.
-4. For the accepted YES, ViFi sends the opt-in confirmation registered at
-   Campaign submission:
+4. For the accepted YES, ViFi sends the opt-in confirmation included in the
+   Campaign registration:
 
    > ViFi: Opt-in confirmed. You will receive one requested follow-up text. Msg & data rates may apply. Reply HELP for help or STOP to opt out.
 
@@ -149,7 +150,8 @@ needed to operate and support ViFi's service. See the
 ## Reviewer evidence and terms
 
 - [SMS Opt-In Evidence](https://vifi.us/legal/sms-opt-in-evidence/) contains a
-  text-first, step-by-step record of the exact flow.
+  text-first, step-by-step record of the exact flow plus direct links to the
+  screenshot, recording, audio, transcript, captions, and message examples.
 - [SMS Flow Diagram](https://vifi.us/legal/sms-flow-diagram.svg) is a supporting
   visual of the same flow.
 - [Terms of Service](https://vifi.us/legal/terms/) contains the applicable

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ViFi Direct SMS opt-in reviewer proof</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; margin: 0; }
+      body {
+        background: #eef5f4;
+        color: #122a2b;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        padding: 44px 64px;
+      }
+      main {
+        height: 992px;
+        border: 2px solid #b9cfcc;
+        border-radius: 40px;
+        background: #ffffff;
+        box-shadow: 0 28px 80px rgba(18, 42, 43, 0.12);
+        padding: 44px 58px;
+        display: grid;
+        grid-template-columns: 430px 1fr;
+        gap: 58px;
+      }
+      .eyebrow {
+        color: #356966;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      h1 { font-size: 58px; line-height: 1.03; margin: 16px 0 22px; letter-spacing: -.045em; }
+      .summary { font-size: 27px; line-height: 1.4; margin: 0; color: #365051; }
+      .phone {
+        margin-top: 28px;
+        border-radius: 34px;
+        background: #143b3b;
+        color: #ffffff;
+        padding: 34px 30px;
+        min-height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .phone .status { font-size: 18px; color: #b9d9d4; text-transform: uppercase; letter-spacing: .11em; }
+      .phone .brand { font-size: 43px; font-weight: 800; margin-top: 18px; }
+      .phone .number { font-size: 31px; margin-top: 10px; }
+      .phone .instruction { font-size: 23px; line-height: 1.32; color: #dceceb; margin-top: 24px; }
+      .phone .keyword {
+        display: inline-block;
+        margin-top: 12px;
+        border-radius: 18px;
+        background: #e5ff8d;
+        color: #173b3b;
+        font-size: 56px;
+        font-weight: 900;
+        letter-spacing: .08em;
+        padding: 14px 30px;
+      }
+      .proof-note { margin-top: 18px; color: #54706f; font-size: 17px; line-height: 1.4; }
+      .script-label { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+      .script-label h2 { font-size: 31px; margin: 0; }
+      .badge { background: #e8f0b8; color: #425100; border-radius: 999px; padding: 10px 18px; font-size: 18px; font-weight: 800; }
+      blockquote {
+        margin: 24px 0 0;
+        border-left: 7px solid #67a8a3;
+        background: #f7fbfa;
+        border-radius: 0 22px 22px 0;
+        padding: 30px 34px;
+        font-size: 29px;
+        line-height: 1.43;
+        letter-spacing: -.01em;
+      }
+      mark { background: #e5ff8d; color: inherit; padding: 1px 5px; border-radius: 5px; }
+      .rule {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .rule div { border: 1px solid #c9dbd8; border-radius: 18px; padding: 17px 19px; font-size: 20px; line-height: 1.35; }
+      .rule strong { display: block; color: #245654; font-size: 19px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; }
+      footer { margin-top: 21px; font-size: 18px; color: #506968; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="eyebrow">Reviewer evidence · ViFi LLC</div>
+        <h1>One-time SMS opt-in</h1>
+        <p class="summary">The voice call presents the disclosure. The consumer’s own SMS containing only <strong>YES</strong> is the sole consent action.</p>
+        <div class="phone">
+          <div>
+            <div class="status">Rendered internal example</div>
+            <div class="brand">ViFi</div>
+            <div class="number">+1 (678) 750-4279</div>
+          </div>
+          <div class="instruction">After the complete voice disclosure ends, the caller may text:</div>
+          <div><span class="keyword">YES</span></div>
+        </div>
+        <p class="proof-note">Pre-approval proof only. Viewing this artifact creates no request, consent record, or SMS. The number is ViFi’s internal canary and is not an enrollment invitation while the Campaign is unverified.</p>
+      </section>
+      <section>
+        <div class="script-label">
+          <h2>Exact rendered voice disclosure</h2>
+          <span class="badge">No SMS before YES</span>
+        </div>
+        <blockquote>
+          ViFi will send two messages for this one-time request: an opt-in confirmation and one customer-care receipt. After this message ends, to opt in, text <mark>YES</mark> within 15 minutes to this ViFi number: <mark>one, six seven eight, seven five zero, four two seven nine</mark>. Consent is optional and is not a condition of purchase. ViFi sends no text before your YES. Message and data rates may apply. Reply STOP to opt out or HELP for help. Terms are at vifi dot us slash legal slash terms. Privacy is at vifi dot us slash legal slash privacy.
+        </blockquote>
+        <div class="rule">
+          <div><strong>Before YES</strong>Zero outbound SMS</div>
+          <div><strong>Valid window</strong>15 minutes after full playback</div>
+          <div><strong>After valid YES</strong>One confirmation + one receipt</div>
+        </div>
+        <footer>Program: vifi-direct-v1 · Sole sender: ViFi LLC · No marketing or recurring texts</footer>
+      </section>
+    </main>
+  </body>
+</html>
