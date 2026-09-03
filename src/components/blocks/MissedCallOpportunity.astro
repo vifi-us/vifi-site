@@ -1,0 +1,140 @@
+---
+import { siteConfig } from "../../data/site";
+---
+
+<section class="pb-16 sm:pb-24" aria-labelledby="missed-call-opportunity-title">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[0_24px_80px_rgba(30,41,59,0.08)]">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="bg-tint p-7 sm:p-10 lg:p-12">
+          <p class="eyebrow"><i></i> Missed-call estimator</p>
+          <h2 id="missed-call-opportunity-title" class="mt-5 max-w-xl">
+            Put a number on the calls you cannot answer
+          </h2>
+          <p class="lede mt-5 max-w-xl">
+            Use your own call volume, typical job value, and realistic booking rate. The result is an opportunity estimate—not a revenue promise.
+          </p>
+          <p class="mt-6 text-sm leading-relaxed text-muted">
+            Formula: missed calls × average job value × estimated booking rate. Actual results depend on caller intent, service availability, your follow-up, and how you configure the assistant.
+          </p>
+          <a
+            class="mt-8 inline-flex items-center gap-2 font-semibold text-link"
+            href="/blog/the-cost-of-a-missed-call/"
+          >
+            See the missed-call audit worksheet
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14 M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <form class="p-7 sm:p-10 lg:p-12" data-missed-call-calculator>
+          <div class="grid gap-5 sm:grid-cols-3">
+            <label class="flex flex-col gap-2 text-sm font-semibold text-text">
+              Missed calls / month
+              <input
+                class="min-h-12 rounded-xl border border-border bg-bg px-4 text-base font-normal text-text outline-none transition focus:border-accent focus:ring-3 focus:ring-accent/15"
+                type="number"
+                name="missedCalls"
+                value="10"
+                min="0"
+                max="10000"
+                step="1"
+                inputmode="numeric"
+              />
+            </label>
+            <label class="flex flex-col gap-2 text-sm font-semibold text-text">
+              Average job value
+              <span class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-muted" aria-hidden="true">$</span>
+                <input
+                  class="min-h-12 w-full rounded-xl border border-border bg-bg pr-4 pl-8 text-base font-normal text-text outline-none transition focus:border-accent focus:ring-3 focus:ring-accent/15"
+                  type="number"
+                  name="jobValue"
+                  value="300"
+                  min="0"
+                  max="1000000"
+                  step="25"
+                  inputmode="decimal"
+                />
+              </span>
+            </label>
+            <label class="flex flex-col gap-2 text-sm font-semibold text-text">
+              Estimated booking rate
+              <span class="relative">
+                <input
+                  class="min-h-12 w-full rounded-xl border border-border bg-bg pr-9 pl-4 text-base font-normal text-text outline-none transition focus:border-accent focus:ring-3 focus:ring-accent/15"
+                  type="number"
+                  name="bookingRate"
+                  value="20"
+                  min="0"
+                  max="100"
+                  step="1"
+                  inputmode="decimal"
+                />
+                <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-muted" aria-hidden="true">%</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-8 rounded-2xl border border-tint-2 bg-bg p-6 sm:flex sm:items-end sm:justify-between sm:gap-8">
+            <div>
+              <p class="font-mono text-xs font-semibold tracking-[0.12em] text-muted uppercase">Estimated monthly opportunity</p>
+              <output class="mt-2 block text-4xl font-bold tracking-[-0.04em] text-text sm:text-5xl" data-opportunity-output>$600</output>
+              <p class="mt-2 text-sm text-muted" aria-live="polite" data-opportunity-detail>
+                About 2 potential jobs from 10 missed calls.
+              </p>
+            </div>
+            <a
+              class="btn btn-primary mt-6 shrink-0 sm:mt-0"
+              href={siteConfig.registerUrl}
+              data-cta="signup"
+              data-cta-id="home-services-opportunity"
+              data-cta-location="home-services-estimator"
+              data-cta-version="home-services-growth-2026-09-v1"
+            >
+              Test ViFi free
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-xs leading-relaxed text-muted-2">
+            Seven-day free trial. No card required. Start with overflow or after-hours calls and verify the workflow with test calls before changing your normal routing.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const money = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  });
+
+  document.querySelectorAll<HTMLFormElement>("[data-missed-call-calculator]").forEach((form) => {
+    const output = form.querySelector<HTMLOutputElement>("[data-opportunity-output]");
+    const detail = form.querySelector<HTMLElement>("[data-opportunity-detail]");
+
+    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
+    const update = () => {
+      const data = new FormData(form);
+      const missedCalls = clamp(Number(data.get("missedCalls")) || 0, 0, 10000);
+      const jobValue = clamp(Number(data.get("jobValue")) || 0, 0, 1000000);
+      const bookingRate = clamp(Number(data.get("bookingRate")) || 0, 0, 100);
+      const potentialJobs = missedCalls * (bookingRate / 100);
+      const opportunity = potentialJobs * jobValue;
+
+      if (output) output.value = money.format(opportunity);
+      if (detail) {
+        const jobLabel = Math.abs(potentialJobs - 1) < 0.001 ? "job" : "jobs";
+        detail.textContent = `About ${potentialJobs.toLocaleString("en-US", { maximumFractionDigits: 1 })} potential ${jobLabel} from ${missedCalls.toLocaleString("en-US")} missed calls.`;
+      }
+    };
+
+    form.addEventListener("input", update);
+    update();
+  });
+</script>

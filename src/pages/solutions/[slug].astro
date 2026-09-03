@@ -8,6 +8,7 @@ import FeatureHighlights from "../../components/blocks/FeatureHighlights.astro";
 import CallScenarioGrid from "../../components/blocks/CallScenarioGrid.astro";
 import TradeSolutionLinks from "../../components/blocks/TradeSolutionLinks.astro";
 import CTABanner from "../../components/blocks/CTABanner.astro";
+import MissedCallOpportunity from "../../components/blocks/MissedCallOpportunity.astro";
 import { solutions } from "../../data/solutions";
 
 export function getStaticPaths() {
@@ -82,6 +83,7 @@ const structuredData = [
         slug={solution.slug}
       />
       <PainPoints painPoints={solution.painPoints} />
+      {solution.slug === "home-services" && <MissedCallOpportunity />}
       {
         solution.workflow && (
           <section class="pb-16 sm:pb-24" aria-labelledby={workflowId}>
