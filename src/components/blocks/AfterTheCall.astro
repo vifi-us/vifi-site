@@ -1,4 +1,6 @@
 ---
+// Post-call deliverables for /how-it-works: heading + subtitle, then four
+// .panel cards with a tint icon square, ink h3 and muted description.
 const deliverables = [
   {
     icon: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
@@ -29,43 +31,34 @@ const deliverables = [
 
 <section class="pb-16 sm:pb-24">
   <div class="mx-auto max-w-4xl px-6">
-    <div class="text-center mb-12">
-      <h2
-        class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4"
-      >
-        What happens after the call
-      </h2>
-      <p class="text-base text-muted max-w-xl mx-auto">
+    <div class="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
+      <h2 class="mb-3">What happens after the call</h2>
+      <p class="sub">
         Other tools answer the phone. ViFi tells you what happened on the call.
       </p>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-2">
+    <div class="grid gap-5 sm:grid-cols-2 sm:gap-6">
       {
         deliverables.map((item) => (
-          <div class="rounded-2xl border border-border bg-surface p-6">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="text-accent"
-                >
-                  <path d={item.icon} />
-                </svg>
-              </div>
-              <h3 class="text-base font-semibold text-text">{item.title}</h3>
+          <div class="panel p-6 sm:p-7">
+            <div class="mb-4 grid h-11 w-11 place-items-center rounded-[10px] bg-tint text-accent">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d={item.icon} />
+              </svg>
             </div>
-            <p class="text-sm text-muted leading-relaxed">
-              {item.description}
-            </p>
+            <h3 class="mb-2 text-text">{item.title}</h3>
+            <p class="text-[15px] leading-6 text-muted">{item.description}</p>
           </div>
         ))
       }

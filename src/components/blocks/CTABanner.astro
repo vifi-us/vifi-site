@@ -1,4 +1,7 @@
 ---
+// End-of-page call to action in the design's "Live in minutes" treatment:
+// a hand-drawn blob outline, accent heading, muted description, the primary
+// button with its inline arrow, and the note line in mono underneath.
 import { siteConfig } from "../../data/site";
 
 interface Props {
@@ -23,31 +26,64 @@ const {
 ---
 
 <section class="py-16 sm:py-24">
-  <div class="mx-auto max-w-3xl px-6 text-center">
-    <div
-      class="rounded-2xl border border-border bg-surface p-8 sm:p-12"
+  <div class="relative mx-auto max-w-3xl px-6">
+    <!-- Hand-drawn sparkles: decoration only, hidden below 760px by .sprinkle -->
+    <svg
+      class="sprinkle -top-9 left-1"
+      style="--dd: -1.4s;"
+      viewBox="0 0 34 34"
+      aria-hidden="true"
     >
-      <h2
-        class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight mb-4"
+      <path
+        d="M17 3 c2 9 5 12 14 14 c-9 2 -12 5 -14 14 c-2 -9 -5 -12 -14 -14 c9 -2 12 -5 14 -14 Z"
+      ></path>
+    </svg>
+    <svg
+      class="sprinkle -bottom-9 right-2"
+      style="--dd: -2.8s;"
+      viewBox="0 0 34 34"
+      aria-hidden="true"
+    >
+      <path d="M4 26 q6 -20 13 -6 q7 14 13 -6"></path>
+    </svg>
+
+    <div class="blob-card px-6 py-10 text-center sm:px-12 sm:py-14">
+      <svg
+        class="blob"
+        viewBox="0 0 800 400"
+        preserveAspectRatio="none"
+        aria-hidden="true"
       >
-        {heading}
-      </h2>
+        <path
+          d="M20 36 Q18 8 48 10 L752 4 Q788 2 784 36 L792 362 Q794 396 758 392 L46 398 Q10 400 14 364 Z"
+        ></path>
+      </svg>
+      <h2 class:list={[description ? "mb-4" : "mb-8"]}>{heading}</h2>
       {
         description && (
-          <p class="mx-auto max-w-lg text-base text-muted leading-relaxed mb-8">
+          <p class="mx-auto mb-8 max-w-lg text-[17px] leading-7 text-muted">
             {description}
           </p>
         )
       }
       <a
+        class="btn"
         href={buttonHref}
         data-cta={ctaId}
         data-cta-version={ctaVersion}
-        class="inline-block rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-on-accent shadow-[0_4px_32px_var(--color-accent-glow)] transition hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_var(--color-accent-glow-strong)]"
       >
         {buttonText}
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 17 17 7 M8 7h9v9"></path>
+        </svg>
       </a>
-      {note && <p class="mt-4 text-xs text-muted">{note}</p>}
+      {
+        note && (
+          <p class="mt-6 font-mono text-[12.5px] tracking-[0.02em] text-muted-2">
+            {note}
+          </p>
+        )
+      }
     </div>
   </div>
 </section>

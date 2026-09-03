@@ -21,24 +21,27 @@ const posts = (await getCollection("blog"))
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <PageHero
         title="Blog"
         subtitle="Practical advice on handling calls, following up faster, and growing your business."
       />
 
       <section class="pb-16 sm:pb-24">
-        <div class="mx-auto max-w-4xl px-6">
+        <div class="shell relative">
+          <svg class="sprinkle left-0 -top-14" style="--dd: -1s;" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3 c2 9 5 12 14 14 c-9 2 -12 5 -14 14 c-2 -9 -5 -12 -14 -14 c9 -2 12 -5 14 -14 Z"></path></svg>
+          <svg class="sprinkle right-2 -top-9" style="--dd: -2.5s;" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 26 q6 -20 13 -6 q7 14 13 -6"></path></svg>
           {
             posts.length > 0 ? (
-              <div class="grid gap-6 sm:grid-cols-2">
-                {posts.map((post) => (
+              <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-9">
+                {posts.map((post, index) => (
                   <BlogPostCard
                     title={post.data.title}
                     description={post.data.description}
                     publishedAt={post.data.publishedAt}
                     tags={post.data.tags}
                     slug={post.id}
+                    variant={index}
                   />
                 ))}
               </div>
@@ -57,9 +60,5 @@ const posts = (await getCollection("blog"))
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

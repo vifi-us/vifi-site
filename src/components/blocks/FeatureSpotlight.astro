@@ -1,4 +1,7 @@
 ---
+// Two-column marquee for /features: tint icon square, mono eyebrow, accent
+// heading and muted description on one side; the bullets as check rows inside
+// a hard-shadow .card on the other. `reverse` swaps the columns on sm+.
 interface Props {
   eyebrow: string;
   title: string;
@@ -14,66 +17,53 @@ const { eyebrow, title, description, bullets, icon, reverse = false } =
 
 <section class="pb-16 sm:pb-24">
   <div class="mx-auto max-w-5xl px-6">
-    <div class="grid items-center gap-8 sm:grid-cols-2 sm:gap-12">
+    <div class="grid items-center gap-10 sm:grid-cols-2 sm:gap-12 lg:gap-16">
       <div class:list={[reverse && "sm:order-2"]}>
         <div
-          class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10"
+          class="mb-5 grid h-14 w-14 place-items-center rounded-xl bg-tint text-accent"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="28"
+            height="28"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="text-accent"
             aria-hidden="true"
           >
             <path d={icon} />
           </svg>
         </div>
+        <p class="eyebrow mb-3"><i></i> {eyebrow}</p>
+        <h2 class="mb-4 text-[32px] lg:text-[40px]">{title}</h2>
         <p
-          class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent/80"
+          class="text-[17px] leading-[27px] text-muted lg:text-lg lg:leading-[29px]"
         >
-          {eyebrow}
+          {description}
         </p>
-        <h2
-          class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight mb-4"
-        >
-          {title}
-        </h2>
-        <p class="text-base text-muted leading-relaxed">{description}</p>
       </div>
 
-      <div
-        class:list={[
-          "rounded-2xl border border-border bg-surface p-6 sm:p-8",
-          reverse && "sm:order-1",
-        ]}
-      >
-        <ul class="space-y-4">
+      <div class:list={["card p-6 sm:p-7 lg:p-8", reverse && "sm:order-1"]}>
+        <p class="panel-label mb-4">At a glance</p>
+        <ul class="space-y-3.5">
           {
             bullets.map((bullet) => (
-              <li class="flex items-start gap-3 text-sm text-muted leading-relaxed">
+              <li class="flex items-start gap-3 text-[15px] leading-6 text-text">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  class="mt-0.5 h-5 w-5 shrink-0 text-accent"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="text-accent mt-0.5 shrink-0"
                   aria-hidden="true"
                 >
-                  <polyline points="20 6 9 17 4 12" />
+                  <path d="M4 12.5l5 5L20 6.5" />
                 </svg>
-                {bullet}
+                <span>{bullet}</span>
               </li>
             ))
           }

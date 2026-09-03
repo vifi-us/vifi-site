@@ -2,15 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
-import HeroHome from "../components/blocks/HeroHome.astro";
-import ProblemStatement from "../components/blocks/ProblemStatement.astro";
-import ThreePillars from "../components/blocks/ThreePillars.astro";
-import HowItWorksPreview from "../components/blocks/HowItWorksPreview.astro";
-import FeatureHighlights from "../components/blocks/FeatureHighlights.astro";
-import ComparisonTeaser from "../components/blocks/ComparisonTeaser.astro";
-import TrustStrip from "../components/blocks/TrustStrip.astro";
-import CTABanner from "../components/blocks/CTABanner.astro";
-import HomeServicesPath from "../components/blocks/HomeServicesPath.astro";
+import HomeStory from "../components/home/HomeStory.astro";
 ---
 
 <BaseLayout
@@ -19,31 +11,9 @@ import HomeServicesPath from "../components/blocks/HomeServicesPath.astro";
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main>
-      <HeroHome />
-      <ProblemStatement />
-      <ThreePillars />
-      <HowItWorksPreview />
-      <FeatureHighlights />
-      <ComparisonTeaser />
-      <HomeServicesPath />
-      <TrustStrip />
-      <CTABanner
-        heading="Ready to answer every call?"
-        description="Set up your agent and hear it take a real call in minutes. Free for 7 days, no credit card required."
-        ctaId="home-banner"
-        ctaVersion="home-positioning-2026-08-v1"
-        buttonText="Start free — no card"
-      />
+    <main id="main" class="flex-1">
+      <HomeStory />
     </main>
     <Footer />
-  </div>
-
-  <!-- Background ambient gradient -->
-  <div
-    class="pointer-events-none fixed inset-0 -z-10"
-    aria-hidden="true"
-  >
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

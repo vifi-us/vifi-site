@@ -1,25 +1,95 @@
 ---
+// Industry hero for /solutions/[slug]: mono eyebrow, accent h1, lede, and the hand-drawn
+// industry illustration from the homepage industries section (design/vifi-site-story).
 interface Props {
   industry: string;
   headline: string;
   description: string;
+  /** Solution slug; picks the illustration. Unknown slugs render copy only. */
+  slug?: string;
 }
 
-const { industry, headline, description } = Astro.props;
+const { industry, headline, description, slug } = Astro.props;
+
+type Art = "home" | "medical" | "legal" | "real-estate";
+const artBySlug: Record<string, Art> = {
+  "home-services": "home",
+  hvac: "home",
+  plumbing: "home",
+  electricians: "home",
+  "medical-practices": "medical",
+  legal: "legal",
+  "real-estate": "real-estate",
+};
+const art = slug ? artBySlug[slug] : undefined;
 ---
 
 <section class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-  <div class="mx-auto max-w-3xl px-6 text-center">
-    <div class="mb-6 inline-flex items-center rounded-full border border-accent/35 bg-accent/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent/80">
-      {industry}
-    </div>
-    <h1
-      class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6"
+  <div class="mx-auto max-w-5xl px-6">
+    <div
+      class:list={[
+        "grid gap-10",
+        art && "lg:grid-cols-[1.14fr_0.86fr] lg:items-center lg:gap-8",
+      ]}
     >
-      {headline}
-    </h1>
-    <p class="mx-auto max-w-xl text-base sm:text-lg text-muted leading-relaxed">
-      {description}
-    </p>
+      <div class="flex flex-col items-start gap-6">
+        <p class="eyebrow"><i></i> {industry}</p>
+        <h1 class="max-w-[660px]">{headline}</h1>
+        <p class="lede max-w-[560px]">{description}</p>
+      </div>
+
+      {
+        art && (
+          <div
+            class:list={["ind-fig", art === "medical" && "[&>svg]:w-[min(364px,82%)]"]}
+            aria-hidden="true"
+          >
+            {art === "home" && (
+              <svg viewBox="0 0 320 300">
+                <path d="M40 150 L160 48 L280 150" />
+                <path d="M66 136 L64 254 L254 252 L252 134" fill="var(--tint)" />
+                <path d="M136 252 L136 190 q0 -10 10 -10 l28 0 q10 0 10 10 l0 62" fill="var(--white)" />
+                <path d="M198 78 L198 44 L220 44 L220 98" />
+                <path d="M234 148 m-22 -22 a30 30 0 1 0 8 40 l70 70 q10 10 20 0 q10 -10 0 -20 l-70 -70 a30 30 0 0 0 -28 -20 l-6 22 l18 18 l22 -6 z" fill="var(--white)" stroke-width="6" />
+                <g class="doodle" style="--dd: -1.2s;"><path d="M290 40 c3 10 8 15 18 18 c-10 3 -15 8 -18 18 c-3 -10 -8 -15 -18 -18 c10 -3 15 -8 18 -18 Z" stroke="var(--tint-3)" stroke-width="4" /></g>
+              </svg>
+            )}
+            {art === "medical" && (
+              <svg viewBox="0 0 320 300">
+                <path d="M72 58 q0 -14 14 -14 L232 42 q14 0 14 14 L248 260 q0 14 -14 14 L88 276 q-14 0 -14 -14 Z" fill="var(--tint)" />
+                <path d="M120 44 q0 -18 18 -18 l42 0 q18 0 18 18 l0 12 l-78 2 z" fill="var(--white)" stroke-width="6" />
+                <path d="M96 168 L134 168 L150 128 L170 208 L186 168 L226 168" stroke-width="8" />
+                <path d="M100 216 l60 0 M100 240 l100 0" stroke="var(--tint-3)" stroke-width="6" />
+                <g class="doodle" style="--dd: -2s;"><path d="M282 84 c2 8 6 12 14 14 c-8 2 -12 6 -14 14 c-2 -8 -6 -12 -14 -14 c8 -2 12 -6 14 -14 Z" fill="var(--tint-3)" stroke="none" /></g>
+              </svg>
+            )}
+            {art === "legal" && (
+              <svg viewBox="0 0 320 300">
+                <path d="M160 52 L160 250" />
+                <path d="M104 258 q56 -16 112 0" stroke-width="9" />
+                <path d="M62 96 L258 92" />
+                <circle cx="160" cy="52" r="10" fill="var(--tint)" />
+                <path d="M62 96 L36 172 M62 96 L88 172" stroke-width="5" />
+                <path d="M28 172 q34 30 68 0" fill="var(--tint)" />
+                <path d="M258 92 L232 168 M258 92 L284 168" stroke-width="5" />
+                <path d="M224 168 q34 30 68 0" fill="var(--tint)" />
+                <g class="doodle" style="--dd: -0.8s;"><path d="M290 240 c3 10 8 15 18 18 c-10 3 -15 8 -18 18 c-3 -10 -8 -15 -18 -18 c10 -3 15 -8 18 -18 Z" stroke="var(--tint-3)" stroke-width="4" /></g>
+              </svg>
+            )}
+            {art === "real-estate" && (
+              <svg viewBox="0 0 320 300">
+                <path d="M90 156 L184 76 L278 156" />
+                <path d="M112 142 L110 250 L258 248 L256 140" fill="var(--tint)" />
+                <path d="M150 190 q0 -8 8 -8 l24 0 q8 0 8 8 l0 22 l-40 0 z" fill="var(--white)" stroke-width="5" />
+                <path d="M54 262 L54 150" />
+                <path d="M22 116 q0 -10 10 -10 l68 -2 q10 0 10 10 l2 40 q0 10 -10 10 l-70 2 q-10 0 -10 -10 z" fill="var(--white)" stroke-width="6" />
+                <path d="M36 132 l50 0 M36 148 l32 0" stroke-width="5" />
+                <g class="doodle" style="--dd: -1.6s;"><path d="M296 60 c2 8 6 12 14 14 c-8 2 -12 6 -14 14 c-2 -8 -6 -12 -14 -14 c8 -2 12 -6 14 -14 Z" fill="var(--tint-3)" stroke="none" /></g>
+              </svg>
+            )}
+          </div>
+        )
+      }
+    </div>
   </div>
 </section>
