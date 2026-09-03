@@ -16,7 +16,7 @@ import { spotlights, secondaryFeatures } from "../data/featurePage";
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <PageHero
         title="What ViFi does"
         subtitle="It answers every call, day and night. That's the easy part. Here's everything that happens next."
@@ -28,41 +28,31 @@ import { spotlights, secondaryFeatures } from "../data/featurePage";
         ))
       }
 
+      <!-- The rest of the toolkit: the homepage extras grid (icon + accent h3 + muted copy, no cards) -->
       <section class="pb-16 sm:pb-24">
-        <div class="mx-auto max-w-5xl px-6">
-          <h2
-            class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-12"
+        <div class="relative mx-auto max-w-5xl px-6">
+          <svg
+            class="sprinkle -top-6 right-8"
+            style="--dd: -2s;"
+            viewBox="0 0 34 34"
+            aria-hidden="true"
           >
-            And the rest of the toolkit
-          </h2>
-          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <path
+              d="M17 3 c2 9 5 12 14 14 c-9 2 -12 5 -14 14 c-2 -9 -5 -12 -14 -14 c9 -2 12 -5 14 -14 Z"
+            ></path>
+          </svg>
+          <h2 class="center">And the rest of the toolkit</h2>
+          <div class="extras-grid mt-12 sm:mt-16">
             {
               secondaryFeatures.map((feature) => (
-                <div class="flex items-start gap-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent/30">
-                  <div class="mt-0.5 shrink-0 text-accent">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
+                <div class="extra">
+                  <div class="art">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path d={feature.icon} />
                     </svg>
                   </div>
-                  <div>
-                    <h3 class="text-sm font-semibold text-text">
-                      {feature.title}
-                    </h3>
-                    <p class="mt-1 text-sm leading-relaxed text-muted">
-                      {feature.description}
-                    </p>
-                  </div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
                 </div>
               ))
             }
@@ -79,9 +69,5 @@ import { spotlights, secondaryFeatures } from "../data/featurePage";
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

@@ -36,7 +36,7 @@ const structuredData = {
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <PageHero
         title="Simple, transparent pricing"
         subtitle="Every plan includes call briefings, transcripts, and a 7-day free trial."
@@ -53,9 +53,5 @@ const structuredData = {
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

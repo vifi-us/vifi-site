@@ -3,77 +3,53 @@ import {
   comparisonCategories,
   comparisonFeatures,
 } from "../../data/comparisons";
+
+const checkPath = "M4 12.5l5 5L20 6.5";
+const crossPath = "M6 6l12 12 M18 6 6 18";
 ---
 
 <section class="pb-16 sm:pb-24">
   <div class="mx-auto max-w-5xl px-6">
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm">
+    <p class="swipe-cue mt-0" aria-hidden="true">Swipe to compare →</p>
+    {/* "in" marks the check and cross strokes as already drawn: design.css only paints them inside a revealed ancestor, and this page has no reveal script. */}
+    <div
+      class="table-wrap in mt-0"
+      tabindex="0"
+      role="region"
+      aria-label="Comparison table, scrolls sideways on small screens"
+    >
+      <table class="cmp">
         <thead>
-          <tr class="border-b border-border">
-            <th class="text-left py-4 pr-4 text-muted font-normal min-w-[180px]">
-              Feature
-            </th>
+          <tr>
+            <th scope="col"><span class="sr">Feature</span></th>
             {
-              comparisonCategories.map((cat) => (
-                <th
-                  class:list={[
-                    "py-4 px-3 text-center font-semibold min-w-[140px]",
-                    cat.name === "ViFi" ? "text-accent" : "text-text",
-                  ]}
-                >
-                  {cat.name}
-                </th>
-              ))
+              comparisonCategories.map((cat) =>
+                cat.name === "ViFi" ? (
+                  <th scope="col" class="vifi">
+                    <span>Vi<em>Fi</em></span>
+                  </th>
+                ) : (
+                  <th scope="col">{cat.name}</th>
+                )
+              )
             }
           </tr>
         </thead>
         <tbody>
           {
             comparisonFeatures.map((row) => (
-              <tr class="border-b border-border/50">
-                <td class="py-4 pr-4 text-text">{row.feature}</td>
+              <tr>
+                <td>{row.feature}</td>
                 {comparisonCategories.map((cat) => {
                   const value = row.values[cat.name];
                   return (
-                    <td class="py-4 px-3 text-center">
+                    <td class:list={[cat.name === "ViFi" && "vifi", typeof value === "string" && "txt"]}>
                       {value === true ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class={
-                            cat.name === "ViFi"
-                              ? "text-accent inline-block"
-                              : "text-muted inline-block"
-                          }
-                        >
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
+                        <svg class="chk" viewBox="0 0 24 24" role="img" aria-label="Yes"><path d={checkPath}></path></svg>
                       ) : value === false ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="text-muted/40 inline-block"
-                        >
-                          <line x1="18" y1="6" x2="6" y2="18" />
-                          <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
+                        <svg class="nope" viewBox="0 0 24 24" role="img" aria-label="No"><path d={crossPath}></path></svg>
                       ) : (
-                        <span class="text-muted text-xs">{value}</span>
+                        value
                       )}
                     </td>
                   );

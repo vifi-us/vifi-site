@@ -13,21 +13,38 @@ import { siteConfig } from "../data/site";
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <PageHero
         title="Get in touch"
         subtitle="Questions, feedback, or just want to learn more? We're here."
       />
 
       <section class="pb-12">
-        <div class="mx-auto max-w-md px-6 text-center">
-          <p class="text-base text-muted mb-2">Email us directly at</p>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            class="text-lg font-semibold text-accent hover:text-accent/80 transition-colors"
-          >
-            {siteConfig.email}
-          </a>
+        <div class="mx-auto max-w-md px-6">
+          <div class="blob-card px-6 py-9 text-center sm:px-10 sm:py-10">
+            <svg
+              class="blob"
+              viewBox="0 0 800 400"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M26 42 Q20 12 52 14 L748 6 Q784 4 782 40 L790 358 Q792 392 756 390 L50 396 Q14 398 18 362 Z"
+              ></path>
+            </svg>
+            <p class="mb-3 font-mono text-xs uppercase tracking-[0.12em] text-muted-2">
+              Email us directly at
+            </p>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="text-link text-2xl sm:text-[28px] [&_svg]:h-6 [&_svg]:w-6"
+            >
+              {siteConfig.email}
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14 M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -38,9 +55,5 @@ import { siteConfig } from "../data/site";
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

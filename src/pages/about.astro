@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import CTABanner from "../components/blocks/CTABanner.astro";
+import { siteConfig } from "../data/site";
 ---
 
 <BaseLayout
@@ -11,88 +12,85 @@ import CTABanner from "../components/blocks/CTABanner.astro";
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
-      <section class="py-16 sm:py-24">
+    <main id="main" class="flex-1">
+      <section class="pt-16 pb-12 sm:pt-24 sm:pb-16">
         <div class="mx-auto max-w-3xl px-6">
-          <h1
-            class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-6"
-          >
-            About <span
-              class="text-accent"
-              >ViFi</span
-            >
-          </h1>
-
-          <div class="space-y-6 text-base sm:text-lg leading-relaxed text-muted">
-            <p>
+          <h1 class="mb-6">About <span class="text-text">ViFi</span></h1>
+          <div class="space-y-5">
+            <p class="lede">
               Small business owners miss calls every day. They're with a
               customer, on a job site, or driving between appointments. The
               phone rings, nobody answers, and the caller moves on.
             </p>
-
-            <p>
+            <p class="lede">
               We built ViFi because answering the call is only half the
               problem. The other half is knowing what happened on the call
               before you follow up.
             </p>
+          </div>
+        </div>
+      </section>
 
-            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
-              What ViFi does
-            </h2>
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl space-y-12 px-6 sm:space-y-14">
+          <div>
+            <h2 class="mb-4 text-[28px] sm:text-[32px]">What ViFi does</h2>
+            <div class="space-y-5 text-[17px] leading-7 text-muted">
+              <p>
+                ViFi answers your business calls with a professional voice,
+                talks with the caller, and then sends you a complete recap:
+                a short summary, the full transcript, and a recording. When
+                you call back, you already know what was said and what needs
+                to happen next.
+              </p>
+              <p>No guessing, no "sorry, remind me what you called about."</p>
+            </div>
+          </div>
 
-            <p>
-              ViFi answers your business calls with a professional voice,
-              talks with the caller, and then sends you a complete recap:
-              a short summary, the full transcript, and a recording. When
-              you call back, you already know what was said and what needs
-              to happen next.
-            </p>
-
-            <p>
-              No guessing, no "sorry, remind me what you called about."
-            </p>
-
-            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
-              Who it's for
-            </h2>
-
-            <p>
+          <div>
+            <h2 class="mb-4 text-[28px] sm:text-[32px]">Who it's for</h2>
+            <p class="text-[17px] leading-7 text-muted">
               ViFi is built for businesses where the phone drives revenue:
               contractors, medical practices, law firms, real estate agents,
               and anyone who can't afford to miss a call or return one
               unprepared.
             </p>
+          </div>
 
-            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
-              How we think about it
-            </h2>
-
-            <ul class="list-disc pl-6 space-y-2">
-              <li>
-                <strong class="text-text">The callback matters most.</strong> We
-                built ViFi around what happens after the conversation, not during it.
+          <div>
+            <h2 class="mb-5 text-[28px] sm:text-[32px]">How we think about it</h2>
+            <ul class="card px-6 py-3 sm:px-8 sm:py-4">
+              <li class="pain">
+                <i>01</i>
+                <b>The callback matters most.</b>
+                <p>
+                  We built ViFi around what happens after the conversation,
+                  not during it.
+                </p>
               </li>
-              <li>
-                <strong class="text-text">Professional voice, not a phone tree.</strong> Callers
-                talk to an AI that sounds like your front desk, not a robot.
+              <li class="pain">
+                <i>02</i>
+                <b>Professional voice, not a phone tree.</b>
+                <p>
+                  Callers talk to an AI that sounds like your front desk, not
+                  a robot.
+                </p>
               </li>
-              <li>
-                <strong class="text-text">Two-minute setup.</strong> Forward your
-                calls and you're live. No hardware, no IT.
+              <li class="pain">
+                <i>03</i>
+                <b>Two-minute setup.</b>
+                <p>Forward your calls and you're live. No hardware, no IT.</p>
               </li>
             </ul>
+          </div>
 
-            <h2 class="text-xl sm:text-2xl font-bold text-text pt-4">
-              Get in touch
-            </h2>
-
-            <p>
+          <div>
+            <h2 class="mb-4 text-[28px] sm:text-[32px]">Get in touch</h2>
+            <p class="text-[17px] leading-7 text-muted">
               ViFi is live today. Every plan starts with a 7-day free trial,
               no credit card required. Questions? Reach out at
-              <a
-                href="mailto:hello@vifi.us"
-                class="text-accent hover:text-accent/80 transition-colors"
-                >hello@vifi.us</a
+              <a href={`mailto:${siteConfig.email}`} class="font-semibold"
+                >{siteConfig.email}</a
               >.
             </p>
           </div>
@@ -105,9 +103,5 @@ import CTABanner from "../components/blocks/CTABanner.astro";
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>

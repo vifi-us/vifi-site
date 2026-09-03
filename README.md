@@ -26,13 +26,30 @@ src/
   pages/           Route files
   layouts/         Shared page layouts
   components/
-    site/          Global components (Header, Footer)
-    blocks/        Page section components (Hero, Features, CTA)
-  styles/          Global CSS and Tailwind config
-  data/            Typed data (navigation, etc.)
-public/            Static assets (CNAME, favicon, robots.txt)
+    site/          Global components (Header, Footer, Analytics)
+    home/          The scroll-driven homepage story (HomeStory)
+    blocks/        Page section components (PageHero, PricingCards, CTA)
+  content/         Markdown collections (blog, faqs, legal)
+  styles/          global.css (Tailwind tokens, self-hosted fonts) and
+                   design.css (the shared design system: buttons, cards,
+                   blob outlines, nav, footer, responsive modes)
+  data/            Typed data (navigation, pricing, solutions, etc.)
+public/            Static assets (CNAME, favicon, robots.txt, fonts/, legal/)
 .github/workflows/ GitHub Pages deployment
 ```
+
+## Design system
+
+The visual system is a light-only, electric-blue treatment: `#f8fafc` ground,
+`#1e293b` text, one accent `#0055ff`, Instrument Sans for text and JetBrains
+Mono for labels, 2px accent borders with hard offset shadows, hand-drawn SVG
+outlines and line art. Tokens live in `src/styles/global.css` (`@theme`), the
+component classes in `src/styles/design.css` (Tailwind's `components` layer, so
+utilities still win). Fonts are self-hosted from `public/fonts/` (SIL OFL,
+licenses alongside). The homepage story was designed on a Claude Design canvas
+and ported as `src/components/home/HomeStory.astro`; it pins sections on desktop
+and tablet, flows on phones and short viewports, and falls back to the flowing
+layout without JavaScript.
 
 ## Deployment
 

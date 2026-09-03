@@ -58,27 +58,28 @@ const jsonLd = [
 ---
 
 <!doctype html>
-<html lang="en" data-theme="shoreline" data-mode="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f8fafc" />
 
-    <!-- Theme init: runs before rendering to prevent flash of wrong theme.
-         Mode policy: the vifi-mode cookie (shared on .vifi.us, written ONLY
-         when someone uses the theme toggle here or on app.vifi.us) is the
-         single record of an explicit choice. No cookie = follow the OS
-         setting, which resolves to light when no preference is expressed. -->
-    <script is:inline>
-      (function () {
-        var t = localStorage.getItem('vifi-theme');
-        var c = document.cookie.match(/(?:^|; )vifi-mode=(light|dark)/);
-        var r = document.documentElement;
-        if (t === 'shoreline' || t === 'nightfall') r.setAttribute('data-theme', t);
-        if (c) r.setAttribute('data-mode', c[1]);
-        else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-          r.setAttribute('data-mode', 'dark');
-      })();
-    </script>
+    <!-- Self-hosted fonts (see src/styles/global.css); preload the two the first paint needs. -->
+    <link
+      rel="preload"
+      href="/fonts/instrument-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jetbrains-mono-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -115,9 +116,33 @@ const jsonLd = [
 
     <Analytics />
   </head>
-  <body
-    class="min-h-screen bg-bg text-text font-sans antialiased overflow-x-hidden"
-  >
-    <slot />
+  <body class="min-h-screen bg-bg text-text font-sans antialiased">
+    <!-- .site scopes the design system; .js is set before first paint so the
+         scroll-driven homepage does not flash its no-script layout. -->
+    <div class="site">
+      <script is:inline>
+        document.currentScript.parentElement.classList.add("js");
+      </script>
+      <a class="skip" href="#main">Skip to content</a>
+      <slot />
+      <!-- Reveal-on-scroll for any [data-reveal] element on any page (the
+           homepage story observes its own as well; adding .in twice is harmless). -->
+      <script is:inline>
+        (function () {
+          var els = document.querySelectorAll("[data-reveal]");
+          if (!els.length) return;
+          if (!("IntersectionObserver" in window)) {
+            els.forEach(function (el) { el.classList.add("in"); });
+            return;
+          }
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) entry.target.classList.add("in");
+            });
+          }, { threshold: 0.12 });
+          els.forEach(function (el) { io.observe(el); });
+        })();
+      </script>
+    </div>
   </body>
 </html>

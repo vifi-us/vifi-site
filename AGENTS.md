@@ -19,7 +19,7 @@ Maintain and extend this Astro-based static corporate site. The site must remain
 
 This repo contains an Astro site deployed to GitHub Pages at `https://vifi.us`. The Hugo-to-Astro migration is complete. There are no Hugo files remaining.
 
-The site is currently a coming-soon landing page with the foundation for a full corporate marketing site.
+The site is a full marketing site (home, features, how it works, pricing, alternatives, solutions, blog, FAQ, about, contact, legal). Its visual system is described under "Styling and Design Rules" below.
 
 ## Primary Goals
 
@@ -109,13 +109,14 @@ Target structure:
 
 - `src/pages/` — route files
 - `src/layouts/` — shared layouts
-- `src/components/site/` — shared marketing components
+- `src/components/site/` — shared marketing components (Header, Footer, Analytics)
+- `src/components/home/` — the scroll-driven homepage story (`HomeStory.astro`)
 - `src/components/blocks/` — larger page sections
 - `src/components/ui/` — shadcn/ui components only
 - `src/content/` — collections such as `blog`, `pages`, `testimonials`, `faqs`
 - `src/data/` — typed local data for nav, plans, testimonials, comparisons
-- `src/styles/` — global styles and Tailwind entrypoints
-- `public/` — static assets, favicons, social images, CNAME
+- `src/styles/` — `global.css` (Tailwind `@theme` tokens, self-hosted `@font-face`) and `design.css` (the design system's component classes)
+- `public/` — static assets, favicons, social images, CNAME, `fonts/` (self-hosted, OFL-licensed), `legal/` (compliance proof artifacts)
 - `.github/workflows/` — Pages deployment workflow
 
 Avoid dumping everything into `src/components/`.
@@ -174,9 +175,19 @@ Prefer the official Astro GitHub Pages deployment approach over a custom build p
 - Maintain consistent section spacing and container widths.
 - Keep color usage disciplined and accessible.
 
+### The design system
+
+The site uses one light-only visual system (there is no dark mode and no theme switcher; the `vifi-mode` cookie that app.vifi.us writes is simply ignored here):
+
+- Palette: ground `#f8fafc`, text `#1e293b`, one accent `#0055ff` with tints derived from it. Tokens are registered in `src/styles/global.css` under `@theme` (utility names: `bg-bg`, `bg-surface`, `bg-tint`, `text-text`, `text-muted`, `text-accent`, `border-border`, `border-accent`, `font-sans`, `font-mono`, …). Never hardcode hex values in components.
+- Type: Instrument Sans for all text, JetBrains Mono for labels, eyebrows and small meta. Headings are accent-colored, weight 600, tight tracking.
+- Surfaces: white cards with a 2px accent border and a hard offset shadow, lighter tint-bordered panels, hand-drawn SVG "blob" outlines for marquee cards, small hand-drawn sparkle doodles, stroke-based inline SVG icons. Buttons are rectangles (radius 10px) with hard shadows, never pills. No gradients beyond the soft radial glow behind illustrations.
+- The component classes (`.btn`, `.card`, `.panel`, `.eyebrow`, `.blob-card`, `.pill`, `.chips`, the nav, the footer, the responsive modes) live in `src/styles/design.css` inside Tailwind's `components` layer, so Tailwind utilities still override them. Prefer those classes over re-creating the look with utilities.
+- The homepage (`src/components/home/HomeStory.astro`) pins its story sections on desktop and tablet and flows them on phones, short viewports and without JavaScript; keep those modes intact when editing it. The design source of truth is the Claude Design canvas exported to `design/vifi-site-story/Main.dc.html` in the parent projects folder.
+
 ### Fonts
 
-Prefer self-hosted fonts or system fonts.
+Fonts are self-hosted from `public/fonts/` (latin subsets of Instrument Sans and JetBrains Mono, SIL OFL; license texts sit next to the files) and declared in `src/styles/global.css`. Do not load fonts from third-party hosts.
 
 Do not add unnecessary third-party font/runtime dependencies if they hurt performance or privacy.
 

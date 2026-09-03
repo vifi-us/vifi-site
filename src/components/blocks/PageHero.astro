@@ -1,4 +1,7 @@
 ---
+// Centered page-title hero for every non-home page. `badge` renders as the
+// design's mono eyebrow; the h1 inherits the accent 56px/40px sizing from
+// design.css (.site h1).
 interface Props {
   title: string;
   subtitle?: string;
@@ -12,22 +15,12 @@ const { title, subtitle, badge } = Astro.props;
   <div class="mx-auto max-w-3xl px-6">
     {
       badge && (
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/35 bg-accent/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent/80">
-          {badge}
-        </div>
-      )
-    }
-    <h1
-      class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4"
-    >
-      {title}
-    </h1>
-    {
-      subtitle && (
-        <p class="mx-auto max-w-xl text-base sm:text-lg text-muted leading-relaxed">
-          {subtitle}
+        <p class="eyebrow mb-5">
+          <i></i> {badge}
         </p>
       )
     }
+    <h1 class="mb-5">{title}</h1>
+    {subtitle && <p class="sub mx-auto max-w-2xl">{subtitle}</p>}
   </div>
 </section>

@@ -1,4 +1,6 @@
 ---
+// "Sound familiar?": numbered pain rows inside a hand-drawn blob card, like the homepage
+// statement card. Rows stack in a flex column so any count (2, 3, 4) reads the same.
 interface PainPoint {
   title: string;
   description: string;
@@ -9,29 +11,27 @@ interface Props {
 }
 
 const { painPoints } = Astro.props;
+const index = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
 <section class="pb-16 sm:pb-24">
-  <div class="mx-auto max-w-4xl px-6">
-    <h2
-      class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-12"
-    >
-      Sound familiar?
-    </h2>
+  <div class="relative mx-auto max-w-3xl px-6">
+    <svg class="sprinkle s2" style="--dd: -2.5s;" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 26 q6 -20 13 -6 q7 14 13 -6"></path></svg>
+    <h2 class="mb-7 text-center">Sound familiar?</h2>
 
-    <div class="grid gap-6 sm:grid-cols-3">
-      {
-        painPoints.map((point) => (
-          <div class="rounded-2xl border border-border bg-surface p-6">
-            <h3 class="text-base font-semibold text-text mb-2">
-              {point.title}
-            </h3>
-            <p class="text-sm text-muted leading-relaxed">
-              {point.description}
-            </p>
-          </div>
-        ))
-      }
+    <div class="blob-card">
+      <svg class="blob" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true"><path d="M26 42 Q20 12 52 14 L748 6 Q784 4 782 40 L790 358 Q792 392 756 390 L50 396 Q14 398 18 362 Z"></path></svg>
+      <div class="flex flex-col">
+        {
+          painPoints.map((point, i) => (
+            <div class="pain">
+              <i>{index(i)}</i>
+              <h3 class="text-lg leading-snug font-semibold text-text">{point.title}</h3>
+              <p>{point.description}</p>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

@@ -38,6 +38,18 @@ const structuredData = {
     acceptedAnswer: { "@type": "Answer", text: faq.answer },
   })),
 };
+
+const checklist = [
+  "Did the caller understand who or what answered?",
+  "Were the required contact, location, and request details captured?",
+  "Did the conversation stay inside approved business information?",
+  "Was an uncertain or safety-sensitive request escalated correctly?",
+  "Could a team member act without replaying the entire call?",
+  "Can the business review the transcript, recording, and configuration changes?",
+];
+
+const proseClass = "text-[17px] leading-[1.65] text-muted";
+const inlineLinkClass = "font-semibold underline underline-offset-4";
 ---
 
 <BaseLayout
@@ -47,7 +59,7 @@ const structuredData = {
 >
   <div class="flex min-h-screen flex-col">
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <PageHero
         title="AI receptionist, answering service, or voicemail?"
         subtitle="Choose the call workflow that gives your callers a clear next step and your team a useful handoff."
@@ -55,7 +67,7 @@ const structuredData = {
 
       <section class="pb-16 sm:pb-24">
         <div class="mx-auto max-w-3xl px-6">
-          <div class="space-y-6 text-base text-muted leading-relaxed">
+          <div class:list={["flex flex-col gap-6", proseClass]}>
             <p>
               The best choice depends on the calls you receive, not which
               category sounds newest. Voicemail is simple. Human services can
@@ -74,28 +86,29 @@ const structuredData = {
       <ComparisonTable />
 
       <section class="pb-16 sm:pb-24" aria-labelledby="which-option-fits">
-        <div class="mx-auto max-w-5xl px-6">
-          <h2 id="which-option-fits" class="text-center text-2xl font-extrabold tracking-tight sm:text-3xl">
+        <div class="relative mx-auto max-w-5xl px-6">
+          <svg class="sprinkle -top-12 right-4" style="--dd: -2.2s;" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3 c2 9 5 12 14 14 c-9 2 -12 5 -14 14 c-2 -9 -5 -12 -14 -14 c9 -2 12 -5 14 -14 Z"></path></svg>
+          <h2 id="which-option-fits" class="text-center">
             Which call-answering option fits your business?
           </h2>
           <div class="mt-10 grid gap-6 md:grid-cols-3">
-            <article class="rounded-2xl border border-border bg-surface p-6">
-              <h3 class="text-lg font-bold text-text">Choose voicemail when</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">
+            <article class="panel p-6">
+              <h3 class="text-text">Choose voicemail when</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-muted">
                 Call volume is low, callers are comfortable leaving messages,
                 and someone reliably returns every call with enough context.
               </p>
             </article>
-            <article class="rounded-2xl border border-border bg-surface p-6">
-              <h3 class="text-lg font-bold text-text">Choose a human service when</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">
+            <article class="panel p-6">
+              <h3 class="text-text">Choose a human service when</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-muted">
                 Calls vary widely and frequently require empathy, judgment,
                 negotiation, or decisions that cannot be reduced to written rules.
               </p>
             </article>
-            <article class="rounded-2xl border border-accent/45 bg-accent/5 p-6">
-              <h3 class="text-lg font-bold text-text">Test an AI receptionist when</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">
+            <article class="panel border-accent bg-tint p-6">
+              <h3 class="text-text">Test an AI receptionist when</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-muted">
                 Calls follow repeatable patterns, coverage gaps are predictable,
                 and structured summaries would make follow-up faster and clearer.
               </p>
@@ -106,60 +119,68 @@ const structuredData = {
 
       <section class="pb-16 sm:pb-24" aria-labelledby="comparison-checklist">
         <div class="mx-auto max-w-3xl px-6">
-          <h2 id="comparison-checklist" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 id="comparison-checklist">
             Compare the handoff, not just the pickup
           </h2>
-          <p class="mt-4 leading-relaxed text-muted">
+          <p class:list={["mt-4", proseClass]}>
             Run the same realistic calls through every option and score the
             output. A good demo voice is not enough if the message your team
             receives is incomplete or the caller is promised something the
             business cannot deliver.
           </p>
-          <ul class="mt-8 space-y-4 text-muted">
-            {[
-              "Did the caller understand who or what answered?",
-              "Were the required contact, location, and request details captured?",
-              "Did the conversation stay inside approved business information?",
-              "Was an uncertain or safety-sensitive request escalated correctly?",
-              "Could a team member act without replaying the entire call?",
-              "Can the business review the transcript, recording, and configuration changes?",
-            ].map((item) => (
-              <li class="flex gap-3">
-                <span class="mt-1 text-accent" aria-hidden="true">✓</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p class="mt-8 leading-relaxed text-muted">
-            For a complete test plan, use the <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/blog/ai-receptionist-home-services-buyers-guide/">home-services AI receptionist buyer's guide</a>.
+          <div class="blob-card mt-10">
+            <svg class="blob" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true"><path d="M26 42 Q20 12 52 14 L748 6 Q784 4 782 40 L790 358 Q792 392 756 390 L50 396 Q14 398 18 362 Z"></path></svg>
+            <ol class="m-0 flex list-none flex-col gap-3.5 p-0 text-[15.5px] leading-relaxed text-text">
+              {checklist.map((item, index) => (
+                <li class="grid grid-cols-[32px_1fr] gap-3">
+                  <i class="pt-0.5 font-mono text-[13px] not-italic text-accent" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </i>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <p class:list={["mt-8", proseClass]}>
+            For a complete test plan, use the <a class={inlineLinkClass} href="/blog/ai-receptionist-home-services-buyers-guide/">home-services AI receptionist buyer's guide</a>.
           </p>
         </div>
       </section>
 
       <section class="pb-16 sm:pb-24" aria-labelledby="pricing-comparison">
         <div class="mx-auto max-w-3xl px-6">
-          <h2 id="pricing-comparison" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 id="pricing-comparison">
             Compare cost with your real call pattern
           </h2>
-          <p class="mt-4 leading-relaxed text-muted">
-            Avoid headline-price comparisons. Use one representative month and
-            include base fees, included calls or minutes, overages, transfers,
-            recordings, setup, phone numbers, and the internal time required to
-            turn each message into work. Review <a class="font-medium text-link underline decoration-link/35 underline-offset-4" href="/pricing/">ViFi's published plans</a> using the same calculation.
-          </p>
+          <div class="note mt-6 items-start gap-3.5 p-5 text-[15.5px] leading-relaxed sm:p-6">
+            <svg class="mt-1 h-5 w-5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3 M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"></path></svg>
+            <p>
+              Avoid headline-price comparisons. Use one representative month and
+              include base fees, included calls or minutes, overages, transfers,
+              recordings, setup, phone numbers, and the internal time required to
+              turn each message into work. Review <a class={inlineLinkClass} href="/pricing/">ViFi's published plans</a> using the same calculation.
+            </p>
+          </div>
         </div>
       </section>
 
       <section class="pb-16 sm:pb-24" aria-labelledby="alternatives-faq">
         <div class="mx-auto max-w-3xl px-6">
-          <h2 id="alternatives-faq" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 id="alternatives-faq">
             Common comparison questions
           </h2>
-          <div class="mt-8 space-y-4">
+          <div class="mt-8 flex flex-col gap-3">
             {faqs.map((faq) => (
-              <details class="rounded-2xl border border-border bg-surface p-6">
-                <summary class="cursor-pointer font-semibold text-text">{faq.question}</summary>
-                <p class="mt-4 leading-relaxed text-muted">{faq.answer}</p>
+              <details class="group panel open:border-accent">
+                <summary class="cursor-pointer select-none list-none rounded-[8px] p-5 [&::-webkit-details-marker]:hidden focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                  <h3 class="flex items-center justify-between gap-4 text-[17px] leading-snug tracking-[-0.01em] text-text">
+                    <span>{faq.question}</span>
+                    <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-tint text-accent transition-transform duration-200 group-open:rotate-180" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9.5c2.3 1.9 4.4 4 6.5 6.2 2.1-2.2 4.2-4.3 6.5-6.2"></path></svg>
+                    </span>
+                  </h3>
+                </summary>
+                <p class="px-5 pb-5 text-[15px] leading-relaxed text-muted">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -175,9 +196,5 @@ const structuredData = {
       />
     </main>
     <Footer />
-  </div>
-
-  <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-    <div class="absolute inset-0 ambient-gradient"></div>
   </div>
 </BaseLayout>
