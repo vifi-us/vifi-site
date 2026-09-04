@@ -130,8 +130,13 @@ const jsonLd = [
     <meta name="twitter:image" content={resolvedOgImage} />
     <meta name="twitter:image:alt" content={resolvedOgImageAlt} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Versioned icons refresh previously cached favicons. -->
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48 64x64" href="/icons/framed-call-2026-09/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/framed-call-2026-09/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/framed-call-2026-09/favicon-32x32.png" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/icons/framed-call-2026-09/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/framed-call-2026-09/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <meta name="generator" content={Astro.generator} />
 
