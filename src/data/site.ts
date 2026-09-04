@@ -9,3 +9,21 @@ export const siteConfig = {
   registerUrl: "https://app.vifi.us/register",
   loginUrl: "https://app.vifi.us/login",
 } as const;
+
+export const socialLinks = [
+  {
+    platform: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/ViFiUS/",
+  },
+  {
+    platform: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/vifi.us/",
+  },
+  {
+    platform: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/vifi-us",
+  },
+] as const;

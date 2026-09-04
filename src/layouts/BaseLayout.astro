@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Analytics from "../components/site/Analytics.astro";
+import { socialLinks } from "../data/site";
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const organizationStructuredData = {
   email: "hello@vifi.us",
   description:
     "ViFi provides an AI phone assistant and post-call briefings for small businesses.",
+  sameAs: socialLinks.map((link) => link.href),
 };
 
 const siteStructuredData = {
