@@ -10,6 +10,14 @@ export const siteConfig = {
   loginUrl: "https://app.vifi.us/login",
 } as const;
 
+export const defaultSocialImage = {
+  src: "/og-vifi-answer-every-call-2026-09.png",
+  width: 1200,
+  height: 630,
+  type: "image/png",
+  alt: "ViFi graphic: “Answer every call. Know what happens next.” The call journey moves from answer to understanding to a post-call brief.",
+} as const;
+
 export const socialLinks = [
   {
     platform: "facebook",

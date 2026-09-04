@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/site/Header.astro";
 import Footer from "../../components/site/Footer.astro";
+import { defaultSocialImage } from "../../data/site";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -37,7 +38,7 @@ const structuredData = [
     mainEntityOfPage: postUrl,
     author: { "@type": "Organization", name: "ViFi", url: new URL("/", Astro.site).href },
     publisher: { "@type": "Organization", name: "ViFi", url: new URL("/", Astro.site).href },
-    image: new URL(post.data.heroImage ?? "/og-default.png", Astro.site).href,
+    image: new URL(post.data.heroImage ?? defaultSocialImage.src, Astro.site).href,
   },
   {
     "@context": "https://schema.org",
