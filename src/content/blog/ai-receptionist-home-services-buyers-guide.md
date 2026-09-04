@@ -2,6 +2,7 @@
 title: "AI Receptionist for Home Services: A Practical Buyer's Guide"
 description: "A practical guide for plumbers, HVAC teams, electricians, roofers, and contractors evaluating AI receptionists for call answering and lead intake."
 publishedAt: 2026-08-12
+updatedAt: 2026-09-04
 tags: ["home services", "buyer guide", "ai receptionist"]
 ---
 
@@ -85,6 +86,8 @@ Read [what happens after an AI-assisted call](/features/) to see the current ViF
 ## Test with realistic scenarios
 
 A polished happy-path demo is not enough. Run a small acceptance test using the language your customers actually use.
+
+For ready-to-use scripts and a simple pass/fix scorecard, use our [seven test calls for a home-service AI receptionist](/blog/test-ai-receptionist-home-services/). It turns the evaluation below into a practical trial without changing your live phone routing first.
 
 Include at least these scenarios:
 
