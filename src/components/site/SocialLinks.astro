@@ -1,0 +1,97 @@
+---
+import { socialLinks } from "../../data/site";
+---
+
+<nav class="social-links" aria-label="ViFi on social media">
+  {
+    socialLinks.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="me noopener noreferrer"
+        aria-label={`${link.label} (opens in a new tab)`}
+        title={link.label}
+        data-social-platform={link.platform}
+      >
+        {link.platform === "facebook" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.8-.1-1.6-.2-2.4-.2-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V13h2.8v8h3.2Z" />
+          </svg>
+        )}
+        {link.platform === "instagram" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4.25" />
+            <circle class="social-links__dot" cx="17.4" cy="6.7" r="1" />
+          </svg>
+        )}
+        {link.platform === "linkedin" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.4 8.2H3.3V21h3.1V8.2ZM4.9 3A1.9 1.9 0 1 0 5 6.8 1.9 1.9 0 0 0 4.9 3ZM20.7 13.7c0-3.8-2-5.8-4.8-5.8-2.2 0-3.2 1.2-3.8 2.1V8.2H9V21h3.1v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21h3.1l1-7.3Z" />
+          </svg>
+        )}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+
+  .social-links a {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    background: var(--white);
+    transition:
+      color 160ms ease,
+      border-color 160ms ease,
+      background-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .social-links a:hover {
+    color: var(--accent);
+    border-color: currentColor;
+    background: var(--tint);
+    transform: translateY(-2px);
+  }
+
+  .social-links a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    outline-offset: 3px;
+  }
+
+  .social-links svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    overflow: visible;
+    fill: currentColor;
+  }
+
+  .social-links rect,
+  .social-links circle:not(.social-links__dot) {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+  }
+
+  .social-links__dot {
+    fill: currentColor;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .social-links a {
+      transition: none;
+    }
+  }
+</style>

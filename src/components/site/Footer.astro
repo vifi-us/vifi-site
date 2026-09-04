@@ -1,6 +1,7 @@
 ---
 import { footerNavigation } from "../../data/navigation";
 import { siteConfig } from "../../data/site";
+import SocialLinks from "./SocialLinks.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -10,6 +11,7 @@ const currentYear = new Date().getFullYear();
     <div class="footer-brand">
       <a class="wordmark" href="/" aria-label="ViFi home">Vi<em>Fi</em><b aria-hidden="true"></b></a>
       <p>{siteConfig.tagline} Built for small businesses that run on the phone.</p>
+      <SocialLinks />
     </div>
 
     {
