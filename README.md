@@ -17,6 +17,7 @@ npm run dev        # Start dev server at localhost:4321
 npm run build      # Production build to dist/
 npm run preview    # Preview production build locally
 npm run check      # TypeScript and Astro diagnostics
+npm run test:growth # After build: hero CTA, guide links, SEO and privacy regression checks
 ```
 
 ## Project Structure

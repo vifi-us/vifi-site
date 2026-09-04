@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "lint": "astro check"
+    "lint": "astro check",
+    "test:growth": "node --test scripts/growth.test.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.7",

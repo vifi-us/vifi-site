@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../../data/site";
+
 // Industry hero for /solutions/[slug]: mono eyebrow, accent h1, lede, and the hand-drawn
 // industry illustration from the homepage industries section (design/vifi-site-story).
 interface Props {
@@ -22,6 +24,7 @@ const artBySlug: Record<string, Art> = {
   "real-estate": "real-estate",
 };
 const art = slug ? artBySlug[slug] : undefined;
+const isHomeServiceTrade = ["home-services", "hvac", "plumbing", "electricians"].includes(slug ?? "");
 ---
 
 <section class="pt-16 pb-12 sm:pt-24 sm:pb-16">
@@ -36,6 +39,21 @@ const art = slug ? artBySlug[slug] : undefined;
         <p class="eyebrow"><i></i> {industry}</p>
         <h1 class="max-w-[660px]">{headline}</h1>
         <p class="lede max-w-[560px]">{description}</p>
+        {isHomeServiceTrade && (
+          <div class="flex flex-col items-start gap-4">
+            <a
+              class="btn"
+              href={siteConfig.registerUrl}
+              data-cta={`solution-${slug}-hero`}
+              data-cta-version="trade-trial-2026-09-v1"
+            >
+              Start free — no card
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7 M8 7h9v9" /></svg>
+            </a>
+            <p class="fine">7-day trial · Test before changing live routing</p>
+            <a class="text-link" href="/blog/test-ai-receptionist-home-services/">Use the 7-call trial checklist</a>
+          </div>
+        )}
       </div>
 
       {
