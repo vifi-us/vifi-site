@@ -1,13 +1,19 @@
 ---
 import "../styles/global.css";
 import Analytics from "../components/site/Analytics.astro";
-import { socialLinks } from "../data/site";
+import { defaultSocialImage, socialLinks } from "../data/site";
 
 interface Props {
   title: string;
   description: string;
   canonicalURL?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageType?: string;
   ogType?: "website" | "article";
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -16,10 +22,27 @@ const {
   title,
   description,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
-  ogImage = "/og-default.png",
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = defaultSocialImage.src,
+  ogImageAlt,
+  ogImageWidth,
+  ogImageHeight,
+  ogImageType,
   ogType = "website",
   structuredData,
 } = Astro.props;
+
+const usesDefaultSocialImage = ogImage === defaultSocialImage.src;
+const resolvedOgImageAlt =
+  ogImageAlt ?? (usesDefaultSocialImage ? defaultSocialImage.alt : title);
+const resolvedOgImageWidth =
+  ogImageWidth ?? (usesDefaultSocialImage ? defaultSocialImage.width : undefined);
+const resolvedOgImageHeight =
+  ogImageHeight ?? (usesDefaultSocialImage ? defaultSocialImage.height : undefined);
+const resolvedOgImageType =
+  ogImageType ?? (usesDefaultSocialImage ? defaultSocialImage.type : undefined);
+const resolvedOgImage = new URL(ogImage, Astro.site).href;
 
 const siteUrl = new URL("/", Astro.site).href;
 const organizationStructuredData = {
@@ -89,17 +112,23 @@ const jsonLd = [
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:secure_url" content={resolvedOgImage} />
+    {resolvedOgImageType && <meta property="og:image:type" content={resolvedOgImageType} />}
+    {resolvedOgImageWidth && <meta property="og:image:width" content={String(resolvedOgImageWidth)} />}
+    {resolvedOgImageHeight && <meta property="og:image:height" content={String(resolvedOgImageHeight)} />}
+    <meta property="og:image:alt" content={resolvedOgImageAlt} />
     <meta property="og:site_name" content="ViFi" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="twitter:image:alt" content={resolvedOgImageAlt} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
