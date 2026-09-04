@@ -54,6 +54,15 @@ layout without JavaScript.
 
 ## Deployment
 
+Favicons and home-screen icons live in `public/icons/framed-call-2026-09/`.
+The SVG is the vector master; its exterior is transparent around the white tile,
+blue outline, and offset shadow. `BaseLayout.astro` references the versioned SVG,
+PNG/ICO fallbacks, and Apple Touch icon. `public/site.webmanifest` supplies the
+192px and 512px icons in browser display mode. Root `favicon.svg` and `favicon.ico`
+also provide the current mark for clients that request those conventional paths.
+When replacing the mark, export from the SVG, preserve alpha, and use a new
+versioned directory to refresh browser caches.
+
 Pushes to `main` trigger the GitHub Actions workflow (`.github/workflows/deploy.yml`), which builds the Astro site and deploys to GitHub Pages using the official `withastro/action`.
 
 Custom domain `vifi.us` is configured via `public/CNAME` and `site` in `astro.config.ts`.
