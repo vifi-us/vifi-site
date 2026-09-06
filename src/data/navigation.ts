@@ -13,6 +13,7 @@ export const navigation: NavItem[] = [
   { label: "FAQ", href: "/faq" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
+  { label: "Help Center", href: "https://docs.vifi.us" },
 ];
 
 export interface FooterLink {
@@ -42,6 +43,7 @@ export const footerNavigation: FooterSection[] = [
   {
     title: "Resources",
     links: [
+      { label: "Help Center", href: "https://docs.vifi.us" },
       { label: "Home Services", href: "/solutions/home-services/" },
       { label: "HVAC Companies", href: "/solutions/hvac/" },
       { label: "Plumbing Companies", href: "/solutions/plumbing/" },
