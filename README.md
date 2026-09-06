@@ -70,3 +70,17 @@ Custom domain `vifi.us` is configured via `public/CNAME` and `site` in `astro.co
 ## Guidelines
 
 See `AGENTS.md` for architecture rules, content safety guidelines, and contributor instructions.
+
+## Dependency maintenance (September 2026)
+
+The site uses Astro 7's Rust compiler and native Markdown pipeline with Vite 8.
+`compressHTML: true` preserves the existing spacing between inline prose.
+CI uses Node 26.8.1 and checks pull requests before deployment; only the deploy
+job can write Pages or request an OIDC token. Run `npm ci`, `npm run check`,
+`npm run build`, and `npm run test:growth` locally.
+
+TypeScript 7 supplies `tsc --noEmit`. Astro's checker still requires the
+TypeScript 6 programmatic API, so `typescript` aliases the maintained
+`@typescript/typescript6` package and `@typescript/native` aliases TypeScript 7,
+following Microsoft's documented side-by-side setup. Remove the compatibility
+API once Astro supports TypeScript 7. The dependency lockfile records both.

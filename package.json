@@ -8,16 +8,20 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
-    "lint": "astro check",
-    "test:growth": "node --test scripts/growth.test.mjs"
+    "check": "astro check && tsc --noEmit",
+    "lint": "npm run check",
+    "test:growth": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7",
-    "@astrojs/sitemap": "^3.7.1",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.3",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "astro": "^7.3.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
