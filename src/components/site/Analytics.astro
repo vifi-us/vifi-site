@@ -82,10 +82,15 @@
     var captureCtaClick = function (event) {
       if (event.type === "auxclick" && event.button !== 1) return;
       var target = event.target instanceof Element ? event.target : null;
-      var anchor = target && target.closest('a[href^="https://app.vifi.us"]');
+      var anchor = target && target.closest('a[href]');
       if (!anchor || !window.posthog) return;
       var destination = new URL(anchor.getAttribute("href"), location.href);
-      var eventName = destination.pathname.indexOf("/register") === 0
+      // Only authentication destinations contribute to the conversion funnel.
+      // Prefix matching would count /register-help and unrelated app links.
+      if (destination.origin !== "https://app.vifi.us") return;
+      var path = destination.pathname.replace(/\/$/, "");
+      if (path !== "/register" && path !== "/login") return;
+      var eventName = path === "/register"
         ? "marketing_cta_clicked"
         : "marketing_login_clicked";
       var ctaText = (anchor.textContent || "")

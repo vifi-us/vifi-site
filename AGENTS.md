@@ -248,7 +248,7 @@ Performance is a core feature.
 Analytics: PostHog is loaded via `src/components/site/Analytics.astro`
 (explicitly requested for launch). It shares the app.vifi.us PostHog project
 for cross-subdomain journey tracking; a hostname guard disables it outside
-production. Do not add any other analytics, chat widgets, or trackers unless
+production. The existing GA4 stream supplies aggregate acquisition reporting and observes the same production/GPC guard. Do not add any other analytics, chat widgets, or trackers unless
 explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
 
