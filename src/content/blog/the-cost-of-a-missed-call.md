@@ -71,4 +71,4 @@ Start narrow. For a home-service business, that might be after-hours or overflow
 
 ViFi is designed around that test-first workflow. It answers the call, follows your instructions, and sends a post-call briefing so your team can follow up with context. Explore the [AI receptionist workflow for home-service businesses](/solutions/home-services/) or compare [plans and included minutes](/pricing/).
 
-<a href="https://app.vifi.us/register" data-cta="signup" data-cta-id="missed-call-article" data-cta-location="blog-end" data-cta-version="missed-call-growth-2026-09-v1">Start a free seven-day ViFi trial—no card required →</a>
+<a href="https://app.vifi.us/register" data-cta="missed-call-article" data-cta-id="missed-call-article" data-cta-location="blog-end" data-cta-version="missed-call-growth-2026-09-v1" data-cta-intent="evaluation">Start a free seven-day ViFi trial—no card required →</a>

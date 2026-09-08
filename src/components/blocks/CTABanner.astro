@@ -11,6 +11,7 @@ interface Props {
   buttonHref?: string;
   ctaId?: string;
   ctaVersion?: string;
+  ctaIntent?: string;
   note?: string;
 }
 
@@ -21,6 +22,7 @@ const {
   buttonHref = siteConfig.registerUrl,
   ctaId = "cta-banner",
   ctaVersion = "site-cta-2026-08-v1",
+  ctaIntent,
   note = "7-day free trial · No credit card required · Cancel anytime",
 } = Astro.props;
 ---
@@ -71,6 +73,7 @@ const {
         href={buttonHref}
         data-cta={ctaId}
         data-cta-version={ctaVersion}
+        data-cta-intent={ctaIntent}
       >
         {buttonText}
         <svg viewBox="0 0 24 24" aria-hidden="true">

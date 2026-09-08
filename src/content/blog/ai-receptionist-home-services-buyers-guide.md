@@ -1,8 +1,8 @@
 ---
-title: "AI Receptionist for Home Services: A Practical Buyer's Guide"
-description: "A practical guide for plumbers, HVAC teams, electricians, roofers, and contractors evaluating AI receptionists for call answering and lead intake."
+title: "How to Evaluate an AI Receptionist for Home Services"
+description: "Use a practical home-services checklist to evaluate an AI receptionist for intake, routing, escalation, call records, pricing, and realistic testing."
 publishedAt: 2026-08-12
-updatedAt: 2026-09-04
+updatedAt: 2026-09-08
 tags: ["home services", "buyer guide", "ai receptionist"]
 ---
 
@@ -195,6 +195,6 @@ It is worth testing when calls regularly arrive while the team is unavailable, c
 
 The most defensible buying decision comes from a small live test with your own call scenarios and a written success measure.
 
-Explore [ViFi for home services](/solutions/home-services/) or <a href="https://app.vifi.us/register" data-cta="blog-home-services-guide" data-cta-version="trade-pages-2026-08-v1">start a free trial</a> to configure an assistant and make test calls before changing your normal call flow.
+Explore the commercial [AI receptionist for home services](/solutions/home-services/) page or <a href="https://app.vifi.us/register" data-cta="blog-home-services-guide" data-cta-version="evaluation-guide-2026-09-v1" data-cta-intent="evaluation">start a free trial</a> to configure an assistant and make test calls before changing your normal call flow.
 
 For a trade-specific intake plan, review the call scenarios for [HVAC companies](/solutions/hvac/), [plumbing companies](/solutions/plumbing/), or [electrical contractors](/solutions/electricians/).
