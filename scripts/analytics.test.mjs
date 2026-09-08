@@ -6,7 +6,7 @@ import { test } from 'node:test';
 const source = readFileSync('src/components/site/Analytics.astro', 'utf8')
   .match(/<script is:inline>([\s\S]*?)<\/script>/)[1];
 
-function analytics(hostname = 'vifi.us', globalPrivacyControl = false) {
+function analytics(hostname = 'vifi.us', globalPrivacyControl = false, pageHref) {
   const scripts = [];
   const listeners = {};
   class Element {
@@ -21,7 +21,11 @@ function analytics(hostname = 'vifi.us', globalPrivacyControl = false) {
     }
   }
   const context = {
-    location: { hostname, href: `https://${hostname}/pricing/`, pathname: '/pricing/' },
+    location: {
+      hostname,
+      href: pageHref ?? `https://${hostname}/pricing/`,
+      pathname: new URL(pageHref ?? `https://${hostname}/pricing/`).pathname,
+    },
     navigator: { globalPrivacyControl }, URL, Element,
     document: {
       createElement: () => ({}),
@@ -42,6 +46,38 @@ test('privacy and preview guards prevent loading either analytics provider', () 
     assert.equal(Object.keys(listeners).length, 0);
     assert.equal(context.posthog, undefined);
     assert.equal(context.gtag, undefined);
+  }
+});
+
+test('approved campaign values cross the website-to-app boundary', () => {
+  const page = 'https://vifi.us/solutions/home-services/?utm_source=linkedin&utm_medium=social&utm_campaign=home_services_category_2026_09_v1&utm_content=company_page&li_fat_id=abc-123';
+  const { context, listeners, Element } = analytics('vifi.us', false, page);
+  const anchor = new Element('https://app.vifi.us/register?plan=starter#signup');
+  listeners.click({ type: 'click', target: anchor });
+
+  const destination = new URL(anchor.href);
+  assert.equal(destination.searchParams.get('plan'), 'starter');
+  assert.equal(destination.searchParams.get('utm_source'), 'linkedin');
+  assert.equal(destination.searchParams.get('utm_medium'), 'social');
+  assert.equal(destination.searchParams.get('utm_campaign'), 'home_services_category_2026_09_v1');
+  assert.equal(destination.searchParams.get('utm_content'), 'company_page');
+  assert.equal(destination.searchParams.get('li_fat_id'), 'abc-123');
+  assert.equal(destination.hash, '#signup');
+  assert.equal(context.posthog[0][2].destination, destination.href);
+});
+
+test('CTA decoration rejects arbitrary, duplicate, PII-like and oversized values', () => {
+  const oversized = 'x'.repeat(129);
+  const page = `https://vifi.us/pricing/?utm_source=trusted&utm_source=duplicate&utm_campaign=${oversized}&utm_term=jason%40example.com&email=jason%40example.com&phone=2025550147&fbclid=valid-click-id&gclid=2025550147`;
+  const { listeners, Element } = analytics('vifi.us', false, page);
+  const anchor = new Element('https://app.vifi.us/register?utm_medium=existing');
+  listeners.click({ type: 'click', target: anchor });
+
+  const destination = new URL(anchor.href);
+  assert.equal(destination.searchParams.get('utm_medium'), 'existing');
+  assert.equal(destination.searchParams.get('fbclid'), 'valid-click-id');
+  for (const key of ['utm_source', 'utm_campaign', 'utm_term', 'email', 'phone', 'gclid']) {
+    assert.equal(destination.searchParams.has(key), false, key);
   }
 });
 
