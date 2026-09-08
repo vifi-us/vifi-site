@@ -256,11 +256,12 @@ Voice widget: ViFi's own website widget (the same embed customers install,
 pointed at the ViFi workspace) is loaded site-wide by
 `src/components/site/VoiceWidget.astro` (explicitly requested). It is the one
 sanctioned third-party script besides analytics. The loader is async, mounts
-only a launcher, and starts a voice session only when a visitor opens it. Like
-analytics, it is withheld from visitors who send the Global Privacy Control
-signal: the widget iframe on app.vifi.us runs the app's PostHog, and the privacy
-policy promises those visitors no analytics for their visit. Keep that guard
-until the platform honours GPC itself. The `emb_` value in that file is a
+only a launcher, and starts a voice session only when a visitor opens it. It is
+loaded for every visitor: the widget iframe is an app.vifi.us page and the app
+skips PostHog when the browser sends Global Privacy Control (vifi-platform
+#847), so the privacy policy's GPC sentence holds without a site-side guard.
+PostHog Conversations is disabled in `Analytics.astro` so the app's support
+bubble never shares the corner with the widget. The `emb_` value in that file is a
 public embed key managed on app.vifi.us under Channels → Embed widget. Its
 website origins must include `https://vifi.us` (www redirects to the apex), and
 its accent colour must be the site accent `#0055ff`, because the loader's

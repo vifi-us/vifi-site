@@ -9,11 +9,10 @@
  *   voice session iframe, and with it the microphone permission prompt, is
  *   created only when a visitor opens the launcher, and a session starts
  *   only when they press the start button inside it.
- * - Global Privacy Control: like Analytics.astro, the loader is withheld from
- *   visitors whose browser sends the GPC signal. The widget iframe is an
- *   app.vifi.us page that runs the app's PostHog (same project, cookie on
- *   `.vifi.us`), and the privacy policy promises those visitors no analytics
- *   for their visit. Keep this guard until the platform honours GPC itself.
+ * - Global Privacy Control: no site-side guard is needed. The widget iframe
+ *   is an app.vifi.us page, and the app skips PostHog entirely when the
+ *   browser sends GPC (vifi-platform #847), so the privacy policy's promise
+ *   that GPC visitors get no analytics holds for the widget too.
  * - The `emb_` key is a public embed key, not a secret: every host site
  *   exposes its key in the page source by design. The privileged action
  *   (starting a session) is gated server-side by the key's website-origin
@@ -35,12 +34,4 @@ const EMBED_KEY = "emb_8486e83bc6f600c11db1f1bcca057cfa";
 const loaderSrc = `https://app.vifi.us/embed/widget.js?key=${EMBED_KEY}`;
 ---
 
-<script is:inline data-vifi-widget data-src={loaderSrc}>
-  (function () {
-    if (navigator.globalPrivacyControl) return;
-    var loader = document.createElement("script");
-    loader.async = true;
-    loader.src = document.currentScript.getAttribute("data-src");
-    document.head.appendChild(loader);
-  })();
-</script>
+<script is:inline async src={loaderSrc}></script>
