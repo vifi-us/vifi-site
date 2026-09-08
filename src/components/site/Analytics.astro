@@ -70,6 +70,10 @@
       enable_recording_console_log: false,
       // Public marketing content: record page text, never typed input.
       session_recording: { maskAllInputs: true },
+      // PostHog Conversations (the app's support chat bubble) is enabled on
+      // the shared project. The marketing site's bottom-right corner belongs
+      // to the ViFi voice widget (VoiceWidget.astro); support lives in the app.
+      disable_conversations: true,
     });
 
     // Curated conversion events for clicks into the app. Registration and
