@@ -109,7 +109,7 @@ Target structure:
 
 - `src/pages/` — route files
 - `src/layouts/` — shared layouts
-- `src/components/site/` — shared marketing components (Header, Footer, Analytics)
+- `src/components/site/` — shared marketing components (Header, Footer, Analytics, VoiceWidget)
 - `src/components/home/` — the scroll-driven homepage story (`HomeStory.astro`)
 - `src/components/blocks/` — larger page sections
 - `src/components/ui/` — shadcn/ui components only
@@ -251,6 +251,25 @@ for cross-subdomain journey tracking; a hostname guard disables it outside
 production. The existing GA4 stream supplies aggregate acquisition reporting and observes the same production/GPC guard. Do not add any other analytics, chat widgets, or trackers unless
 explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
+
+Voice widget: ViFi's own website widget (the same embed customers install,
+pointed at the ViFi workspace) is loaded site-wide by
+`src/components/site/VoiceWidget.astro` (explicitly requested). It is the one
+sanctioned third-party script besides analytics. The loader is async, mounts
+only a launcher, and starts a voice session only when a visitor opens it. Like
+analytics, it is withheld from visitors who send the Global Privacy Control
+signal: the widget iframe on app.vifi.us runs the app's PostHog, and the privacy
+policy promises those visitors no analytics for their visit. Keep that guard
+until the platform honours GPC itself. The `emb_` value in that file is a
+public embed key managed on app.vifi.us under Channels → Embed widget. Its
+website origins must include `https://vifi.us` (www redirects to the apex), and
+its accent colour must be the site accent `#0055ff`, because the loader's
+default cyan fails WCAG contrast. To rotate: create a second key with the same
+origins and appearance, update `EMBED_KEY` in `VoiceWidget.astro` and the
+loader constant in `scripts/voice-widget.test.mjs`, merge and confirm the Pages
+deploy, then revoke the old key. Never use in-place "Rotate" on the live key: it
+invalidates the key immediately while the loader stays CDN-cached for up to
+four hours, so the widget would be down until the site redeploys.
 
 ## Content Safety Rules
 

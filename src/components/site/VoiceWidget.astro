@@ -1,0 +1,46 @@
+---
+/**
+ * ViFi's own website widget: the "Talk to a ViFi Agent" launcher, which is
+ * the same embed customers install, pointed at the ViFi workspace on
+ * app.vifi.us (explicitly requested for the marketing site).
+ *
+ * - The loader (app.vifi.us/embed/widget.js) is async and render-neutral: it
+ *   mounts a launcher pill in the bottom-right corner and nothing else. The
+ *   voice session iframe, and with it the microphone permission prompt, is
+ *   created only when a visitor opens the launcher, and a session starts
+ *   only when they press the start button inside it.
+ * - Global Privacy Control: like Analytics.astro, the loader is withheld from
+ *   visitors whose browser sends the GPC signal. The widget iframe is an
+ *   app.vifi.us page that runs the app's PostHog (same project, cookie on
+ *   `.vifi.us`), and the privacy policy promises those visitors no analytics
+ *   for their visit. Keep this guard until the platform honours GPC itself.
+ * - The `emb_` key is a public embed key, not a secret: every host site
+ *   exposes its key in the page source by design. The privileged action
+ *   (starting a session) is gated server-side by the key's website-origin
+ *   list, which must include https://vifi.us (www redirects to the apex).
+ * - Label, title, position and accent colour are configured in the app under
+ *   Channels → Embed widget, not here. The accent must be the site accent
+ *   #0055ff: the loader's default cyan fails WCAG contrast for the label.
+ * - Rotation: create a second key with the same origins and appearance,
+ *   update EMBED_KEY here and the constant in scripts/voice-widget.test.mjs,
+ *   deploy, then revoke the old key. An in-place "Rotate" on the live key
+ *   invalidates it at once while the loader stays CDN-cached for up to four
+ *   hours, so the widget would be down until the site redeploys.
+ * - The loader appends its own elements to <body>, outside the `.site`
+ *   design-system scope, and uses `vifi-` prefixed classes with fixed
+ *   positioning, so it does not collide with the site's styles or the
+ *   pinned homepage story.
+ */
+const EMBED_KEY = "emb_8486e83bc6f600c11db1f1bcca057cfa";
+const loaderSrc = `https://app.vifi.us/embed/widget.js?key=${EMBED_KEY}`;
+---
+
+<script is:inline data-vifi-widget data-src={loaderSrc}>
+  (function () {
+    if (navigator.globalPrivacyControl) return;
+    var loader = document.createElement("script");
+    loader.async = true;
+    loader.src = document.currentScript.getAttribute("data-src");
+    document.head.appendChild(loader);
+  })();
+</script>

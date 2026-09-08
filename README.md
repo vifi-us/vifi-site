@@ -17,7 +17,7 @@ npm run dev        # Start dev server at localhost:4321
 npm run build      # Production build to dist/
 npm run preview    # Preview production build locally
 npm run check      # TypeScript and Astro diagnostics
-npm run test:growth # After build: hero CTA, guide links, SEO and privacy regression checks
+npm run test:growth # After build: hero CTA, guide links, SEO, privacy and voice-widget regression checks
 ```
 
 ## Project Structure
@@ -27,7 +27,7 @@ src/
   pages/           Route files
   layouts/         Shared page layouts
   components/
-    site/          Global components (Header, Footer, Analytics)
+    site/          Global components (Header, Footer, Analytics, VoiceWidget)
     home/          The scroll-driven homepage story (HomeStory)
     blocks/        Page section components (PageHero, PricingCards, CTA)
   content/         Markdown collections (blog, faqs, legal)

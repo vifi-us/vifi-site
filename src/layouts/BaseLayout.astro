@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Analytics from "../components/site/Analytics.astro";
+import VoiceWidget from "../components/site/VoiceWidget.astro";
 import { defaultSocialImage, socialLinks } from "../data/site";
 
 interface Props {
@@ -180,5 +181,8 @@ const jsonLd = [
         })();
       </script>
     </div>
+    <!-- ViFi's own voice widget (see VoiceWidget.astro). Last in <body>
+         so the page content never waits on it. -->
+    <VoiceWidget />
   </body>
 </html>
