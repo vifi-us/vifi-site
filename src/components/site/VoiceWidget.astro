@@ -1,0 +1,30 @@
+---
+/**
+ * ViFi's own website widget: the "Talk to a ViFi Agent" launcher, which is
+ * the same embed customers install, pointed at the ViFi workspace on
+ * app.vifi.us (explicitly requested for the marketing site).
+ *
+ * - The loader (app.vifi.us/embed/widget.js) is async and render-neutral: it
+ *   mounts a launcher pill in the bottom-right corner and nothing else. The
+ *   voice session iframe, and with it the microphone permission prompt, is
+ *   created only when a visitor opens the launcher, and a session is started
+ *   only when they press the start button inside it.
+ * - The `emb_` key is a public embed key, not a secret: every host site
+ *   exposes its key in the page source by design. The privileged action
+ *   (starting a session) is gated server-side by the key's website-origin
+ *   list, which must include https://vifi.us and https://www.vifi.us.
+ * - A revoked key makes the loader return an empty script, so rotating the
+ *   key on app.vifi.us never breaks the site; update the value here after
+ *   a rotation.
+ * - Label, title, colours and position are configured in the app under
+ *   Channels → Embed widget, not here.
+ * - The loader appends its own elements to <body>, outside the `.site`
+ *   design-system scope, and uses `vifi-` prefixed classes with fixed
+ *   positioning, so it does not collide with the site's styles or the
+ *   pinned homepage story.
+ */
+const EMBED_KEY = "emb_8486e83bc6f600c11db1f1bcca057cfa";
+const loaderSrc = `https://app.vifi.us/embed/widget.js?key=${EMBED_KEY}`;
+---
+
+<script is:inline async src={loaderSrc}></script>

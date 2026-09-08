@@ -109,7 +109,7 @@ Target structure:
 
 - `src/pages/` — route files
 - `src/layouts/` — shared layouts
-- `src/components/site/` — shared marketing components (Header, Footer, Analytics)
+- `src/components/site/` — shared marketing components (Header, Footer, Analytics, VoiceWidget)
 - `src/components/home/` — the scroll-driven homepage story (`HomeStory.astro`)
 - `src/components/blocks/` — larger page sections
 - `src/components/ui/` — shadcn/ui components only
@@ -251,6 +251,15 @@ for cross-subdomain journey tracking; a hostname guard disables it outside
 production. The existing GA4 stream supplies aggregate acquisition reporting and observes the same production/GPC guard. Do not add any other analytics, chat widgets, or trackers unless
 explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
+
+Voice widget: ViFi's own website widget (the same embed customers install,
+pointed at the ViFi workspace) is loaded site-wide by
+`src/components/site/VoiceWidget.astro` (explicitly requested). It is the one
+sanctioned third-party script besides analytics. The loader is async, mounts
+only a launcher, and starts a voice session only when a visitor opens it. The
+`emb_` value in that file is a public embed key managed on app.vifi.us under
+Channels → Embed widget: rotate it there and update the file; keep
+`https://vifi.us` and `https://www.vifi.us` in the key's website origins.
 
 ## Content Safety Rules
 
