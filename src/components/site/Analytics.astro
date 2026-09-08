@@ -76,6 +76,53 @@
       disable_conversations: true,
     });
 
+    // Preserve the campaign touch across the vifi.us -> app.vifi.us origin
+    // boundary. posthog-js session properties are origin-scoped, so the
+    // shared identity cookie alone does not retain latest-touch UTMs.
+    // Forward only known attribution keys with strict, PII-resistant bounds.
+    var campaignKeys = [
+      "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref",
+    ];
+    var clickIdKeys = [
+      "gclid", "gbraid", "wbraid", "dclid", "fbclid", "msclkid", "twclid",
+      "li_fat_id", "ttclid", "rdt_cid", "igshid", "mc_cid",
+    ];
+    var phoneLike = function (value) {
+      return /^[0-9+(). _:/-]+$/.test(value) && value.replace(/\D/g, "").length >= 10;
+    };
+    var safeCampaignValue = function (value) {
+      return value.length <= 128 &&
+        /^[A-Za-z0-9][A-Za-z0-9 ._~+:/-]*$/.test(value) &&
+        !value.includes("@") &&
+        !/\d{8,}/.test(value) &&
+        !phoneLike(value);
+    };
+    var safeClickId = function (value) {
+      return value.length <= 256 &&
+        /^[A-Za-z0-9][A-Za-z0-9._~-]*$/.test(value) &&
+        !phoneLike(value);
+    };
+    var decorateAppDestination = function (destination) {
+      var source = new URL(location.href).searchParams;
+      campaignKeys.forEach(function (key) {
+        var values = source.getAll(key);
+        if (
+          values.length === 1 &&
+          !destination.searchParams.has(key) &&
+          safeCampaignValue(values[0])
+        ) destination.searchParams.set(key, values[0]);
+      });
+      clickIdKeys.forEach(function (key) {
+        var values = source.getAll(key);
+        if (
+          values.length === 1 &&
+          !destination.searchParams.has(key) &&
+          safeClickId(values[0])
+        ) destination.searchParams.set(key, values[0]);
+      });
+      return destination;
+    };
+
     // Curated conversion events for clicks into the app. Registration and
     // login stay separate so login activity cannot inflate signup intent.
     // Delegated, so one listener covers every current and
@@ -94,6 +141,10 @@
       if (destination.origin !== "https://app.vifi.us") return;
       var path = destination.pathname.replace(/\/$/, "");
       if (path !== "/register" && path !== "/login") return;
+      destination = decorateAppDestination(destination);
+      // The browser resolves default navigation after the event dispatch, so
+      // updating the anchor here also works for Ctrl/Cmd-click and auxclick.
+      anchor.href = destination.href;
       var eventName = path === "/register"
         ? "marketing_cta_clicked"
         : "marketing_login_clicked";
