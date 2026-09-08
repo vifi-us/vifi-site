@@ -9,6 +9,7 @@ import CallScenarioGrid from "../../components/blocks/CallScenarioGrid.astro";
 import TradeSolutionLinks from "../../components/blocks/TradeSolutionLinks.astro";
 import CTABanner from "../../components/blocks/CTABanner.astro";
 import MissedCallOpportunity from "../../components/blocks/MissedCallOpportunity.astro";
+import HomeServicesDecisionPaths from "../../components/blocks/HomeServicesDecisionPaths.astro";
 import { solutions } from "../../data/solutions";
 
 export function getStaticPaths() {
@@ -27,10 +28,24 @@ const isHomeServiceTrade = [
   "plumbing",
   "electricians",
 ].includes(solution.slug);
+const isHomeServicesCategory = solution.slug === "home-services";
 const stepIndex = (i: number) => String(i + 1).padStart(2, "0");
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `ViFi AI receptionist for ${solution.industry.toLowerCase()}`,
+    description: solution.searchDescription ?? solution.description,
+    serviceType: `AI receptionist for ${solution.industry.toLowerCase()}`,
+    provider: {
+      "@type": "Organization",
+      name: "ViFi",
+      url: new URL("/", Astro.site).href,
+    },
+    url: pageUrl,
+  },
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -81,7 +96,9 @@ const structuredData = [
         headline={solution.headline}
         description={solution.description}
         slug={solution.slug}
+        ctaVersion={isHomeServicesCategory ? "home-services-category-2026-09-v1" : undefined}
       />
+      {isHomeServicesCategory && <HomeServicesDecisionPaths />}
       <PainPoints painPoints={solution.painPoints} />
       {solution.slug === "home-services" && <MissedCallOpportunity />}
       {
@@ -163,7 +180,8 @@ const structuredData = [
         heading="Test ViFi with your real call workflow"
         description="Set up ViFi, make test calls, and review the briefing before changing your normal call flow."
         ctaId={`solution-${solution.slug}-banner`}
-        ctaVersion="trade-pages-2026-08-v1"
+        ctaVersion={isHomeServicesCategory ? "home-services-category-2026-09-v1" : "trade-pages-2026-08-v1"}
+        ctaIntent="commercial"
       />
     </main>
     <Footer />

@@ -53,32 +53,41 @@ const inlineLinkClass = "font-semibold underline underline-offset-4";
 ---
 
 <BaseLayout
-  title="AI Receptionist vs Answering Service vs Voicemail | ViFi"
-  description="Compare AI receptionists, human answering services, and voicemail by caller experience, handoff quality, setup, pricing model, and operational fit."
+  title="AI Receptionist vs Voicemail vs Answering Service | ViFi"
+  description="Compare AI receptionists, human answering services, and voicemail for home-service calls by caller experience, escalation, records, pricing, and operational fit."
   structuredData={structuredData}
 >
   <div class="flex min-h-screen flex-col">
     <Header />
     <main id="main" class="flex-1">
       <PageHero
-        title="AI receptionist, answering service, or voicemail?"
-        subtitle="Choose the call workflow that gives your callers a clear next step and your team a useful handoff."
+        title="AI receptionist vs. voicemail vs. answering service"
+        subtitle="A practical comparison for home-service teams choosing how to cover overflow, after-hours, and missed calls."
       />
 
-      <section class="pb-16 sm:pb-24">
+      <section class="pb-16 sm:pb-24" aria-labelledby="quick-comparison-answer">
         <div class="mx-auto max-w-3xl px-6">
+          <h2 id="quick-comparison-answer" class="mb-5">
+            The quick answer
+          </h2>
           <div class:list={["flex flex-col gap-6", proseClass]}>
             <p>
-              The best choice depends on the calls you receive, not which
-              category sounds newest. Voicemail is simple. Human services can
-              handle nuance. AI receptionists can provide consistent coverage
-              and structured call records when the workflow is well defined.
+              Choose voicemail when call volume is low and someone returns every
+              message reliably. Choose a human answering service when calls often
+              require judgment or empathy. Test an AI receptionist when overflow
+              and after-hours calls follow repeatable patterns and structured
+              intake would help your team act faster.
             </p>
             <p>
               Compare the complete path: what the caller experiences, which
               questions get asked, what happens when the request falls outside
               the script, and what your team receives after the call.
             </p>
+            <nav class="flex flex-wrap gap-x-6 gap-y-3" aria-label="Comparison next steps">
+              <a class={inlineLinkClass} href="/solutions/home-services/">Explore the home-services workflow</a>
+              <a class={inlineLinkClass} href="/blog/test-ai-receptionist-home-services/">Run the seven-call test</a>
+              <a class={inlineLinkClass} href="/pricing/">Compare published plans</a>
+            </nav>
           </div>
         </div>
       </section>
@@ -142,7 +151,7 @@ const inlineLinkClass = "font-semibold underline underline-offset-4";
             </ol>
           </div>
           <p class:list={["mt-8", proseClass]}>
-            For a complete test plan, use the <a class={inlineLinkClass} href="/blog/ai-receptionist-home-services-buyers-guide/">home-services AI receptionist buyer's guide</a>.
+            For a complete evaluation plan, use the <a class={inlineLinkClass} href="/blog/ai-receptionist-home-services-buyers-guide/">home-services AI receptionist evaluation guide</a>. When you are ready to examine the commercial workflow, see <a class={inlineLinkClass} href="/solutions/home-services/">ViFi's AI receptionist for home services</a>.
           </p>
         </div>
       </section>
@@ -192,7 +201,8 @@ const inlineLinkClass = "font-semibold underline underline-offset-4";
         description="Configure one narrow workflow, make realistic test calls, and review every briefing before routing live traffic."
         buttonText="Start free — no card"
         ctaId="alternatives-banner"
-        ctaVersion="alternatives-2026-08-v1"
+        ctaVersion="comparison-intent-2026-09-v1"
+        ctaIntent="comparison"
       />
     </main>
     <Footer />

@@ -29,9 +29,9 @@ export const solutions: Solution[] = [
   {
     slug: "home-services",
     industry: "Home Services",
-    headline: "Win more jobs by answering every call",
+    headline: "An AI receptionist for home-service calls you can’t answer",
     description:
-      "Plumbers, electricians, HVAC techs, and contractors miss calls on the job site. ViFi picks up, captures the details, and sends you a briefing so you can call back ready to book.",
+      "ViFi answers overflow and after-hours calls for plumbers, HVAC teams, electricians, roofers, and contractors, captures the service request, and sends a briefing so your team can follow up with context.",
     painPoints: [
       {
         title: "Calls come in while you're on a job",
@@ -55,9 +55,9 @@ export const solutions: Solution[] = [
       "Full Transcripts",
       "Professional AI Voice",
     ],
-    searchTitle: "AI Receptionist for Home Services | ViFi",
+    searchTitle: "AI Receptionist for Home Services — Test ViFi Free",
     searchDescription:
-      "ViFi is an AI receptionist for plumbers, HVAC teams, electricians, roofers, and contractors. Answer overflow and after-hours calls, capture service details, and follow up with context.",
+      "Answer overflow and after-hours calls for HVAC, plumbing, electrical, roofing, and other home-service teams. Test ViFi before changing live call routing.",
     workflow: [
       {
         title: "Answer when the team cannot",

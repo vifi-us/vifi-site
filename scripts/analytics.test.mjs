@@ -10,9 +10,15 @@ function analytics(hostname = 'vifi.us', globalPrivacyControl = false) {
   const scripts = [];
   const listeners = {};
   class Element {
-    constructor(href) { this.href = href; this.textContent = 'Start free'; }
+    constructor(href, attributes = {}) {
+      this.href = href;
+      this.attributes = attributes;
+      this.textContent = 'Start free';
+    }
     closest() { return this; }
-    getAttribute(name) { return name === 'href' ? this.href : null; }
+    getAttribute(name) {
+      return name === 'href' ? this.href : (this.attributes[name] ?? null);
+    }
   }
   const context = {
     location: { hostname, href: `https://${hostname}/pricing/`, pathname: '/pricing/' },
@@ -46,8 +52,26 @@ test('only exact app authentication destinations count as conversions', () => {
     'https://app.vifi.us.evil.example/register', '/pricing/',
   ]) listeners.click({ type: 'click', target: new Element(href) });
   assert.equal(context.posthog.length, 0);
-  listeners.click({ type: 'click', target: new Element('https://app.vifi.us/register?source=site') });
+  listeners.click({
+    type: 'click',
+    target: new Element('https://app.vifi.us/register?source=site', {
+      'data-cta': 'alternatives-banner',
+      'data-cta-version': 'comparison-intent-2026-09-v1',
+      'data-cta-intent': 'comparison',
+    }),
+  });
   listeners.auxclick({ type: 'auxclick', button: 1, target: new Element('https://app.vifi.us/login/') });
   listeners.auxclick({ type: 'auxclick', button: 2, target: new Element('https://app.vifi.us/register') });
   assert.deepEqual(Array.from(context.posthog, event => event[1]), ['marketing_cta_clicked', 'marketing_login_clicked']);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(context.posthog[0][2])),
+    {
+      placement: 'alternatives-banner',
+      cta_version: 'comparison-intent-2026-09-v1',
+      cta_intent: 'comparison',
+      cta_text: 'Start free',
+      destination: 'https://app.vifi.us/register?source=site',
+      page: '/pricing/',
+    },
+  );
 });

@@ -9,7 +9,7 @@ A smooth demo tells you what an AI receptionist sounds like. A useful trial tell
 
 Before routing customers to any new phone assistant, run these seven calls yourself. Each includes something to say, what to check afterward, and a reason to stop and fix the setup. They are designed for plumbers, HVAC teams, electricians, and other small home-service businesses—not as a certification of any product.
 
-**Already evaluating ViFi?** <a href="https://app.vifi.us/register" data-cta="blog-test-calls-start" data-cta-version="test-calls-2026-09-v1">Start a free 7-day trial—no card</a>, configure your assistant, and use this checklist before changing your normal call routing. First compare the [home-services workflow](/solutions/home-services/) if you are still deciding what to cover.
+**Already evaluating ViFi?** <a href="https://app.vifi.us/register" data-cta="blog-test-calls-start" data-cta-version="test-calls-2026-09-v1" data-cta-intent="proof">Start a free 7-day trial—no card</a>, configure your assistant, and use this checklist before changing your normal call routing. First compare the [home-services workflow](/solutions/home-services/) if you are still deciding what to cover.
 
 ## Set up a fair test
 
@@ -101,4 +101,4 @@ Start with a limited overflow or after-hours window, keep your previous fallback
 
 Compare your results with your existing voicemail or answering-service workflow. Our [buyer's guide](/blog/ai-receptionist-home-services-buyers-guide/) covers provider selection; the [missed-call opportunity estimator](/solutions/home-services/#missed-call-opportunity-title) helps frame the business case using your own inputs. Neither replaces evidence from your calls.
 
-Ready to try the first scenario? <a href="https://app.vifi.us/register" data-cta="blog-test-calls-finish" data-cta-version="test-calls-2026-09-v1">Create your ViFi trial and make your first test call</a>. Configure the assistant, call the assigned number, then open the resulting briefing before deciding what to route next. See [current plans](/pricing/) for the commercial details.
+Ready to try the first scenario? <a href="https://app.vifi.us/register" data-cta="blog-test-calls-finish" data-cta-version="test-calls-2026-09-v1" data-cta-intent="proof">Create your ViFi trial and make your first test call</a>. Configure the assistant, call the assigned number, then open the resulting briefing before deciding what to route next. See [current plans](/pricing/) for the commercial details.

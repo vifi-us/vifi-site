@@ -104,6 +104,7 @@
       var eventProperties = {
         placement: anchor.getAttribute("data-cta") || "unlabeled",
         cta_version: anchor.getAttribute("data-cta-version") || "unversioned",
+        cta_intent: anchor.getAttribute("data-cta-intent") || "unspecified",
         cta_text: ctaText,
         destination: destination.href,
         page: location.pathname,

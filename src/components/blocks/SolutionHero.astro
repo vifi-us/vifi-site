@@ -9,9 +9,20 @@ interface Props {
   description: string;
   /** Solution slug; picks the illustration. Unknown slugs render copy only. */
   slug?: string;
+  /** Describes the visitor intent for conversion analysis. */
+  ctaIntent?: string;
+  /** Version label for focused CTA experiments. */
+  ctaVersion?: string;
 }
 
-const { industry, headline, description, slug } = Astro.props;
+const {
+  industry,
+  headline,
+  description,
+  slug,
+  ctaIntent = "commercial",
+  ctaVersion = "trade-trial-2026-09-v1",
+} = Astro.props;
 
 type Art = "home" | "medical" | "legal" | "real-estate";
 const artBySlug: Record<string, Art> = {
@@ -45,7 +56,8 @@ const isHomeServiceTrade = ["home-services", "hvac", "plumbing", "electricians"]
               class="btn"
               href={siteConfig.registerUrl}
               data-cta={`solution-${slug}-hero`}
-              data-cta-version="trade-trial-2026-09-v1"
+              data-cta-version={ctaVersion}
+              data-cta-intent={ctaIntent}
             >
               Start free — no card
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7 M8 7h9v9" /></svg>
