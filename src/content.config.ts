@@ -34,4 +34,19 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { blog, legal, faqs };
+const resources = defineCollection({
+  loader: glob({ base: "./src/content/resources", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+    heading: z.string().trim().min(1),
+    version: z.string().regex(/^v[1-9]\d*$/),
+    publishedAt: z.coerce.date(),
+    scenarios: z.array(z.object({
+      title: z.string().trim().min(1),
+      criterion: z.string().trim().min(1),
+    })).length(7),
+  }),
+});
+
+export const collections = { blog, legal, faqs, resources };

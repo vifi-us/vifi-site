@@ -2,7 +2,7 @@
 title: "How to Evaluate an AI Receptionist for Home Services"
 description: "Use a practical home-services checklist to evaluate an AI receptionist for intake, routing, escalation, call records, pricing, and realistic testing."
 publishedAt: 2026-08-12
-updatedAt: 2026-09-08
+updatedAt: 2026-09-10
 tags: ["home services", "buyer guide", "ai receptionist"]
 ---
 
@@ -11,6 +11,10 @@ The phone often rings at the least convenient time for a home-service business: 
 That does not mean every voice product is a good fit. The useful question is not whether an assistant can answer a demo call. It is whether it can reliably follow your intake process, stay within clear limits, and give your team enough context to take the next action.
 
 This guide explains how plumbers, HVAC teams, electricians, roofers, cleaners, landscapers, and other contractors can evaluate an AI receptionist without relying on vague promises.
+
+> **Evaluating ViFi for your own team?** See the [AI receptionist workflow for home services](/solutions/home-services/) to understand what happens during and after a call.
+>
+> When you are ready to test, <a href="https://app.vifi.us/register" data-cta="blog-home-services-guide-start" data-cta-version="evaluation-guide-2026-09-v2" data-cta-intent="evaluation">start a free trial</a> and use our [seven test-call scenarios](/blog/test-ai-receptionist-home-services/) with your own intake rules. Keep your normal phone routing in place until you have reviewed the results.
 
 ## What an AI receptionist should do
 

@@ -1,0 +1,8 @@
+Scenario,Pass criterion,Result (pass/fix/not supported),Call time,Actual result or missing detail,Owner,Retest date
+Ordinary request,Required intake facts correct and no unconfirmed booking,,,,,
+Corrected detail,Final briefing uses the corrected detail,,,,,
+Vague or interrupted request,Clarifies without inventing a diagnosis,,,,,
+Unknown price or availability,No unapproved price or arrival promise,,,,,
+Out-of-area request,Follows the configured service-area policy,,,,,
+Request for a person,Configured handoff and no-answer fallback work,,,,,
+After-hours follow-up,Approved next step is accurate and responsible person receives record,,,,,

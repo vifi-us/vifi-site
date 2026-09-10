@@ -2,6 +2,7 @@
 title: "7 Test Calls to Run Before Trusting an AI Receptionist"
 description: "A hands-on AI receptionist checklist for home-service businesses: seven call scripts, clear pass criteria, and a scorecard for your first trial."
 publishedAt: 2026-09-04
+updatedAt: 2026-09-10
 tags: ["home services", "call testing", "ai receptionist"]
 ---
 
@@ -83,7 +84,7 @@ This checklist does not test emergency handling. Do not route safety-critical ca
 
 ## Your trial scorecard
 
-Copy these seven rows into your team's notes. For each one record **pass, fix, or not supported**, the call time, the missing detail, and who will resolve it.
+[Open the free printable scorecard](/resources/ai-receptionist-test-scorecard/) or [download the editable CSV](/resources/ai-receptionist-test-scorecard.csv). No account or email is required. You can also copy these seven rows into your team's notes. For each one record **pass, fix, or not supported**, the call time, the missing detail, and who will resolve it.
 
 1. Ordinary request: required facts and an accurate next step.
 2. Correction: the final details are right.

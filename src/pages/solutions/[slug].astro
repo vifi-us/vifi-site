@@ -99,6 +99,13 @@ const structuredData = [
         ctaVersion={isHomeServicesCategory ? "home-services-category-2026-09-v1" : undefined}
       />
       {isHomeServicesCategory && <HomeServicesDecisionPaths />}
+      {isHomeServiceTrade && (
+        <div class="mx-auto max-w-5xl px-6 pb-10">
+          <p class="panel px-6 py-5 text-muted">
+            Testing before you switch?{" "}<a class="text-link inline" href="/resources/ai-receptionist-test-scorecard/">Use the free seven-call scorecard</a>{" "}to record what worked, what needs a fix, and who owns the next step. No email required.
+          </p>
+        </div>
+      )}
       <PainPoints painPoints={solution.painPoints} />
       {solution.slug === "home-services" && <MissedCallOpportunity />}
       {
