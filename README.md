@@ -71,8 +71,8 @@ Custom domain `vifi.us` is configured via `public/CNAME` and `site` in `astro.co
 
 The active account is **ViFi LLC**, using the **ViFi Website** Pixel
 `7GK9ZEWXgj5HQvsJUGAMZL`. Do not use the retired account named `OLD DELETE`.
-The GitHub Actions repository variable and local build configuration are set
-to this public ID; changing them does not deploy the site.
+The GitHub Actions repository variable retains this public ID. Browser SDK
+loading is independently disabled by default; retaining the ID does not enable it.
 
 The optional browser Pixel is loaded through the shared `Analytics.astro`
 component. Set the GitHub Actions repository variable `OPENAI_ADS_PIXEL_ID` to
@@ -81,20 +81,31 @@ The Pages build maps it to `PUBLIC_OPENAI_ADS_PIXEL_ID`; other build systems
 must supply that public variable themselves. See `.env.example`. A blank ID
 disables the integration. No API key is required or accepted.
 
-The Pixel runs only on `vifi.us` and `www.vifi.us`, excludes `/signal` previews,
+`OPENAI_ADS_BROWSER_ENABLED` is a separate GitHub Actions repository variable,
+mapped to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED`. It defaults to `false` and must
+remain false until automatic advanced matching is confirmed disabled for this
+exact Pixel in Ads Manager or its public Pixel configuration. This release
+keeps it false because that confirmation is not available. After confirmation,
+an operator can set it to `true` and redeploy through the normal Pages workflow.
+The Pixel ID stays unchanged. Setting the switch false and redeploying disables
+SDK loading without removing first-party consent or attribution support.
+
+When enabled, the Pixel runs only on `vifi.us` and `www.vifi.us`, excludes `/signal` previews,
 and requires the visitor's explicit opt-in before loading. It measures page views and
 individual blog article views. Every event sets `opt_out: true` to exclude it
 from future user-level personalization. The compact **Ad measurement** control
 defaults off and shares a versioned `vifi_ads_consent` choice on `.vifi.us` for
-180 days; GPC overrides every grant. Explicit choices use the documented Pixel
-consent command. With consent, a separate `vifi_ads_oppref` cookie carries the
+180 days; GPC overrides every grant. With the SDK enabled, explicit choices use
+the documented Pixel consent command. With consent, a separate `vifi_ads_oppref` cookie carries the
 raw opaque click value to the app for up to 30 days, without adding it to
-PostHog or links. The API prefers its existing `__oppref` cookie when present.
+PostHog or links. This first-party handoff and preference control keep working
+when the browser SDK switch is false, so server conversion reporting can be
+enabled independently. The API prefers its existing `__oppref` cookie when present.
 The control POSTs only a preference to the app's authenticated
 `/api/auth/ad-measurement` endpoint; the app retries unsynchronized choices
 after login. This preference endpoint never creates conversion events.
-Disable automatic advanced matching in Ads Manager for this initial setup;
-the code does not supply customer identifiers. Confirm attribution across
+The code does not supply customer identifiers. The browser SDK must stay off
+while automatic advanced matching remains enabled or unverified. Confirm attribution across
 the marketing and app subdomains with a real test visit before campaign use.
 
 Run `npm run test:ads`, `npm run check`, and `npm run build` to check the setup.

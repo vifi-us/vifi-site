@@ -1,16 +1,17 @@
 ---
 // Public identifier only. The visitor must also explicitly allow measurement.
 const pixelId = (import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID || "").trim();
+const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "true";
 ---
 
-<script is:inline define:vars={{ pixelId }}>
+<script is:inline define:vars={{ pixelId, browserEnabled }}>
   (function () {
     var cookieOptions = "; Domain=.vifi.us; Path=/; SameSite=Lax; Secure";
     var measured = false;
     var deniedInMemory = false;
     var enabled = /^[A-Za-z0-9_-]{1,128}$/.test(pixelId) && /^(www\.)?vifi\.us$/.test(location.hostname) && !/^\/signal(?:\/|$)/.test(location.pathname);
     function sdkConsent(granted) {
-      try { if (window.oaiq) window.oaiq("consent", granted); }
+      try { if (browserEnabled && window.oaiq) window.oaiq("consent", granted); }
       catch { /* SDK errors cannot stop preference changes. */ }
     }
     function rawCookie(name) {
@@ -46,6 +47,9 @@ const pixelId = (import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID || "").trim();
     function measure() {
       if (!enabled || decision() !== "granted") return;
       preserveAttribution();
+      // First-party permission and attribution remain available independently
+      // of the browser SDK and its advertiser-managed matching configuration.
+      if (!browserEnabled) return;
       var safeQuery = (location.search || "").slice(1).split("&").every(function (part) {
         return !part || /^(oppref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(part);
       });

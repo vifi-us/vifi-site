@@ -35,6 +35,7 @@ function browser(overrides = {}) {
   };
   const context = vm.createContext({
     pixelId: "test-pixel",
+    browserEnabled: true,
     location: { hostname: "vifi.us", pathname: "/pricing/", search: "?utm_campaign=spring" },
     navigator: {},
     window: { addEventListener: (event, handler) => events.set(event, handler) },
@@ -97,6 +98,39 @@ test("measurement defaults off and a new explicit choice enables it", () => {
   assert.equal(page.scripts.length, 1);
   assert.deepEqual(page.commands()[0], ["consent", true]);
   assert.ok(page.cookieWrites.some((value) => value.includes("Domain=.vifi.us; Path=/; SameSite=Lax; Secure")));
+});
+
+test("disabled browser SDK still saves consent and raw attribution without loading or measuring", () => {
+  for (const browserEnabled of [false, undefined]) {
+    const page = browser({ browserEnabled, cookie: "", location: {
+      hostname: "vifi.us", pathname: "/pricing/", search: "?oppref=opaque%2Bunchanged==",
+    } });
+    page.run();
+    assert.equal(page.control.hidden, false);
+    assert.equal(page.cookies.has("vifi_ads_oppref"), false);
+    page.click("[data-ads-allow]");
+    assert.equal(page.cookies.get("vifi_ads_consent"), "v1.granted");
+    assert.equal(page.cookies.get("vifi_ads_oppref"), "opaque%2Bunchanged==");
+    assert.equal(JSON.parse(page.fetches.at(-1)[1].headers["X-ViFi-Ads-Context"]).decision, "granted");
+    assert.equal(page.scripts.length, 0);
+    assert.deepEqual(page.commands(), []);
+    page.click("[data-ads-decline]");
+    assert.equal(page.cookies.get("vifi_ads_consent"), "v1.denied");
+    assert.equal(page.cookies.has("vifi_ads_oppref"), false);
+    assert.equal(JSON.parse(page.fetches.at(-1)[1].headers["X-ViFi-Ads-Context"]).decision, "denied");
+    assert.equal(page.scripts.length, 0);
+    assert.deepEqual(page.commands(), []);
+  }
+});
+
+test("remembered permission preserves landing attribution with the browser SDK disabled", () => {
+  const page = browser({ browserEnabled: false, location: {
+    hostname: "vifi.us", pathname: "/pricing/", search: "?oppref=remembered%2Fraw",
+  } });
+  page.run();
+  assert.equal(page.cookies.get("vifi_ads_oppref"), "remembered%2Fraw");
+  assert.equal(page.scripts.length, 0);
+  assert.deepEqual(page.commands(), []);
 });
 
 test("no explicit grant leaves an existing SDK consent denial untouched", () => {

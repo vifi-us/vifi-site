@@ -259,6 +259,10 @@ honors GPC, and opts all events out
 of future user-level personalization. Keep its Pixel ID consistent with the
 application and do not add customer identifiers or automatic advanced matching
 without reviewing the documented data-handling scope.
+`OPENAI_ADS_BROWSER_ENABLED` maps to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED` and
+defaults false. Keep SDK loading off until automatic advanced matching is
+confirmed disabled for this exact Pixel. First-party preference and opaque
+click-cookie capture must continue independently of this browser switch.
 `AdsPreferences.astro` provides the default-off preference control; keep the
 versioned shared consent cookie and ads-only attribution handoff consistent
 with `vifi-platform/web/src/lib/ads-consent.ts`. Denial clears ad attribution
