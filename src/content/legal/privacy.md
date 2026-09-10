@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "How ViFi collects, uses, shares, and retains personal information for its website and communications platform."
-effectiveDate: 2026-08-21
+effectiveDate: 2026-09-10
 ---
 
 ViFi LLC ("ViFi," "we," "our," or "us") operates `vifi.us` and provides
@@ -147,6 +147,18 @@ signals in our Google Analytics configuration.
 We use analytics information to measure interest in ViFi, improve our website
 and product, and attribute signups to marketing campaigns. We do not use
 analytics data for third-party advertising, and we do not sell it.
+
+To keep a campaign associated with a visit as you browse website pages, we
+store a limited set of campaign parameters and advertising-link identifiers
+in your browser tab's session storage. This record contains only accepted,
+length-limited attribution values and a timestamp, not the full page URL,
+referrer, form contents, or an added person identifier. A saved campaign is
+used for at most 30 minutes after it is first observed; browsing additional
+pages does not extend that period. A new campaign replaces the saved one.
+We pass these values to the ViFi application's signup or login link to measure
+the website-to-application journey. Expired records are discarded when checked.
+If you enable Global Privacy Control, we attempt to remove this record and
+do not create or use it.
 
 Our website honors the Global Privacy Control signal: if your browser sends
 it, we do not load analytics for your visit. To opt out of analytics another

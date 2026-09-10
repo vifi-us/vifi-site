@@ -27,6 +27,12 @@
 ---
 
 <script is:inline>
+  var attributionStorageKey = "vifi_marketing_touch_v1";
+  // Clear only our own short-lived attribution record when privacy is enabled.
+  // Do not inspect the record, start analytics, or affect unrelated storage.
+  if (/^(www\.)?vifi\.us$/.test(location.hostname) && navigator.globalPrivacyControl) {
+    try { window.sessionStorage.removeItem(attributionStorageKey); } catch (_) {}
+  }
   if (
     /^(www\.)?vifi\.us$/.test(location.hostname) &&
     !navigator.globalPrivacyControl
@@ -79,7 +85,9 @@
     // Preserve the campaign touch across the vifi.us -> app.vifi.us origin
     // boundary. posthog-js session properties are origin-scoped, so the
     // shared identity cookie alone does not retain latest-touch UTMs.
-    // Forward only known attribution keys with strict, PII-resistant bounds.
+    // Retain one sanitized touch across internal pages in this tab for at most
+    // 30 minutes. Internal navigation never extends its lifetime. Do not store
+    // raw URLs, referrers, form values, or person identifiers.
     var campaignKeys = [
       "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref",
     ];
@@ -91,34 +99,98 @@
       return /^[0-9+(). _:/-]+$/.test(value) && value.replace(/\D/g, "").length >= 10;
     };
     var safeCampaignValue = function (value) {
-      return value.length <= 128 &&
+      return typeof value === "string" && value.length <= 128 &&
         /^[A-Za-z0-9][A-Za-z0-9 ._~+:/-]*$/.test(value) &&
         !value.includes("@") &&
         !/\d{8,}/.test(value) &&
         !phoneLike(value);
     };
     var safeClickId = function (value) {
-      return value.length <= 256 &&
+      return typeof value === "string" && value.length <= 256 &&
         /^[A-Za-z0-9][A-Za-z0-9._~-]*$/.test(value) &&
         !phoneLike(value);
     };
-    var decorateAppDestination = function (destination) {
-      var source = new URL(location.href).searchParams;
-      campaignKeys.forEach(function (key) {
-        var values = source.getAll(key);
-        if (
-          values.length === 1 &&
-          !destination.searchParams.has(key) &&
-          safeCampaignValue(values[0])
-        ) destination.searchParams.set(key, values[0]);
+    var attributionKeys = campaignKeys.concat(clickIdKeys);
+    var touchLifetime = 30 * 60 * 1000;
+    var isSafeAttribution = function (key, value) {
+      return campaignKeys.includes(key) ? safeCampaignValue(value) :
+        clickIdKeys.includes(key) && safeClickId(value);
+    };
+    var clearStoredTouch = function () {
+      try { window.sessionStorage.removeItem(attributionStorageKey); } catch (_) {}
+    };
+    var readStoredTouch = function () {
+      try {
+        var raw = window.sessionStorage.getItem(attributionStorageKey);
+        if (!raw) return null;
+        var touch = raw.length <= 8192 ? JSON.parse(raw) : null;
+        if (!touch || touch.version !== 1 ||
+          Object.keys(touch).sort().join(",") !== "observedAt,values,version" ||
+          !Number.isFinite(touch.observedAt) || touch.observedAt < 0 ||
+          touch.observedAt > Date.now() || Date.now() - touch.observedAt >= touchLifetime ||
+          !touch.values || typeof touch.values !== "object" || Array.isArray(touch.values) ||
+          !Object.keys(touch.values).length ||
+          !Object.keys(touch.values).every(function (key) {
+            return isSafeAttribution(key, touch.values[key]);
+          })) {
+          clearStoredTouch();
+          return null;
+        }
+        return touch;
+      } catch (_) {
+        clearStoredTouch();
+        return null;
+      }
+    };
+    var currentTouch = function () {
+      var params = new URL(location.href).searchParams;
+      var values = {};
+      var provided = false;
+      attributionKeys.forEach(function (key) {
+        var candidates = params.getAll(key);
+        if (candidates.length) provided = true;
+        if (candidates.length === 1 && isSafeAttribution(key, candidates[0])) {
+          values[key] = candidates[0];
+        }
       });
-      clickIdKeys.forEach(function (key) {
-        var values = source.getAll(key);
-        if (
-          values.length === 1 &&
-          !destination.searchParams.has(key) &&
-          safeClickId(values[0])
-        ) destination.searchParams.set(key, values[0]);
+      return { provided: provided, values: values };
+    };
+    var initialTouch = currentTouch();
+    var previousTouch = readStoredTouch();
+    if (initialTouch.provided) {
+      if (!Object.keys(initialTouch.values).length) {
+        // Invalid campaign input must not resurrect an unrelated prior touch.
+        clearStoredTouch();
+      } else {
+        var sameTouch = previousTouch &&
+          Object.keys(initialTouch.values).length === Object.keys(previousTouch.values).length &&
+          Object.keys(initialTouch.values).every(function (key) {
+            return initialTouch.values[key] === previousTouch.values[key];
+          });
+        try {
+          // A single replacement prevents hybrid campaigns. Reloading the same
+          // tagged page does not restart the original 30-minute lifetime.
+          window.sessionStorage.setItem(attributionStorageKey, JSON.stringify({
+            version: 1,
+            observedAt: sameTouch ? previousTouch.observedAt : Date.now(),
+            values: initialTouch.values,
+          }));
+        } catch (_) {
+          clearStoredTouch();
+        }
+      }
+    }
+    var decorateAppDestination = function (destination) {
+      // An explicitly attributed destination is one whole touch. Never mix it
+      // with either a current-URL or a stored source/campaign/click-ID bundle.
+      if (attributionKeys.some(function (key) { return destination.searchParams.has(key); })) {
+        return destination;
+      }
+      var current = currentTouch();
+      var stored = current.provided ? null : readStoredTouch();
+      var values = current.provided ? current.values : stored ? stored.values : {};
+      Object.keys(values).forEach(function (key) {
+        destination.searchParams.set(key, values[key]);
       });
       return destination;
     };
@@ -130,12 +202,24 @@
     // once the SDK has loaded; clicks during the brief array.js load window
     // only reach the snippet's in-memory stub and are lost with the page —
     // the funnel still catches those visitors via the /register pageview.
+    var decoratedAppLinks = new WeakMap();
     var captureCtaClick = function (event) {
       if (event.type === "auxclick" && event.button !== 1) return;
       var target = event.target instanceof Element ? event.target : null;
       var anchor = target && target.closest('a[href]');
-      if (!anchor || !window.posthog) return;
-      var destination = new URL(anchor.getAttribute("href"), location.href);
+      if (!anchor) return;
+      var rememberedLink = decoratedAppLinks.get(anchor);
+      var linkHref = anchor.getAttribute("href");
+      var originalHref = rememberedLink && linkHref === rememberedLink.decoratedHref
+        ? rememberedLink.originalHref : linkHref;
+      if (navigator.globalPrivacyControl) {
+        clearStoredTouch();
+        if (originalHref !== linkHref) anchor.href = originalHref;
+        decoratedAppLinks.delete(anchor);
+        return;
+      }
+      if (!window.posthog) return;
+      var destination = new URL(originalHref, location.href);
       // Only authentication destinations contribute to the conversion funnel.
       // Prefix matching would count /register-help and unrelated app links.
       if (destination.origin !== "https://app.vifi.us") return;
@@ -144,7 +228,10 @@
       destination = decorateAppDestination(destination);
       // The browser resolves default navigation after the event dispatch, so
       // updating the anchor here also works for Ctrl/Cmd-click and auxclick.
+      // Re-evaluate our own prior decoration on repeated/middle clicks so an
+      // expired touch is not mistaken for an explicitly attributed link.
       anchor.href = destination.href;
+      decoratedAppLinks.set(anchor, { originalHref: originalHref, decoratedHref: anchor.href });
       var eventName = path === "/register"
         ? "marketing_cta_clicked"
         : "marketing_login_clicked";

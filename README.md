@@ -30,7 +30,7 @@ src/
     site/          Global components (Header, Footer, Analytics, VoiceWidget)
     home/          The scroll-driven homepage story (HomeStory)
     blocks/        Page section components (PageHero, PricingCards, CTA)
-  content/         Markdown collections (blog, faqs, legal)
+  content/         Markdown collections (blog, faqs, legal, resources)
   styles/          global.css (Tailwind tokens, self-hosted fonts) and
                    design.css (the shared design system: buttons, cards,
                    blob outlines, nav, footer, responsive modes)
@@ -70,6 +70,23 @@ Custom domain `vifi.us` is configured via `public/CNAME` and `site` in `astro.co
 ## Guidelines
 
 See `AGENTS.md` for architecture rules, content safety guidelines, and contributor instructions.
+
+## Acquisition resources and measurement
+
+The ungated `/resources/ai-receptionist-test-scorecard/` worksheet uses the
+validated `resources` content collection, includes a print layout, and links to
+an editable CSV in `public/resources/`. Keep its seven scenarios and the CSV in
+sync when revising the worksheet. The buyer guide and home-service landing pages
+link to it; its signup CTA has a distinct placement/version for measurement.
+
+Marketing attribution retains one sanitized campaign bundle in tab-scoped
+`sessionStorage` for up to 30 minutes so internal browsing does not lose the
+campaign before signup. It does not decorate internal links or manufacture new
+campaigns. Explicit destination attribution wins as a whole bundle; GPC prevents
+use of storage and tracking. Storage failure must never block navigation.
+The analytics regression tests cover expiry, campaign replacement, input bounds,
+privacy, middle-clicks, and the website-to-app handoff. Test traffic is not
+customer acquisition.
 
 ## Dependency maintenance (September 2026)
 
