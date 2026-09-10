@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import AdsPreferences from "../components/site/AdsPreferences.astro";
 import Analytics from "../components/site/Analytics.astro";
 import VoiceWidget from "../components/site/VoiceWidget.astro";
 import { defaultSocialImage, socialLinks } from "../data/site";
@@ -183,6 +184,7 @@ const jsonLd = [
     </div>
     <!-- ViFi's own voice widget (see VoiceWidget.astro). Last in <body>
          so the page content never waits on it. -->
+    <AdsPreferences />
     <VoiceWidget />
   </body>
 </html>

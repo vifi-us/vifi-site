@@ -144,9 +144,34 @@ parameters, approximate location derived from IP address, and device and
 browser information. We disable Google Signals and advertising-personalization
 signals in our Google Analytics configuration.
 
+OpenAI Ads measurement stays off until you select **Allow** in the **Ad
+measurement** control. With your permission, its browser Pixel measures page
+views, article views, and checkout starts, and our server reports confirmed
+signups, trial starts, first successful calls, subscriptions, and payments to attribute them to our ads
+in ChatGPT. Measurement events are opted out of future user-level
+personalization. We do not explicitly send names, email addresses, phone numbers,
+or customer call content through this integration.
+
+Your measurement choice is stored for up to 180 days in a cookie shared by
+`vifi.us` and `app.vifi.us`. With permission, a separate shared cookie keeps an
+opaque ad-click identifier for up to 30 days so a marketing visit can be linked
+to an application conversion. The Pixel also uses its own first-party
+attribution cookie and sends browser request information to OpenAI. Our server
+keeps the permitted attribution context encrypted for up to 30 days.
+
+Select **Decline** in the same control to stop future measurement and remove
+the shared click cookie. A signed-in app session synchronizes this choice to
+stop pending server events. If you are signed out or offline, sign in to the
+app when connected to synchronize it. The cookie controls measurement in this
+browser. Server measurement permission is saved for your account for up to 30
+days; a different browser starting with its Pixel off does not revoke that
+saved permission. Declining while signed in updates account permission, while
+other browsers' Pixel choices must be updated there. Global Privacy Control
+keeps browser measurement off and synchronizes denial when you sign in. Events
+already sent cannot be recalled by this control.
+
 We use analytics information to measure interest in ViFi, improve our website
-and product, and attribute signups to marketing campaigns. We do not use
-analytics data for third-party advertising, and we do not sell it.
+and product, and measure our marketing campaigns. We do not sell analytics data.
 
 To keep a campaign associated with a visit as you browse website pages, we
 store a limited set of campaign parameters and advertising-link identifiers

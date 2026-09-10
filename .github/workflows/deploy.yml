@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: 26.8.1
           build-cmd: npm run check && npm run build && npm run test:growth
+        env:
+          PUBLIC_OPENAI_ADS_PIXEL_ID: ${{ vars.OPENAI_ADS_PIXEL_ID }}
 
   deploy:
     if: github.event_name != 'pull_request'
