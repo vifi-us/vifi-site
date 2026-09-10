@@ -252,6 +252,22 @@ production. The existing GA4 stream supplies aggregate acquisition reporting and
 explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
 
+OpenAI Ads measurement was explicitly requested and is integrated through
+`Analytics.astro` and `OpenAIAds.astro`. It is disabled without the public
+`PUBLIC_OPENAI_ADS_PIXEL_ID` build variable or an explicit visitor opt-in,
+honors GPC, and opts all events out
+of future user-level personalization. Keep its Pixel ID consistent with the
+application and do not add customer identifiers or automatic advanced matching
+without reviewing the documented data-handling scope.
+`OPENAI_ADS_BROWSER_ENABLED` maps to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED` and
+defaults false. Keep SDK loading off until automatic advanced matching is
+confirmed disabled for this exact Pixel. First-party preference and opaque
+click-cookie capture must continue independently of this browser switch.
+`AdsPreferences.astro` provides the default-off preference control; keep the
+versioned shared consent cookie and ads-only attribution handoff consistent
+with `vifi-platform/web/src/lib/ads-consent.ts`. Denial clears ad attribution
+and synchronizes through the authenticated app preference endpoint.
+
 Voice widget: ViFi's own website widget (the same embed customers install,
 pointed at the ViFi workspace) is loaded site-wide by
 `src/components/site/VoiceWidget.astro` (explicitly requested). It is the one

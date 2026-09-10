@@ -1,0 +1,143 @@
+---
+// Public identifier only. The visitor must also explicitly allow measurement.
+const pixelId = (import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID || "").trim();
+const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "true";
+---
+
+<script is:inline define:vars={{ pixelId, browserEnabled }}>
+  (function () {
+    var cookieOptions = "; Domain=.vifi.us; Path=/; SameSite=Lax; Secure";
+    var measured = false;
+    var deniedInMemory = false;
+    var enabled = /^[A-Za-z0-9_-]{1,128}$/.test(pixelId) && /^(www\.)?vifi\.us$/.test(location.hostname) && !/^\/signal(?:\/|$)/.test(location.pathname);
+    function sdkConsent(granted) {
+      try { if (browserEnabled && window.oaiq) window.oaiq("consent", granted); }
+      catch { /* SDK errors cannot stop preference changes. */ }
+    }
+    function rawCookie(name) {
+      var values = document.cookie.split(";").map(function (part) { return part.trimStart(); })
+        .filter(function (part) { return part.indexOf(name + "=") === 0; })
+        .map(function (part) { return part.slice(name.length + 1); });
+      return values.length === 1 ? values[0] : "";
+    }
+    function decision() {
+      if (navigator.globalPrivacyControl || deniedInMemory) return "denied";
+      var stored = rawCookie("vifi_ads_consent");
+      return stored === "v1.granted" ? "granted" : stored === "v1.denied" ? "denied" : "";
+    }
+    function clearAttribution() {
+      ["vifi_ads_oppref", "__oppref"].forEach(function (name) {
+        try {
+          document.cookie = name + "=; Max-Age=0" + cookieOptions;
+          document.cookie = name + "=; Max-Age=0; Path=/; SameSite=Lax; Secure";
+        } catch { /* Consent denial still applies if cookie removal fails. */ }
+      });
+    }
+    function preserveAttribution() {
+      if (decision() !== "granted") return;
+      // Raw opaque handoff only: never decode this into analytics properties.
+      var values = (location.search || "").slice(1).split("&")
+        .filter(function (part) { return part.indexOf("oppref=") === 0; })
+        .map(function (part) { return part.slice(7); });
+      var raw = values.length === 1 ? values[0] : "";
+      if (raw.length && raw.length <= 2048 && /^[\x21-\x7e]+$/.test(raw) && !/[",;\\]/.test(raw)) {
+        document.cookie = "vifi_ads_oppref=" + raw + "; Max-Age=2592000" + cookieOptions;
+      }
+    }
+    function measure() {
+      if (!enabled || decision() !== "granted") return;
+      preserveAttribution();
+      // First-party permission and attribution remain available independently
+      // of the browser SDK and its advertiser-managed matching configuration.
+      if (!browserEnabled) return;
+      var safeQuery = (location.search || "").slice(1).split("&").every(function (part) {
+        return !part || /^(oppref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(part);
+      });
+      if (measured || location.hash || !safeQuery) return;
+      if (!window.__VIFI_OPENAI_ADS_INITIALIZED__) {
+        if (!window.oaiq) {
+          var q = function () { q.q.push(arguments); };
+          q.q = [];
+          window.oaiq = q;
+          var script = document.createElement("script");
+          script.async = true;
+          script.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
+          try { document.head.appendChild(script); }
+          catch (error) { delete window.oaiq; throw error; }
+        }
+        // Only our versioned, explicit visitor grant can supersede SDK denial.
+        window.oaiq("consent", true);
+        window.oaiq("init", { pixelId: pixelId });
+        window.__VIFI_OPENAI_ADS_INITIALIZED__ = true;
+      }
+      window.oaiq("measure", "page_viewed", {
+        type: "contents", contents: [{ id: location.pathname, content_type: "page" }],
+      }, { opt_out: true });
+      if (/^\/blog\/[^/]+\/?$/.test(location.pathname)) {
+        window.oaiq("measure", "contents_viewed", {
+          type: "contents", contents: [{ id: location.pathname, content_type: "article" }],
+        }, { opt_out: true });
+      }
+      measured = true;
+    }
+    function update() {
+      try {
+        var control = document.getElementById("vifi-ad-preferences");
+        if (!control || !enabled) return;
+        control.hidden = false;
+        var choice = decision();
+        control.querySelector("[data-ads-status]").textContent = choice === "granted" ? "On" : "Off";
+        control.querySelector("[data-ads-choices]").hidden = Boolean(navigator.globalPrivacyControl);
+        control.querySelector("[data-ads-gpc]").hidden = !navigator.globalPrivacyControl;
+        if (!choice) control.open = true;
+        if (choice === "denied") {
+          clearAttribution();
+          sdkConsent(false);
+        }
+      } catch { /* Preferences must not affect navigation. */ }
+    }
+    function choose(requested) {
+      try {
+        var chosen = navigator.globalPrivacyControl ? "denied" : requested;
+        if (chosen === "denied") deniedInMemory = true;
+        try {
+          document.cookie = "vifi_ads_consent=v1." + chosen + "; Max-Age=15552000" + cookieOptions;
+          if (chosen === "granted" && rawCookie("vifi_ads_consent") === "v1.granted") deniedInMemory = false;
+        } catch { /* A denied choice still applies to this document. */ }
+        chosen = decision();
+        if (chosen === "denied") {
+          clearAttribution();
+          sdkConsent(false);
+        } else if (chosen === "granted") {
+          if (window.__VIFI_OPENAI_ADS_INITIALIZED__) sdkConsent(true);
+          try { measure(); } catch {}
+        }
+        update();
+        document.getElementById("vifi-ad-preferences").open = false;
+        // Permission only, never an event. The app retries after login/offline.
+        if (chosen) fetch("https://app.vifi.us/api/auth/ad-measurement", {
+          method: "POST", credentials: "include",
+          headers: { "X-ViFi-Ads-Context": JSON.stringify({ v: 1, decision: chosen, source_url: "https://app.vifi.us/privacy" }) },
+        }).catch(function () {});
+      } catch { /* A denied cookie write leaves measurement off. */ }
+    }
+    function bindPreferences() {
+      try {
+        var control = document.getElementById("vifi-ad-preferences");
+        if (!control || !enabled) return;
+        control.querySelector("[data-ads-allow]").addEventListener("click", function () { choose("granted"); });
+        control.querySelector("[data-ads-decline]").addEventListener("click", function () { choose("denied"); });
+        update();
+      } catch { /* Keep the rest of the page functional. */ }
+    }
+    try {
+      if (!enabled || window.__VIFI_ADS_PREFERENCES_BOUND__) return;
+      window.__VIFI_ADS_PREFERENCES_BOUND__ = true;
+      if (decision() === "denied") clearAttribution();
+      try { measure(); } catch {}
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPreferences, { once: true });
+      else bindPreferences();
+      window.addEventListener("focus", function () { update(); try { measure(); } catch {} });
+    } catch { /* Measurement must never interrupt the page or other analytics. */ }
+  })();
+</script>

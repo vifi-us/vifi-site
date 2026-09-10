@@ -1,0 +1,23 @@
+<details id="vifi-ad-preferences" hidden class="ads-preferences">
+  <summary>Ad measurement · <span data-ads-status>Off</span></summary>
+  <p>Allow ViFi to measure ChatGPT ad visits, signups, trials, and purchases. Your choice applies on vifi.us and app.vifi.us.</p>
+  <p data-ads-gpc hidden role="status">Your browser&apos;s privacy signal keeps ad measurement off.</p>
+  <div data-ads-choices class="ads-choices">
+    <button type="button" data-ads-allow>Allow</button>
+    <button type="button" data-ads-decline>Decline</button>
+    <a href="/legal/privacy/#cookies-and-analytics">Privacy</a>
+  </div>
+</details>
+
+<style>
+  .ads-preferences { position: fixed; bottom: .75rem; left: .75rem; z-index: 60; max-width: min(22rem, calc(100vw - 1.5rem)); padding: .75rem; border: 1px solid var(--color-border); border-radius: .5rem; background: var(--color-surface); color: var(--color-text); box-shadow: 0 2px 8px var(--color-border); font-size: .875rem; line-height: 1.5; }
+  .ads-preferences summary { cursor: pointer; font-weight: 600; }
+  .ads-preferences p { margin-top: .5rem; }
+  .ads-choices { display: flex; gap: .5rem; align-items: center; margin-top: .75rem; }
+  .ads-choices[hidden], .ads-preferences[hidden] { display: none; }
+  .ads-choices button { border: 1px solid currentColor; border-radius: .25rem; padding: .375rem .75rem; cursor: pointer; }
+  .ads-choices a { text-decoration: underline; text-underline-offset: .125rem; }
+  .ads-preferences :focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  /* Keep the preference controls above the existing voice launcher on phones. */
+  @media (max-width: 40rem) { .ads-preferences { bottom: 5rem; } }
+</style>

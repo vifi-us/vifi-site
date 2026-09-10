@@ -10,6 +10,7 @@
     "astro": "astro",
     "check": "astro check && tsc --noEmit",
     "lint": "npm run check",
+    "test:ads": "node --test scripts/openai-ads.test.mjs",
     "test:growth": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
