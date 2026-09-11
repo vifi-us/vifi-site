@@ -253,20 +253,31 @@ explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
 
 OpenAI Ads measurement was explicitly requested and is integrated through
-`Analytics.astro` and `OpenAIAds.astro`. It is disabled without the public
-`PUBLIC_OPENAI_ADS_PIXEL_ID` build variable or an explicit visitor opt-in,
-honors GPC, and opts all events out
-of future user-level personalization. Keep its Pixel ID consistent with the
-application and do not add customer identifiers or automatic advanced matching
-without reviewing the documented data-handling scope.
+`Analytics.astro` and `OpenAIAds.astro`. A public Pixel ID and a successful
+version 2 policy lookup are required before loading. The app policy endpoint
+determines eligible U.S. defaults; unknown/non-U.S. visits need an explicit
+choice. GPC, saved account refusals, and v1/v2 cookie refusals always win.
+Invalid/duplicate consent cookies fail closed. A regional default stays in
+memory, never in a cookie claiming explicit consent. New explicit choices use
+`v2.granted`/`v2.denied`; old `v1.granted` permits first-party attribution but
+does not authorize the newly disclosed public-site automatic contact matching.
+All events retain `opt_out:true`; keep the Pixel ID consistent with the app.
+Automatic advanced matching is authorized only for the public marketing site
+under the new disclosure. Never load the SDK in private application screens or
+send caller data, SMS, recordings, transcripts or account contact lists.
 `OPENAI_ADS_BROWSER_ENABLED` maps to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED` and
-defaults false. Keep SDK loading off until automatic advanced matching is
-confirmed disabled for this exact Pixel. First-party preference and opaque
+defaults false; activation is a separate coordinated deployment action.
+First-party preference and opaque
 click-cookie capture must continue independently of this browser switch.
-`AdsPreferences.astro` provides the default-off preference control; keep the
-versioned shared consent cookie and ads-only attribution handoff consistent
-with `vifi-platform/web/src/lib/ads-consent.ts`. Denial clears ad attribution
-and synchronizes through the authenticated app preference endpoint.
+`AdsPreferences.astro` appears inline only on the Privacy page, linked from the
+existing footer. Do not add a floating widget, overlay or automatic popup.
+Measurement/refusal enforcement cannot depend on the control being present.
+Keep the versioned shared cookie and header contract consistent with
+`vifi-platform/web/src/lib/ads-consent.ts`. Denial clears attribution and
+synchronizes through the authenticated preference endpoint. Only a fresh
+Allow sends `explicit_action:true`; automatic synchronization must never
+clear an account refusal. A policy readback is required after that fresh action
+before lifting a previously observed account refusal.
 
 Voice widget: ViFi's own website widget (the same embed customers install,
 pointed at the ViFi workspace) is loaded site-wide by
