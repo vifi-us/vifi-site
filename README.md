@@ -82,31 +82,54 @@ must supply that public variable themselves. See `.env.example`. A blank ID
 disables the integration. No API key is required or accepted.
 
 `OPENAI_ADS_BROWSER_ENABLED` is a separate GitHub Actions repository variable,
-mapped to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED`. It defaults to `false` and must
-remain false until automatic advanced matching is confirmed disabled for this
-exact Pixel in Ads Manager or its public Pixel configuration. This release
-keeps it false because that confirmation is not available. After confirmation,
-an operator can set it to `true` and redeploy through the normal Pages workflow.
-The Pixel ID stays unchanged. Setting the switch false and redeploying disables
-SDK loading without removing first-party consent or attribution support.
+mapped to `PUBLIC_OPENAI_ADS_BROWSER_ENABLED`. It defaults to `false`; this
+change does not activate it. Set it to `true` and redeploy through the normal
+Pages workflow only as part of the coordinated browser activation. Turning it
+off and redeploying preserves first-party choices and attribution support.
 
-When enabled, the Pixel runs only on `vifi.us` and `www.vifi.us`, excludes `/signal` previews,
-and requires the visitor's explicit opt-in before loading. It measures page views and
-individual blog article views. Every event sets `opt_out: true` to exclude it
-from future user-level personalization. The compact **Ad measurement** control
-defaults off and shares a versioned `vifi_ads_consent` choice on `.vifi.us` for
-180 days; GPC overrides every grant. With the SDK enabled, explicit choices use
-the documented Pixel consent command. With consent, a separate `vifi_ads_oppref` cookie carries the
-raw opaque click value to the app for up to 30 days, without adding it to
-PostHog or links. This first-party handoff and preference control keep working
-when the browser SDK switch is false, so server conversion reporting can be
-enabled independently. The API prefers its existing `__oppref` cookie when present.
-The control POSTs only a preference to the app's authenticated
-`/api/auth/ad-measurement` endpoint; the app retries unsynchronized choices
-after login. This preference endpoint never creates conversion events.
-The code does not supply customer identifiers. The browser SDK must stay off
-while automatic advanced matching remains enabled or unverified. Confirm attribution across
-the marketing and app subdomains with a real test visit before campaign use.
+Before any Pixel load, the site calls the app's read-only
+`GET /api/auth/ad-measurement-policy` with credentials, no caching and no referrer.
+Its version 2 response contains `default_allowed` and `account_opt_out` booleans.
+The server determines regional eligibility from the trusted edge, not browser
+claims. Eligible U.S. visits may measure by default; other/unknown locations,
+failed or malformed policy responses stay off without an explicit choice.
+A failed policy lookup blocks the SDK even for remembered grants. GPC, account
+refusals, prior shared-cookie refusals, and invalid/duplicate choice cookies
+override a regional default. Policy is refreshed when the tab regains focus.
+
+Choices are inline on the Privacy page, reached through the existing footer
+link. No popup, overlay or floating ad widget appears on any page. Policy and
+measurement work independently of the presence of those controls. A fresh
+**Allow** or **Turn off** writes `v2.granted` or `v2.denied` to the shared
+`vifi_ads_consent` cookie for 180 days; a regional default stays only in memory
+and is never recorded as explicit consent. Old `v1.denied` remains binding.
+Old `v1.granted` retains its narrower first-party measurement permission, but
+does not enable the public-site Pixel's contact matching until a fresh Allow.
+
+When enabled and permitted, the Pixel runs only on `vifi.us` and `www.vifi.us`,
+excludes `/signal` previews and unsafe query/fragment state, and measures page
+views and individual blog articles. Automatic advanced matching may normalize
+and hash supported contact details available in public-site form fields. The
+privacy disclosure covers that behavior. Every event retains `opt_out: true`;
+audience retargeting or future user-level personalization is not enabled.
+The SDK is not loaded in the authenticated application. Backend conversions
+are handled separately without explicit customer identity fields, caller/SMS
+data or private dashboard content.
+
+Permitted visits preserve raw opaque `oppref` in `vifi_ads_oppref` for up to 30
+days without copying it into PostHog, URLs or preference/event payloads. Refusal
+clears attribution and calls SDK consent false. The first-party handoff works
+while the browser switch is off. The API prefers `__oppref` when present.
+Permission POSTs to `/api/auth/ad-measurement` use header version 2 and distinguish
+`regional_default` from `explicit`. Only a fresh Allow includes
+`explicit_action:true`; remembered/default permissions cannot clear account
+refusal. After an account refusal, SDK activation requires a successful fresh
+Allow POST and a policy readback confirming the refusal is cleared. Anonymous
+401s or offline failures do not claim account synchronization; the local cookie
+still records the choice. POSTs are serialized to preserve choice ordering.
+The app restricts cross-origin access to these two endpoints. Neither endpoint
+creates a conversion event. Confirm the complete attribution flow before
+campaign use; these local checks never send live conversions.
 
 Run `npm run test:ads`, `npm run check`, and `npm run build` to check the setup.
 Local tests stub the SDK and do not send live conversions. A local preview is

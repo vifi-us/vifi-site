@@ -144,34 +144,55 @@ parameters, approximate location derived from IP address, and device and
 browser information. We disable Google Signals and advertising-personalization
 signals in our Google Analytics configuration.
 
-OpenAI Ads measurement stays off until you select **Allow** in the **Ad
-measurement** control. With your permission, its browser Pixel measures page
-views, article views, and checkout starts, and our server reports confirmed
-signups, trial starts, first successful calls, subscriptions, and payments to attribute them to our ads
-in ChatGPT. Measurement events are opted out of future user-level
-personalization. We do not explicitly send names, email addresses, phone numbers,
-or customer call content through this integration.
+We use OpenAI Ads to understand which ChatGPT ads lead to visits, signups,
+trial starts, first successful calls, subscriptions and first successful
+payments. Our public website's Pixel measures page and article views; our
+server reports application conversions, including checkout starts. Events
+are marked to opt out of future user-level personalization. This integration
+does not enable audience retargeting.
 
-Your measurement choice is stored for up to 180 days in a cookie shared by
-`vifi.us` and `app.vifi.us`. With permission, a separate shared cookie keeps an
-opaque ad-click identifier for up to 30 days so a marketing visit can be linked
-to an application conversion. The Pixel also uses its own first-party
-attribution cookie and sends browser request information to OpenAI. Our server
-keeps the permitted attribution context encrypted for up to 30 days.
+For eligible U.S. visits, ad measurement may be on by default. Elsewhere, or
+when we cannot determine eligibility, it stays off until you select **Allow**
+in [Ad measurement choices](#ad-measurement) on this page. We use our network
+provider's approximate country information and, when you are signed in, your
+saved account refusal to determine the default. This policy lookup does not
+send an ad event. A regional default is not saved as an explicit consent choice.
+Global Privacy Control and your prior refusals override the default.
 
-Select **Decline** in the same control to stop future measurement and remove
-the shared click cookie. A signed-in app session synchronizes this choice to
-stop pending server events. If you are signed out or offline, sign in to the
-app when connected to synchronize it. The cookie controls measurement in this
-browser. Server measurement permission is saved for your account for up to 30
-days; a different browser starting with its Pixel off does not revoke that
-saved permission. Declining while signed in updates account permission, while
-other browsers' Pixel choices must be updated there. Global Privacy Control
-keeps browser measurement off and synchronizes denial when you sign in. Events
+When the public-site Pixel is enabled and permitted, OpenAI receives page and
+browser request information and may use automatic advanced matching. This can
+normalize and hash supported contact details, such as email addresses and
+phone numbers available in public website forms, to match activity to ad
+interactions. Hashing does not make those details anonymous. The Pixel is not
+loaded in private application screens. Our server does not explicitly add
+names, email addresses or phone numbers to conversion events. We do not send
+customer call content, recordings, transcripts, SMS messages, private dashboard
+content or account contact lists through this advertising integration.
+
+Your explicit choice is stored for up to 180 days in a cookie shared by
+`vifi.us` and `app.vifi.us`. An earlier measurement-only Allow retains its
+narrower scope; select Allow again to include public-site contact matching.
+When measurement is permitted, a separate shared cookie keeps an opaque
+ad-click identifier for up to 30 days to link a marketing visit with an app
+conversion. The Pixel also uses a first-party attribution cookie. Our server
+keeps permitted attribution context encrypted for up to 30 days.
+
+Select **Turn off** in [Ad measurement choices](#ad-measurement) to stop future
+measurement and remove the shared click cookie. These choices are also
+available through the Privacy link in the website footer. A signed-in session
+synchronizes a refusal to stop pending server events. If you are signed out
+or offline, sign in to the app when connected to synchronize your choice.
+Account refusals are remembered separately from expiring attribution and are
+not cleared by a new visit, a regional default or an older Allow cookie.
+Other browsers check a saved refusal when a signed-in session is available;
+signing out or starting with measurement off does not itself revoke saved
+account permission. Global Privacy Control also synchronizes denial when you
+sign in. Only a new explicit Allow can reverse an account refusal. Events
 already sent cannot be recalled by this control.
 
 We use analytics information to measure interest in ViFi, improve our website
-and product, and measure our marketing campaigns. We do not sell analytics data.
+and product, and measure our marketing campaigns. OpenAI receives the
+advertising information described above subject to these privacy choices.
 
 To keep a campaign associated with a visit as you browse website pages, we
 store a limited set of campaign parameters and advertising-link identifiers

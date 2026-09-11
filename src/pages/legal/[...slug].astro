@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/site/Header.astro";
 import Footer from "../../components/site/Footer.astro";
+import AdsPreferences from "../../components/site/AdsPreferences.astro";
 
 export async function getStaticPaths() {
   const pages = await getCollection("legal");
@@ -37,6 +38,7 @@ const isoDate = page.data.effectiveDate.toISOString().slice(0, 10);
           <p class="mt-4 font-mono text-[13px] tracking-[0.02em] text-muted-2">
             Effective: <time datetime={isoDate}>{formattedDate}</time>
           </p>
+          {page.id === "privacy" && <AdsPreferences />}
 
           <!-- Only the wrapper is styled; the markdown renders as-is, with no JavaScript needed. -->
           <div

@@ -1,5 +1,5 @@
 ---
-// Public identifier only. The visitor must also explicitly allow measurement.
+// Public identifier only. The API decides regional defaults; refusals win.
 const pixelId = (import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID || "").trim();
 const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "true";
 ---
@@ -9,21 +9,40 @@ const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "tr
     var cookieOptions = "; Domain=.vifi.us; Path=/; SameSite=Lax; Secure";
     var measured = false;
     var deniedInMemory = false;
+    var observedAccountRefusal = false;
+    var policy = null;
+    var policyRequest = 0;
+    var choiceVersion = 0;
+    var preferenceSync = Promise.resolve();
+    var lastSynced = "";
     var enabled = /^[A-Za-z0-9_-]{1,128}$/.test(pixelId) && /^(www\.)?vifi\.us$/.test(location.hostname) && !/^\/signal(?:\/|$)/.test(location.pathname);
     function sdkConsent(granted) {
       try { if (browserEnabled && window.oaiq) window.oaiq("consent", granted); }
       catch { /* SDK errors cannot stop preference changes. */ }
     }
-    function rawCookie(name) {
-      var values = document.cookie.split(";").map(function (part) { return part.trimStart(); })
+    function cookieValues(name) {
+      return document.cookie.split(";").map(function (part) { return part.trimStart(); })
         .filter(function (part) { return part.indexOf(name + "=") === 0; })
         .map(function (part) { return part.slice(name.length + 1); });
+    }
+    function rawCookie(name) {
+      var values = cookieValues(name);
       return values.length === 1 ? values[0] : "";
     }
+    function savedDecision() {
+      var values = cookieValues("vifi_ads_consent");
+      if (!values.length) return "";
+      if (values.length !== 1 || !/^v[12]\.(granted|denied)$/.test(values[0])) return "denied";
+      return values[0].endsWith(".granted") ? "granted" : "denied";
+    }
     function decision() {
-      if (navigator.globalPrivacyControl || deniedInMemory) return "denied";
-      var stored = rawCookie("vifi_ads_consent");
-      return stored === "v1.granted" ? "granted" : stored === "v1.denied" ? "denied" : "";
+      if (navigator.globalPrivacyControl || deniedInMemory || observedAccountRefusal || savedDecision() === "denied") return "denied";
+      if (!policy) return "";
+      if (policy.account_opt_out) return "denied";
+      return savedDecision() === "granted" || policy.default_allowed ? "granted" : "";
+    }
+    function basis() {
+      return savedDecision() === "granted" ? "explicit" : "regional_default";
     }
     function clearAttribution() {
       ["vifi_ads_oppref", "__oppref"].forEach(function (name) {
@@ -49,7 +68,9 @@ const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "tr
       preserveAttribution();
       // First-party permission and attribution remain available independently
       // of the browser SDK and its advertiser-managed matching configuration.
-      if (!browserEnabled) return;
+      // The old grant covered measurement without automatic contact matching.
+      // Keep that narrower scope until a fresh choice under the new disclosure.
+      if (!browserEnabled || rawCookie("vifi_ads_consent") === "v1.granted") return;
       var safeQuery = (location.search || "").slice(1).split("&").every(function (part) {
         return !part || /^(oppref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(part);
       });
@@ -65,7 +86,7 @@ const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "tr
           try { document.head.appendChild(script); }
           catch (error) { delete window.oaiq; throw error; }
         }
-        // Only our versioned, explicit visitor grant can supersede SDK denial.
+        // Account policy has resolved and shared/browser refusals were checked.
         window.oaiq("consent", true);
         window.oaiq("init", { pixelId: pixelId });
         window.__VIFI_OPENAI_ADS_INITIALIZED__ = true;
@@ -82,43 +103,114 @@ const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "tr
     }
     function update() {
       try {
-        var control = document.getElementById("vifi-ad-preferences");
-        if (!control || !enabled) return;
-        control.hidden = false;
         var choice = decision();
-        control.querySelector("[data-ads-status]").textContent = choice === "granted" ? "On" : "Off";
-        control.querySelector("[data-ads-choices]").hidden = Boolean(navigator.globalPrivacyControl);
-        control.querySelector("[data-ads-gpc]").hidden = !navigator.globalPrivacyControl;
-        if (!choice) control.open = true;
+        // Most public pages have no controls; refusal enforcement still runs.
         if (choice === "denied") {
           clearAttribution();
           sdkConsent(false);
         }
+        var control = document.getElementById("vifi-ad-preferences");
+        if (!control || !enabled) return;
+        control.hidden = false;
+        control.querySelector("[data-ads-status]").textContent = choice === "granted" ? "On" : "Off";
+        control.querySelector("[data-ads-choices]").hidden = Boolean(navigator.globalPrivacyControl);
+        control.querySelector("[data-ads-gpc]").hidden = !navigator.globalPrivacyControl;
+        control.querySelector("[data-ads-legacy]").hidden = rawCookie("vifi_ads_consent") !== "v1.granted";
       } catch { /* Preferences must not affect navigation. */ }
+    }
+    function syncPreference(chosen, explicitAction) {
+      if (!chosen) return Promise.resolve();
+      var version = choiceVersion;
+      var envelope = { v: 2, decision: chosen, basis: chosen === "denied" ? "explicit" : basis(), source_url: "https://app.vifi.us/privacy" };
+      if (explicitAction && chosen === "granted") envelope.explicit_action = true;
+      var key = JSON.stringify(envelope);
+      // Serialize changes so an earlier Allow cannot arrive after a later refusal.
+      preferenceSync = preferenceSync.then(async function () {
+        if (version !== choiceVersion || (!explicitAction && key === lastSynced)) return;
+        var timer;
+        try {
+          var controller = new AbortController();
+          timer = setTimeout(function () { controller.abort(); }, 3000);
+          var response = await fetch("https://app.vifi.us/api/auth/ad-measurement", {
+            method: "POST", credentials: "include", cache: "no-store", referrerPolicy: "no-referrer", redirect: "error",
+            headers: { "X-ViFi-Ads-Context": key }, signal: controller.signal,
+          });
+          if (response.ok && version === choiceVersion) {
+            lastSynced = key;
+            // Only a successful fresh action plus a new account read may lift
+            // a previously observed account refusal. A 401 never does so.
+            if (explicitAction) await refreshPolicy(version);
+          }
+        } catch { /* Retry saved choices on focus or in the app after login. */ }
+        finally { clearTimeout(timer); }
+      });
+      return preferenceSync;
+    }
+    async function refreshPolicy(allowedChoiceVersion) {
+      var request = ++policyRequest;
+      policy = null;
+      sdkConsent(false);
+      update();
+      var timer;
+      try {
+        var controller = new AbortController();
+        timer = setTimeout(function () { controller.abort(); }, 3000);
+        var response = await fetch("https://app.vifi.us/api/auth/ad-measurement-policy", {
+          method: "GET", credentials: "include", cache: "no-store", referrerPolicy: "no-referrer", redirect: "error", signal: controller.signal,
+        });
+        if (!response.ok) return;
+        var result = await response.json();
+        if (request !== policyRequest || !result || result.version !== 2 ||
+          typeof result.default_allowed !== "boolean" || typeof result.account_opt_out !== "boolean") return;
+        if (result.account_opt_out) observedAccountRefusal = true;
+        else if (allowedChoiceVersion === choiceVersion && savedDecision() === "granted" &&
+          !deniedInMemory && !navigator.globalPrivacyControl) observedAccountRefusal = false;
+        // Logout or lost authentication can produce an anonymous eligible
+        // policy. Only this fresh Allow's readback may lift a known refusal.
+        policy = result;
+      } catch { /* Missing or unknown policy keeps measurement off. */ }
+      finally {
+        clearTimeout(timer);
+        if (request === policyRequest) {
+          try {
+            update();
+            if (decision() === "granted") {
+              if (window.__VIFI_OPENAI_ADS_INITIALIZED__ && browserEnabled && rawCookie("vifi_ads_consent") !== "v1.granted") sdkConsent(true);
+              measure();
+            }
+            // This only syncs permission, never a conversion or a fresh Allow.
+            var current = decision();
+            if (current !== "denied" || navigator.globalPrivacyControl || deniedInMemory || savedDecision() === "denied") {
+              void syncPreference(current, false);
+            }
+          } catch { /* Privacy controls must not affect the page. */ }
+        }
+      }
     }
     function choose(requested) {
       try {
         var chosen = navigator.globalPrivacyControl ? "denied" : requested;
-        if (chosen === "denied") deniedInMemory = true;
+        choiceVersion++;
+        lastSynced = "";
+        deniedInMemory = true;
         try {
-          document.cookie = "vifi_ads_consent=v1." + chosen + "; Max-Age=15552000" + cookieOptions;
-          if (chosen === "granted" && rawCookie("vifi_ads_consent") === "v1.granted") deniedInMemory = false;
+          // Remove legacy host/domain duplicates before recording a new choice.
+          document.cookie = "vifi_ads_consent=; Max-Age=0; Path=/; SameSite=Lax; Secure";
+          document.cookie = "vifi_ads_consent=; Max-Age=0" + cookieOptions;
+          document.cookie = "vifi_ads_consent=v2." + chosen + "; Max-Age=15552000" + cookieOptions;
+          if (chosen === "granted" && rawCookie("vifi_ads_consent") === "v2.granted") deniedInMemory = false;
         } catch { /* A denied choice still applies to this document. */ }
-        chosen = decision();
-        if (chosen === "denied") {
+        if (chosen === "denied" || deniedInMemory) {
           clearAttribution();
           sdkConsent(false);
-        } else if (chosen === "granted") {
+          chosen = "denied";
+        } else if (decision() === "granted") {
           if (window.__VIFI_OPENAI_ADS_INITIALIZED__) sdkConsent(true);
           try { measure(); } catch {}
         }
         update();
-        document.getElementById("vifi-ad-preferences").open = false;
-        // Permission only, never an event. The app retries after login/offline.
-        if (chosen) fetch("https://app.vifi.us/api/auth/ad-measurement", {
-          method: "POST", credentials: "include",
-          headers: { "X-ViFi-Ads-Context": JSON.stringify({ v: 1, decision: chosen, source_url: "https://app.vifi.us/privacy" }) },
-        }).catch(function () {});
+        void syncPreference(chosen, chosen === "granted");
+        if (!policy) void refreshPolicy();
       } catch { /* A denied cookie write leaves measurement off. */ }
     }
     function bindPreferences() {
@@ -134,10 +226,10 @@ const browserEnabled = import.meta.env.PUBLIC_OPENAI_ADS_BROWSER_ENABLED === "tr
       if (!enabled || window.__VIFI_ADS_PREFERENCES_BOUND__) return;
       window.__VIFI_ADS_PREFERENCES_BOUND__ = true;
       if (decision() === "denied") clearAttribution();
-      try { measure(); } catch {}
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPreferences, { once: true });
       else bindPreferences();
-      window.addEventListener("focus", function () { update(); try { measure(); } catch {} });
+      void refreshPolicy();
+      window.addEventListener("focus", function () { void refreshPolicy(); });
     } catch { /* Measurement must never interrupt the page or other analytics. */ }
   })();
 </script>
