@@ -29,6 +29,7 @@ jobs:
           build-cmd: npm run check && npm run build && npm run test:growth
         env:
           PUBLIC_OPENAI_ADS_PIXEL_ID: ${{ vars.OPENAI_ADS_PIXEL_ID }}
+          PUBLIC_TOLT_PUBLIC_KEY: ${{ vars.TOLT_PUBLIC_KEY }}
           PUBLIC_OPENAI_ADS_BROWSER_ENABLED: ${{ vars.OPENAI_ADS_BROWSER_ENABLED || 'false' }}
 
   deploy:

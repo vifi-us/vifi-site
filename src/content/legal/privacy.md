@@ -144,6 +144,15 @@ parameters, approximate location derived from IP address, and device and
 browser information. We disable Google Signals and advertising-personalization
 signals in our Google Analytics configuration.
 
+We run a partner (affiliate) program on Tolt. When you arrive through a
+partner's link (`vifi.us/?ref=...`), Tolt's script records the visit and sets
+a first-party cookie so the partner can be credited, and we remember the
+partner code in your browser for 90 days. If you then create a ViFi
+workspace, we share the workspace name, the account email address, and the
+partner code with Tolt so it can calculate the partner's commission from our
+billing records. Partners do not receive your call data. None of this happens
+when your browser sends the Global Privacy Control signal.
+
 We use OpenAI Ads to understand which ChatGPT ads lead to visits, signups,
 trial starts, first successful calls, subscriptions and first successful
 payments. Our public website's Pixel measures page and article views; our

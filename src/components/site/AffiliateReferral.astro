@@ -1,0 +1,91 @@
+---
+/**
+ * Affiliate program (Tolt) — vifi-site#38.
+ *
+ * Partners share links of the form https://vifi.us/?ref=<partner>. Two jobs:
+ *
+ * 1. Load Tolt's tracking script so the partner sees the click and Tolt's
+ *    own cookie attribution works. Keyed by the public program key
+ *    (PUBLIC_TOLT_PUBLIC_KEY); a blank key disables the load.
+ * 2. Remember the first well-formed `ref` for 90 days in first-party storage
+ *    and hand it to app.vifi.us on the registration link, so the platform
+ *    can credit the partner even when the visitor returns days later
+ *    without the parameter (Analytics.astro's 30-minute session touch
+ *    covers the same-visit case).
+ *
+ * Same guards as every other tracker on this site: production hostnames
+ * only, and nothing at all when the browser sends Global Privacy Control.
+ * No analytics identifiers are read or written.
+ */
+const toltPublicKey = (import.meta.env.PUBLIC_TOLT_PUBLIC_KEY || "").trim();
+---
+
+<script is:inline define:vars={{ toltPublicKey }}>
+  (function () {
+    var storageKey = "vifi_affiliate_referral";
+    var maxAge = 90 * 24 * 60 * 60 * 1000;
+    var safeReferral = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+    // Verify against the install snippet in Tolt → Program → Settings.
+    var toltScriptSrc = "https://files.tlt-cdn.com/tlt.js";
+    if (!/^(www\.)?vifi\.us$/.test(location.hostname) || navigator.globalPrivacyControl) {
+      return;
+    }
+    var readStored = function () {
+      try {
+        var raw = window.localStorage.getItem(storageKey);
+        if (!raw) return null;
+        var stored = JSON.parse(raw);
+        if (!stored || typeof stored.value !== "string" || !safeReferral.test(stored.value) ||
+          !Number.isFinite(stored.captured_at) || stored.captured_at > Date.now() ||
+          Date.now() - stored.captured_at > maxAge) {
+          window.localStorage.removeItem(storageKey);
+          return null;
+        }
+        return stored.value;
+      } catch (_) {
+        return null;
+      }
+    };
+    var currentReferral = function () {
+      var values = new URL(location.href).searchParams.getAll("ref");
+      return values.length === 1 && safeReferral.test(values[0]) ? values[0] : null;
+    };
+    // First touch wins for the whole window, matching the platform's rule.
+    var referral = readStored();
+    if (!referral) {
+      referral = currentReferral();
+      if (referral) {
+        try {
+          window.localStorage.setItem(storageKey, JSON.stringify({
+            value: referral, captured_at: Date.now(),
+          }));
+        } catch (_) {}
+      }
+    }
+    var decorateRegistration = function (event) {
+      if (event.type === "auxclick" && event.button !== 1) return;
+      var target = event.target instanceof Element ? event.target : null;
+      var anchor = target && target.closest('a[href]');
+      if (!anchor) return;
+      var stored = readStored();
+      if (!stored) return;
+      var destination = new URL(anchor.getAttribute("href"), location.href);
+      if (destination.origin !== "https://app.vifi.us") return;
+      if (destination.pathname.replace(/\/$/, "") !== "/register") return;
+      // An explicitly attributed link keeps its own code.
+      if (destination.searchParams.has("ref")) return;
+      destination.searchParams.set("ref", stored);
+      anchor.href = destination.href;
+    };
+    document.addEventListener("click", decorateRegistration);
+    document.addEventListener("auxclick", decorateRegistration);
+
+    if (/^[A-Za-z0-9_-]{8,128}$/.test(toltPublicKey)) {
+      var toltScript = document.createElement("script");
+      toltScript.async = true;
+      toltScript.src = toltScriptSrc;
+      toltScript.setAttribute("data-tolt", toltPublicKey);
+      document.head.appendChild(toltScript);
+    }
+  })();
+</script>

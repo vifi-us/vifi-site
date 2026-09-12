@@ -252,6 +252,13 @@ production. The existing GA4 stream supplies aggregate acquisition reporting and
 explicitly requested, and do not change the PostHog token/host without
 coordinating with the platform's PostHog configuration.
 
+The Tolt affiliate script was explicitly requested (vifi-site#38) and is
+loaded by `AffiliateReferral.astro` (included from `Analytics.astro`) under the
+same production-hostname and GPC guards; the same component keeps the partner
+`ref` code in first-party storage and forwards it to registration links. Keep
+its public key in the `TOLT_PUBLIC_KEY` repository variable and keep the
+privacy policy's partner-program paragraph in sync.
+
 OpenAI Ads measurement was explicitly requested and is integrated through
 `Analytics.astro` and `OpenAIAds.astro`. A public Pixel ID and a successful
 version 2 policy lookup are required before loading. The app policy endpoint
