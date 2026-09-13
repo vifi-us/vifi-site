@@ -67,6 +67,20 @@ Pushes to `main` trigger the GitHub Actions workflow (`.github/workflows/deploy.
 
 Custom domain `vifi.us` is configured via `public/CNAME` and `site` in `astro.config.ts`.
 
+## Affiliate program (Tolt)
+
+Partner links look like `https://vifi.us/?ref=<partner>`. The shared
+`Analytics.astro` includes `AffiliateReferral.astro`, which loads Tolt's
+tracking script on production hostnames when the visitor does not send Global
+Privacy Control, remembers the first well-formed `ref` for 90 days in
+first-party storage, and adds it to `app.vifi.us/register` links so the
+platform can credit the partner. Set the GitHub Actions repository variable
+`TOLT_PUBLIC_KEY` to the public program key from Tolt → Program → Settings; the
+Pages build maps it to `PUBLIC_TOLT_PUBLIC_KEY` (see `.env.example`). A blank
+key disables the script only; the referral memory needs no key. The script URL
+is pinned in the component — check it against the install snippet Tolt shows
+when rotating programs. Tests: `npm run test:growth`.
+
 ## OpenAI Ads measurement
 
 The active account is **ViFi LLC**, using the **ViFi Website** Pixel
