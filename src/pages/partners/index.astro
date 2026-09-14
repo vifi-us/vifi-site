@@ -8,7 +8,7 @@ import PageHero from "../../components/blocks/PageHero.astro";
 import CTABanner from "../../components/blocks/CTABanner.astro";
 import { partnerProgram, partnerEarnings, partnerExample } from "../../data/partners";
 
-const { signupUrl, loginUrl, email, commissionLabel, trackingDays, payoutMethods, countries, termsUrl } = partnerProgram;
+const { signupUrl, loginUrl, email, commissionLabel, trackingDays, payoutMethods, countries, termsUrl, customerOffer, customerOfferShort } = partnerProgram;
 const ctaVersion = "partners-2026-09-v1";
 
 const glance = [
@@ -32,6 +32,11 @@ const glance = [
     title: "Paid monthly",
     text: `Net-30 payouts by ${payoutMethods.join(", ").replace(/, ([^,]*)$/, " or $1")}, with no minimum amount.`,
   },
+  {
+    icon: "M4 4h6l10 10-6 6L4 10z M8 8h.01",
+    title: `${customerOfferShort} for them`,
+    text: `Every partner gets a unique code. A business that uses it at checkout gets ${customerOffer}, and the sale is credited to you even without a link.`,
+  },
 ];
 
 const steps = [
@@ -41,7 +46,7 @@ const steps = [
   },
   {
     title: "Get your link and partner code",
-    description: "Your dashboard gives you a referral link and a code you can share anywhere: your site, a newsletter, a video description, or a conversation with a client. The marketing kit has logos, banners and copy ready to go.",
+    description: `Your dashboard gives you a referral link and a code you can share anywhere: your site, a newsletter, a video description, or a conversation with a client. The code gives the business ${customerOffer}. The marketing kit has logos, banners and copy ready to go.`,
   },
   {
     title: "They start a free trial",
@@ -76,6 +81,10 @@ const faqs = [
   {
     q: "How are referrals tracked?",
     a: `Through your referral link and your partner code. A visit through your link is tracked for ${trackingDays} days; if the business subscribes in that window, you get the credit. If two partners refer the same business, the first link they used wins. Partner codes can be entered at checkout, which also covers deals you close by phone.`,
+  },
+  {
+    q: "What does the business get for using my code?",
+    a: `${customerOffer.charAt(0).toUpperCase() + customerOffer.slice(1)} of ViFi, on whichever plan they choose. The discount applies to their first invoice after the free trial; your commission is calculated on what they actually pay. Every partner gets a unique code; you'll find yours in the partner portal.`,
   },
   {
     q: "When and how do I get paid?",
@@ -132,7 +141,7 @@ const answerClass = "px-5 pb-5 text-[15px] leading-relaxed text-muted";
       <PageHero
         badge="Partner program"
         title={`Earn ${commissionLabel} recurring for every business you refer`}
-        subtitle="Refer small businesses to ViFi's AI phone assistant. When they subscribe, you earn a fifth of everything they pay, every month, for as long as they stay a customer."
+        subtitle={`Refer small businesses to ViFi's AI phone assistant. When they subscribe, you earn a fifth of everything they pay, every month, for as long as they stay a customer. And they get ${customerOffer} with your code.`}
       />
 
       <section class="pb-16 sm:pb-20">
@@ -153,7 +162,7 @@ const answerClass = "px-5 pb-5 text-[15px] leading-relaxed text-muted";
       <section class="pb-16 sm:pb-24">
         <div class="relative mx-auto max-w-5xl px-6">
           <h2 class="center">The program at a glance</h2>
-          <div class="mt-12 grid gap-10 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="mt-12 grid gap-10 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
             {
               glance.map((item) => (
                 <div class="extra">
@@ -257,7 +266,7 @@ const answerClass = "px-5 pb-5 text-[15px] leading-relaxed text-muted";
           <h2 class="center mb-10">What you get</h2>
           <ul class="space-y-4 text-[17px] leading-7 text-muted">
             <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">A partner dashboard</strong> with clicks, signups, trials, customers and commissions in real time, plus your payout details and tax forms.</span></li>
-            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">Your referral link and partner code</strong>, so you can share ViFi online or credit a business you talked to in person.</span></li>
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">Your referral link and partner code</strong>, so you can share ViFi online or credit a business you talked to in person. Your code gives them {customerOffer}.</span></li>
             <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">The <a href="/partners/resources/" class="text-accent underline underline-offset-4">marketing kit</a></strong>: logos, banners in every standard size, one-liners, long and short descriptions, email and social templates.</span></li>
             <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">The <a href="/partners/playbook/" class="text-accent underline underline-offset-4">partner playbook</a></strong>: who buys, the pitch, the demo that closes, and the objections you'll hear.</span></li>
             <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">A person to email.</strong> Questions, co-marketing ideas, or a business that needs a hand: <a href={`mailto:${email}`} class="text-accent underline underline-offset-4">{email}</a>.</span></li>
