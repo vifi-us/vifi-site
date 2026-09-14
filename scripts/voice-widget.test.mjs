@@ -10,6 +10,8 @@ import { join } from 'node:path';
 const LOADER = 'https://app.vifi.us/embed/widget.js?key=emb_8486e83bc6f600c11db1f1bcca057cfa';
 const pages = readdirSync('dist', { recursive: true })
   .filter(path => path.endsWith('index.html'))
+  // Astro redirect stubs (meta refresh, noindex) are not pages and carry no widget.
+  .filter(path => !readFileSync(`dist/${path}`, 'utf8').includes('http-equiv="refresh"'))
   .map(path => join('dist', path));
 
 test('the voice widget loader is on every page, async, inside <body>, exactly once', () => {

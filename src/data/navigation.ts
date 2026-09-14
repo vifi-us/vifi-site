@@ -58,9 +58,11 @@ export const footerNavigation: FooterSection[] = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
+      { label: "Partner Program", href: "/partners/", cta: "footer-partners" },
       { label: "Contact", href: "/contact" },
       { label: "Privacy Policy", href: "/legal/privacy" },
       { label: "Terms of Service", href: "/legal/terms" },
+      { label: "Affiliate Terms", href: "/legal/affiliate-terms" },
     ],
   },
 ];
