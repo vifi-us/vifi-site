@@ -1,0 +1,95 @@
+---
+// Partner-program documents (playbook, marketing kit): markdown from the
+// `partners` collection in the legal-page prose treatment, with a small
+// section nav so partners can move between the program page, the playbook
+// and the kit.
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import CTABanner from "../../components/blocks/CTABanner.astro";
+import { partnerProgram } from "../../data/partners";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("partners");
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const siblings = (await getCollection("partners")).sort((a, b) => a.data.order - b.data.order);
+const updated = page.data.updatedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const isoDate = page.data.updatedAt.toISOString().slice(0, 10);
+const sectionLinks = [
+  { label: "Program", href: "/partners/" },
+  ...siblings.map((doc) => ({ label: doc.data.title, href: `/partners/${doc.id}/` })),
+];
+---
+
+<BaseLayout
+  title={`${page.data.title} | ViFi Partners`}
+  description={page.data.description}
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main id="main" class="flex-1">
+      <article class="py-16 sm:py-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <nav aria-label="Partner program sections" class="mb-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[12.5px] tracking-[0.04em] uppercase">
+            {
+              sectionLinks.map((link) => (
+                <a
+                  href={link.href}
+                  aria-current={link.href === `/partners/${page.id}/` ? "page" : undefined}
+                  class="text-muted-2 no-underline hover:text-accent aria-[current=page]:text-accent"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+          <p class="eyebrow mb-5"><i></i> {page.data.eyebrow}</p>
+          <h1>{page.data.title}</h1>
+          <p class="mt-4 font-mono text-[13px] tracking-[0.02em] text-muted-2">
+            Updated: <time datetime={isoDate}>{updated}</time>
+          </p>
+          <div
+            class="mt-10 sm:mt-12
+              [&_p]:mb-6 [&_p]:text-[17px] [&_p]:leading-[28px] [&_p]:text-muted
+              [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-[28px] [&_h2]:sm:text-[32px] [&_h2]:font-semibold [&_h2]:text-text
+              [&_h3]:mt-9 [&_h3]:mb-3 [&_h3]:font-semibold [&_h3]:text-text
+              [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-[17px] [&_ul]:leading-[28px] [&_ul]:text-muted
+              [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-[17px] [&_ol]:leading-[28px] [&_ol]:text-muted
+              [&_li]:pl-1 [&_li]:marker:text-accent [&_li>p]:mb-2
+              [&_strong]:font-semibold [&_strong]:text-text
+              [&_a]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:decoration-2 [&_a]:decoration-tint-3 [&_a]:underline-offset-4 [&_a]:hover:text-accent-dark [&_a]:hover:decoration-accent-dark
+              [&_blockquote]:my-6 [&_blockquote]:rounded-r-[10px] [&_blockquote]:border-l-2 [&_blockquote]:border-accent [&_blockquote]:bg-tint [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote]:text-[15px] [&_blockquote]:leading-[26px] [&_blockquote]:text-text
+              [&_blockquote_p]:mb-3 [&_blockquote_p]:text-[15px] [&_blockquote_p]:leading-[26px] [&_blockquote_p]:text-text [&_blockquote_p:last-child]:mb-0
+              [&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:bg-tint [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-[0.9em] [&_:not(pre)>code]:text-accent-dark
+              [&_hr]:my-10 [&_hr]:border-0 [&_hr]:border-t-2 [&_hr]:border-tint-2
+              [&_table]:my-8 [&_table]:w-full [&_table]:border-collapse [&_table]:text-[15px] [&_table]:leading-relaxed
+              [&_th]:border-b-2 [&_th]:border-accent [&_th]:py-2.5 [&_th]:pr-4 [&_th]:text-left [&_th]:font-semibold [&_th]:text-text
+              [&_td]:border-b [&_td]:border-border [&_td]:py-2.5 [&_td]:pr-4 [&_td]:align-top [&_td]:text-muted"
+          >
+            <Content />
+          </div>
+        </div>
+      </article>
+      <CTABanner
+        heading="Not a partner yet?"
+        description="Apply in two minutes. Once approved you get your link, your partner code, and this kit."
+        buttonText="Apply to the partner program"
+        buttonHref={partnerProgram.signupUrl}
+        ctaId="partners-doc-banner"
+        ctaVersion="partners-2026-09-v1"
+        note="Free to join · No minimum payout · Terms apply"
+      />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

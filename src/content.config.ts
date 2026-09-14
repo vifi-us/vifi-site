@@ -49,4 +49,16 @@ const resources = defineCollection({
   }),
 });
 
-export const collections = { blog, legal, faqs, resources };
+// Partner-program pages (playbook, marketing kit) rendered by src/pages/partners/[...slug].astro.
+const partners = defineCollection({
+  loader: glob({ base: "./src/content/partners", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+    eyebrow: z.string().trim().min(1),
+    order: z.number().default(0),
+    updatedAt: z.coerce.date(),
+  }),
+});
+
+export const collections = { blog, legal, faqs, resources, partners };

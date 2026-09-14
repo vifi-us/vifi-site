@@ -1,0 +1,307 @@
+---
+// The partner (affiliate) program page. Facts come from src/data/partners.ts
+// so the page, the playbook and the kit never disagree with the Tolt program.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import PageHero from "../../components/blocks/PageHero.astro";
+import CTABanner from "../../components/blocks/CTABanner.astro";
+import { partnerProgram, partnerEarnings, partnerExample } from "../../data/partners";
+
+const { signupUrl, loginUrl, email, commissionLabel, trackingDays, payoutMethods, countries, termsUrl } = partnerProgram;
+const ctaVersion = "partners-2026-09-v1";
+
+const glance = [
+  {
+    icon: "M19 5 5 19 M7.5 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z M16.5 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z",
+    title: `${commissionLabel} of every payment`,
+    text: "You earn a fifth of what each referred business pays ViFi, subscription and usage included.",
+  },
+  {
+    icon: "M12 4a8 8 0 1 0 8 8 M12 8v4l3 2 M20 4v4h-4",
+    title: "For as long as they stay",
+    text: "Commissions keep coming every month the customer remains a paying ViFi customer.",
+  },
+  {
+    icon: "M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M8 15h3",
+    title: `${trackingDays}-day tracking`,
+    text: "A visitor who comes through your link and subscribes within 90 days is yours. First touch wins.",
+  },
+  {
+    icon: "M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z M2 10h20 M6 15h4",
+    title: "Paid monthly",
+    text: `Net-30 payouts by ${payoutMethods.join(", ").replace(/, ([^,]*)$/, " or $1")}, with no minimum amount.`,
+  },
+];
+
+const steps = [
+  {
+    title: "Apply in two minutes",
+    description: `Tell us who you are and how you'll share ViFi. We review every application and usually reply within a couple of business days. Partners in ${countries.join(", ").replace(/, ([^,]*)$/, " and $1")} are welcome today.`,
+  },
+  {
+    title: "Get your link and partner code",
+    description: "Your dashboard gives you a referral link and a code you can share anywhere: your site, a newsletter, a video description, or a conversation with a client. The marketing kit has logos, banners and copy ready to go.",
+  },
+  {
+    title: "They start a free trial",
+    description: "The business tries ViFi free for 7 days with no credit card. Your dashboard shows the click, the signup and the moment they subscribe.",
+  },
+  {
+    title: "You get paid every month",
+    description: `${commissionLabel} of each payment they make is credited to you and paid out monthly on net-30 terms, for as long as they stay.`,
+  },
+];
+
+const audiences = [
+  {
+    title: "Referral partners",
+    text: "Agencies, IT and phone-system consultants, bookkeepers, web designers and coaches who already advise small businesses. Add phone coverage to your onboarding checklist and earn on every client who subscribes.",
+  },
+  {
+    title: "Creators and publishers",
+    text: "Newsletters, YouTube channels, blogs and communities for small-business owners and the trades. Show what a missed call costs, then show what ViFi does about it.",
+  },
+  {
+    title: "ViFi customers",
+    text: "Already using ViFi? Refer the businesses you know. Same commission, same dashboard, and you already know the product.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How much does the program pay?",
+    a: `${commissionLabel} of the net payments each referred business makes to ViFi, every month, for as long as they remain a paying customer. Net means after refunds, chargebacks and taxes. Usage above a plan's included minutes counts too.`,
+  },
+  {
+    q: "How are referrals tracked?",
+    a: `Through your referral link and your partner code. A visit through your link is tracked for ${trackingDays} days; if the business subscribes in that window, you get the credit. If two partners refer the same business, the first link they used wins. Partner codes can be entered at checkout, which also covers deals you close by phone.`,
+  },
+  {
+    q: "When and how do I get paid?",
+    a: `Monthly, on net-30 terms: a commission earned in one month is held for 30 days and paid in the next payout run. You choose ${payoutMethods.join(", ").replace(/, ([^,]*)$/, " or $1")} in the partner portal. There is no minimum payout. Before the first payout you complete a W-9 (U.S.) or W-8 form in the portal.`,
+  },
+  {
+    q: "Is there a cost to join?",
+    a: "No. The program is free and there is no exclusivity. You can promote other products alongside ViFi.",
+  },
+  {
+    q: "Can I refer my own clients?",
+    a: "Yes, that is exactly what the referral-partner track is for. You cannot refer yourself, your own business or accounts you control, and the business must not already be a ViFi customer.",
+  },
+  {
+    q: "What can't I do?",
+    a: "No paid search or paid social on the ViFi name, no coupon or cashback sites, no incentives for signing up, no unsolicited email or texts, and no claims that are not on vifi.us or in the marketing kit. Disclose that you may earn a commission wherever a disclosure is required. The full rules are in the Affiliate Program Terms.",
+  },
+  {
+    q: "Do you support agencies that want to resell or white-label ViFi?",
+    a: `Not yet. Today every business signs up for its own ViFi workspace and you earn the referral commission. If you manage phone systems for many clients and want a different arrangement, write to ${email}.`,
+  },
+  {
+    q: "Where do I see my results?",
+    a: "The partner portal shows clicks, signups, trials, paying customers, pending and paid commissions in real time, and holds your payout details and tax forms.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+
+const summaryClass =
+  "cursor-pointer select-none list-none rounded-[8px] p-5 [&::-webkit-details-marker]:hidden focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent";
+const questionClass = "flex items-center justify-between gap-4 text-[17px] leading-snug tracking-[-0.01em] text-text";
+const chevronClass =
+  "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-tint text-accent transition-transform duration-200 group-open:rotate-180";
+const answerClass = "px-5 pb-5 text-[15px] leading-relaxed text-muted";
+---
+
+<BaseLayout
+  title="AI Receptionist Affiliate Program | ViFi Partners"
+  description={`Refer small businesses to ViFi and earn ${commissionLabel} of every payment for as long as they stay. Free to join, ${trackingDays}-day tracking, monthly payouts by PayPal, Wise or bank wire.`}
+  structuredData={structuredData}
+>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <main id="main" class="flex-1">
+      <PageHero
+        badge="Partner program"
+        title={`Earn ${commissionLabel} recurring for every business you refer`}
+        subtitle="Refer small businesses to ViFi's AI phone assistant. When they subscribe, you earn a fifth of everything they pay, every month, for as long as they stay a customer."
+      />
+
+      <section class="pb-16 sm:pb-20">
+        <div class="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a class="btn" href={signupUrl} data-cta="partners-hero-apply" data-cta-version={ctaVersion} data-cta-intent="partner-signup">
+              Apply to join
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7 M8 7h9v9"></path></svg>
+            </a>
+            <a class="btn outline" href="#how-it-works">See how it works</a>
+          </div>
+          <p class="font-mono text-[12.5px] tracking-[0.02em] text-muted-2">
+            Free to join · 2-minute application · Paid monthly · <a href={loginUrl} class="underline underline-offset-4">Partner log in</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="relative mx-auto max-w-5xl px-6">
+          <h2 class="center">The program at a glance</h2>
+          <div class="mt-12 grid gap-10 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
+            {
+              glance.map((item) => (
+                <div class="extra">
+                  <div class="art">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d={item.icon} /></svg>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 class="center mb-12 sm:mb-16">How it works</h2>
+          <ol class="space-y-10 sm:space-y-12">
+            {
+              steps.map((step, index) => (
+                <li class="relative flex items-start gap-5 sm:gap-7">
+                  {index < steps.length - 1 && (
+                    <span
+                      class="absolute -bottom-10 left-[23px] top-[calc(3rem+10px)] w-0 border-l-2 border-dashed border-accent/40 sm:-bottom-12 sm:left-[27px] sm:top-[calc(3.5rem+10px)]"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span
+                    class="grid h-12 w-12 shrink-0 place-items-center rounded-[10px] bg-accent font-mono text-[15px] font-semibold text-white shadow-[4px_4px_0_var(--color-text)] sm:h-14 sm:w-14 sm:text-base"
+                    aria-hidden="true"
+                  >
+                    0{index + 1}
+                  </span>
+                  <div class="pt-1.5 sm:pt-2.5">
+                    <h3 class="mb-2 text-[22px] leading-[1.25] tracking-[-0.02em] text-text">{step.title}</h3>
+                    <p class="text-[17px] leading-7 text-muted">{step.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 class="center mb-4">What you could earn</h2>
+          <p class="sub mx-auto mb-10 max-w-2xl text-center">
+            ViFi has three plans. Your commission is {commissionLabel} of what each customer pays, so a single referral is worth this every month:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-[16px] leading-relaxed">
+              <thead>
+                <tr>
+                  <th class="border-b-2 border-accent py-3 pr-4 text-left font-semibold text-text">Plan</th>
+                  <th class="border-b-2 border-accent py-3 pr-4 text-left font-semibold text-text">Customer pays</th>
+                  <th class="border-b-2 border-accent py-3 text-left font-semibold text-text">You earn, per month</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  partnerEarnings.map((row) => (
+                    <tr>
+                      <td class="border-b border-border py-3 pr-4 font-semibold text-text">{row.plan}</td>
+                      <td class="border-b border-border py-3 pr-4 font-mono text-muted">{row.price}</td>
+                      <td class="border-b border-border py-3 font-mono text-accent-dark">{row.perCustomer}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-6 text-[17px] leading-7 text-muted">
+            Ten {partnerExample.plan} customers is about <strong class="font-semibold text-text">{partnerExample.monthly} a month</strong>, and it renews as long as they do. Usage above a plan's included minutes pays commission too.
+          </p>
+          <p class="mt-3 font-mono text-[12.5px] tracking-[0.02em] text-muted-2">
+            Current prices are on the <a href="/pricing" class="underline underline-offset-4">pricing page</a>. Commissions are calculated on net payments after refunds and taxes.
+          </p>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-5xl px-6">
+          <h2 class="center">Who it's for</h2>
+          <div class="mt-12 grid gap-10 sm:mt-16 md:grid-cols-3">
+            {
+              audiences.map((item) => (
+                <div class="extra">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 class="center mb-10">What you get</h2>
+          <ul class="space-y-4 text-[17px] leading-7 text-muted">
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">A partner dashboard</strong> with clicks, signups, trials, customers and commissions in real time, plus your payout details and tax forms.</span></li>
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">Your referral link and partner code</strong>, so you can share ViFi online or credit a business you talked to in person.</span></li>
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">The <a href="/partners/resources/" class="text-accent underline underline-offset-4">marketing kit</a></strong>: logos, banners in every standard size, one-liners, long and short descriptions, email and social templates.</span></li>
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">The <a href="/partners/playbook/" class="text-accent underline underline-offset-4">partner playbook</a></strong>: who buys, the pitch, the demo that closes, and the objections you'll hear.</span></li>
+            <li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 bg-accent" aria-hidden="true"></span><span><strong class="font-semibold text-text">A person to email.</strong> Questions, co-marketing ideas, or a business that needs a hand: <a href={`mailto:${email}`} class="text-accent underline underline-offset-4">{email}</a>.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pb-16 sm:pb-24">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 class="mb-10 text-center">Partner questions</h2>
+          <div class="flex flex-col gap-3">
+            {
+              faqs.map((faq) => (
+                <details class="group panel open:border-accent">
+                  <summary class={summaryClass}>
+                    <h3 class={questionClass}>
+                      <span>{faq.q}</span>
+                      <span class={chevronClass} aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9.5c2.3 1.9 4.4 4 6.5 6.2 2.1-2.2 4.2-4.3 6.5-6.2"></path></svg>
+                      </span>
+                    </h3>
+                  </summary>
+                  <div class={answerClass}><p>{faq.a}</p></div>
+                </details>
+              ))
+            }
+          </div>
+          <p class="mt-8 text-center font-mono text-[12.5px] tracking-[0.02em] text-muted-2">
+            The full rules are in the <a href={termsUrl} class="underline underline-offset-4">Affiliate Program Terms</a>.
+          </p>
+        </div>
+      </section>
+
+      <CTABanner
+        heading="Ready to start earning?"
+        description="Apply in two minutes. Once you're approved, grab your link and the marketing kit and share ViFi with the businesses you know."
+        buttonText="Apply to the partner program"
+        buttonHref={signupUrl}
+        ctaId="partners-banner"
+        ctaVersion={ctaVersion}
+        ctaIntent="partner-signup"
+        note="Free to join · No minimum payout · By applying you agree to the Affiliate Program Terms"
+      />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
