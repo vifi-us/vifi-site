@@ -20,7 +20,11 @@ export const partnerProgram = {
   minimumPayout: "None",
   countries: ["the United States", "the United Kingdom", "Canada"],
   termsUrl: "/legal/affiliate-terms",
-  /** Customer-side offer carried by every partner code (first invoice only). */
+  /**
+   * Customer-side offer (first invoice only). Applied automatically at checkout
+   * when the business signs up through a partner link; a personal partner code
+   * is the fallback for deals closed in person.
+   */
   customerOffer: "50% off their first month",
   customerOfferShort: "50% off the first month",
 } as const;

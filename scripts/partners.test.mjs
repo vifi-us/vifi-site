@@ -12,7 +12,10 @@ test("the partner program page states the terms that Tolt is configured with", (
   assert.match(page, /\$29\.80/);
   assert.match(page, /\$69\.80/);
   assert.ok((page.match(/50% off their first month/g) || []).length >= 3, "the customer offer is stated");
-  assert.match(readFileSync("dist/partners/resources/index.html", "utf8"), /\{your code\}/);
+  const resources = readFileSync("dist/partners/resources/index.html", "utf8");
+  assert.match(resources, /\{your referral link\}/);
+  assert.doesNotMatch(resources, /\{your code\}/, "templates no longer promise a per-partner code");
+  assert.match(page, /applied automatically/, "the program page says the discount is automatic");
   assert.match(readFileSync("dist/partners/playbook/index.html", "utf8"), /50% off/);
   assert.doesNotMatch(page, /24 months|two years|for a limited time/i, "duration is lifetime today; no cap is stated");
 });
