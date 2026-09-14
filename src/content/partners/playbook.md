@@ -67,10 +67,11 @@ Owners believe their ears, not a slide deck.
 3. Ask: "What happened to the last call you missed?" Let them answer. Then
    show the [pricing page](/pricing): the Starter plan costs less than one
    missed job.
-4. Send them your link, or give them your partner code. The trial is 7 days,
-   free, no card, and your code takes 50% off their first month when they
-   subscribe. They can hear their own agent take a test call before anything
-   is billed.
+4. Send them your link. The trial is 7 days, free, no card, and when they
+   subscribe through your link they get 50% off their first month
+   automatically. They can hear their own agent take a test call before
+   anything is billed. Closing in person? Ask partners@vifi.us for a
+   personal code the business can enter at checkout.
 
 ## Pricing cheat sheet
 
@@ -82,7 +83,7 @@ Owners believe their ears, not a slide deck.
 
 You earn 20% of what the customer pays, every month they stay, including
 usage above the included minutes. Ten Growth customers is about $298 a month.
-Your partner code gives the business 50% off its first month, so your first
+Your link gives the business 50% off its first month, so your first
 commission on that customer is smaller and every one after it is full size.
 Current prices are always on [vifi.us/pricing](/pricing).
 
@@ -99,8 +100,8 @@ replacement.
 
 **"It's too expensive."** Compare it to one missed customer, not to zero.
 Answering services with humans typically cost several times more per month
-and read from scripts. The Starter plan is $49, and with your code the first
-month is half that.
+and read from scripts. The Starter plan is $49, and through your link the
+first month is half that.
 
 **"I don't have time to set this up."** Forwarding takes two minutes. The
 setup wizard asks about the business in plain language. They can start with
@@ -129,8 +130,7 @@ memory; they change.
 - Local business groups, trade associations, chambers, and franchise
   networks in the verticals above.
 - Content: "how to stop missing calls" guides, comparisons of answering
-  services, and walkthrough videos. Put your link and your partner code in
-  the description.
+  services, and walkthrough videos. Put your link in the description.
 - Newsletters and communities for small-business owners and the trades.
 
 ## Rules that keep you paid

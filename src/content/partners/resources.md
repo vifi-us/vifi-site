@@ -8,11 +8,12 @@ updatedAt: 2026-09-14
 
 Everything here is cleared for partner use under the
 [Affiliate Program Terms](/legal/affiliate-terms). Use the logos as provided,
-keep the copy accurate, and add your referral link or partner code from the
+keep the copy accurate, and add your referral link from the
 [partner portal](https://partners.vifi.us). Add your own referral link to
-each URL below (the portal shows the exact link to use). Your partner code
-gives a business 50% off its first month, so put it next to your link
-wherever you can: `{your code}` in the templates below.
+each URL below (the portal shows the exact link to use). A business that
+subscribes through your link gets 50% off its first month automatically, so
+lead with the link: `{your referral link}` in the templates below. If we have
+issued you a personal code for deals closed in person, mention it as well.
 
 ## Logos
 
@@ -84,8 +85,8 @@ card required.
 >
 > You keep your number and just forward calls. Setup took me a few minutes.
 > There's a 7-day free trial with no card, so you can hear it take a test
-> call before deciding: {your referral link}. If you subscribe, use code
-> {your code} for 50% off your first month.
+> call before deciding: {your referral link}. Subscribe through that link
+> and your first month is 50% off.
 >
 > Happy to walk you through it.
 >
@@ -104,8 +105,8 @@ card required.
 > owners tell me the recap after the call is the part they didn't expect to
 > care about, and now can't work without.
 >
-> Trial link again: {your referral link}, and code {your code} takes 50% off
-> the first month. If it's not for you, no worries.
+> Trial link again: {your referral link}; subscribing through it takes 50%
+> off the first month. If it's not for you, no worries.
 >
 > {your name}
 
@@ -118,16 +119,16 @@ card required.
 > the next place. I've been using/recommending ViFi, an AI phone assistant
 > that answers 24/7, helps the caller, and sends you a summary, transcript
 > and recording after every call. You keep your number; setup is call
-> forwarding. Free 7-day trial, no card: {your referral link} — code
-> {your code} gets you 50% off month one. #smallbusiness #missedcalls
+> forwarding. Free 7-day trial, no card: {your referral link} — 50% off
+> month one through that link. #smallbusiness #missedcalls
 > (affiliate link)
 
 **X / short post**
 
 > Your voicemail is where customers go to hang up. ViFi answers your
 > business line 24/7, helps the caller, and sends you the recap. Live in
-> minutes. Free trial: {your referral link}, code {your code} for 50% off
-> your first month (affiliate)
+> minutes. Free trial: {your referral link} — 50% off your first month
+> through that link (affiliate)
 
 **Facebook group / community**
 
@@ -135,7 +136,7 @@ card required.
 > you can't, sounds natural, takes the job details, and texts you a summary
 > right after. Forward your calls and you're set. There's a 7-day free trial
 > with no card if you want to hear it yourself: {your referral link} — and
-> code {your code} is 50% off the first month. (I may earn a commission.)
+> the first month is 50% off through that link. (I may earn a commission.)
 
 ## Talking points
 
@@ -145,7 +146,7 @@ card required.
 4. Remembers repeat callers.
 5. Keep your number; setup is call forwarding, live in minutes.
 6. Plans from $49/month; 7-day free trial; no credit card; cancel anytime.
-   Your partner code takes 50% off their first month.
+   Through your link, 50% off their first month, applied automatically.
 7. Knowledge base: upload your FAQ, price list, or website and it answers from that.
 
 ## Links to share
