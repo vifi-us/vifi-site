@@ -20,6 +20,9 @@ export const partnerProgram = {
   minimumPayout: "None",
   countries: ["the United States", "the United Kingdom", "Canada"],
   termsUrl: "/legal/affiliate-terms",
+  /** Customer-side offer carried by every partner code (first invoice only). */
+  customerOffer: "50% off their first month",
+  customerOfferShort: "50% off the first month",
 } as const;
 
 export interface PartnerEarning {
