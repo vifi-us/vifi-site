@@ -43,6 +43,7 @@ export const footerNavigation: FooterSection[] = [
   {
     title: "Resources",
     links: [
+      { label: "Free Test-Call Scorecard", href: "/resources/ai-receptionist-test-scorecard/" },
       { label: "Help Center", href: "https://docs.vifi.us" },
       { label: "Home Services", href: "/solutions/home-services/" },
       { label: "HVAC Companies", href: "/solutions/hvac/" },
