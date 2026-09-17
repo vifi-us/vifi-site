@@ -1,3 +1,5 @@
+import ogImage from "./og-image.json";
+
 export const siteConfig = {
   name: "ViFi",
   tagline: "Answer every call. Know every conversation.",
@@ -10,13 +12,9 @@ export const siteConfig = {
   loginUrl: "https://app.vifi.us/login",
 } as const;
 
-export const defaultSocialImage = {
-  src: "/og-vifi-answer-every-call-2026-09.png",
-  width: 1200,
-  height: 630,
-  type: "image/png",
-  alt: "ViFi graphic: “Answer every call. Know what happens next.” The call journey moves from answer to understanding to a post-call brief.",
-} as const;
+// The share card is rendered from the homepage hero by scripts/build-og-image.mjs,
+// which writes og-image.json; scripts/og-image.test.mjs fails when it goes stale.
+export const defaultSocialImage = ogImage;
 
 export const socialLinks = [
   {
