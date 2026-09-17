@@ -18,6 +18,7 @@ npm run build      # Production build to dist/
 npm run preview    # Preview production build locally
 npm run check      # TypeScript and Astro diagnostics
 npm run test:growth # After build: hero CTA, guide links, SEO, privacy and voice-widget regression checks
+npm run build:og   # After build: re-render the share image (public/og) from the homepage hero; needs Chrome
 ```
 
 ## Project Structure
@@ -35,7 +36,7 @@ src/
                    design.css (the shared design system: buttons, cards,
                    blob outlines, nav, footer, responsive modes)
   data/            Typed data (navigation, pricing, solutions, etc.)
-public/            Static assets (CNAME, favicon, robots.txt, fonts/, legal/)
+public/            Static assets (CNAME, favicon, robots.txt, fonts/, legal/, og/)
 .github/workflows/ GitHub Pages deployment
 ```
 
