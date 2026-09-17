@@ -52,45 +52,83 @@ const postArt = [
       <div class="hero-visual" role="img" aria-label="Illustration of a phone being answered by ViFi">
         <svg class="hero-art" viewBox="0 0 560 600" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <g class="doodle" style="--dd: -1s;"><path d="M84 132 c3 10 8 15 18 18 c-10 3 -15 8 -18 18 c-3 -10 -8 -15 -18 -18 c10 -3 15 -8 18 -18 Z" stroke="var(--tint-3)" stroke-width="4"></path></g>
-          <g class="doodle" style="--dd: -2.4s;"><path d="M478 78 c2 8 6 12 14 14 c-8 2 -12 6 -14 14 c-2 -8 -6 -12 -14 -14 c8 -2 12 -6 14 -14 Z" fill="var(--tint-3)" stroke="none"></path></g>
-          <g class="doodle" style="--dd: -3.6s;"><path d="M498 438 c3 10 8 15 18 18 c-10 3 -15 8 -18 18 c-3 -10 -8 -15 -18 -18 c10 -3 15 -8 18 -18 Z" stroke="var(--tint-3)" stroke-width="4"></path></g>
-          <g class="doodle" style="--dd: -0.6s;"><circle cx="66" cy="470" r="9" stroke="var(--tint-3)" stroke-width="4"></circle></g>
+          <g class="doodle" style="--dd: -2.4s;"><path d="M474 118 c2 8 6 12 14 14 c-8 2 -12 6 -14 14 c-2 -8 -6 -12 -14 -14 c8 -2 12 -6 14 -14 Z" fill="var(--tint-3)" stroke="none"></path></g>
+          <g class="doodle" style="--dd: -3.6s;"><path d="M508 446 c3 10 8 15 18 18 c-10 3 -15 8 -18 18 c-3 -10 -8 -15 -18 -18 c10 -3 15 -8 18 -18 Z" stroke="var(--tint-3)" stroke-width="4"></path></g>
+          <g class="doodle" style="--dd: -0.6s;"><circle cx="56" cy="478" r="9" stroke="var(--tint-3)" stroke-width="4"></circle></g>
 
-          <path class="ring r1" d="M404 210 q26 66 0 132" stroke-width="6"></path>
-          <path class="ring r2" d="M436 178 q52 98 0 196" stroke-width="6"></path>
-          <path class="ring r3" d="M468 148 q78 128 0 256" stroke-width="5"></path>
-          <path class="ring r1" d="M156 214 q-26 62 0 124" stroke-width="6"></path>
-          <path class="ring r2" d="M124 184 q-50 92 0 184" stroke-width="6"></path>
+          <path class="ring r1" d="M442 214 q26 66 0 132" stroke-width="6"></path>
+          <path class="ring r2" d="M472 182 q52 98 0 196" stroke-width="6"></path>
+          <path class="ring r3" d="M502 152 q78 128 0 256" stroke-width="5"></path>
+          <path class="ring r1" d="M118 214 q-26 66 0 132" stroke-width="6"></path>
+          <path class="ring r2" d="M88 182 q-52 98 0 196" stroke-width="6"></path>
 
-          <g transform="rotate(-7 280 300)">
-            <path d="M186 68 q2 -28 30 -29 l128 -3 q28 0 29 27 l7 458 q1 27 -26 28 l-132 3 q-27 1 -28 -26 z" fill="var(--tint)"></path>
-            <path d="M206 98 q0 -10 10 -10 l126 -2 q10 0 10 10 l5 396 q0 10 -10 10 l-128 2 q-10 0 -10 -10 z" fill="var(--white)" stroke-width="5"></path>
-            <path d="M252 64 l52 -1" stroke-width="6"></path>
-            <circle cx="252" cy="222" r="7" fill="var(--accent)" stroke="none"></circle>
-            <circle cx="308" cy="221" r="7" fill="var(--accent)" stroke="none"></circle>
-            <path d="M254 258 q26 28 52 -2" stroke-width="6"></path>
-            <g stroke="none" fill="var(--accent)">
-              <rect class="bar" style="--i: 0; --a: 0.7;" x="224" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 1; --a: 1;" x="238" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 2; --a: 0.55;" x="252" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 3; --a: 0.9;" x="266" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 4; --a: 1;" x="280" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 5; --a: 0.6;" x="294" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 6; --a: 0.85;" x="308" y="344" width="8" height="64" rx="4"></rect>
-              <rect class="bar" style="--i: 7; --a: 0.5;" x="322" y="344" width="8" height="64" rx="4"></rect>
+          <g class="device">
+            <g transform="rotate(-5 280 300)">
+              <!-- device depth, the theme's hard offset -->
+              <rect x="159" y="41" width="260" height="540" rx="44" fill="var(--accent-dark)" stroke="none"></rect>
+              <!-- side buttons: action, volume up, volume down, power -->
+              <rect x="142" y="134" width="9" height="24" rx="3" fill="var(--accent)" stroke="none"></rect>
+              <rect x="142" y="176" width="9" height="42" rx="3" fill="var(--accent)" stroke="none"></rect>
+              <rect x="142" y="228" width="9" height="42" rx="3" fill="var(--accent)" stroke="none"></rect>
+              <rect x="409" y="188" width="9" height="66" rx="3" fill="var(--accent)" stroke="none"></rect>
+              <!-- body, bezel, screen -->
+              <rect x="150" y="32" width="260" height="540" rx="44" fill="var(--tint)"></rect>
+              <rect x="164" y="46" width="232" height="512" rx="32" fill="var(--white)" stroke="none"></rect>
+              <path d="M157 300 V84 a41 41 0 0 1 41 -41 H262" stroke="#fff" stroke-width="2.5" opacity="0.75"></path>
+              <!-- island and status row -->
+              <rect x="244" y="60" width="72" height="22" rx="11" fill="var(--ink)" stroke="none"></rect>
+              <text x="184" y="77" font-size="12" font-weight="600" fill="var(--ink)" stroke="none">9:41</text>
+              <g fill="var(--ink)" stroke="none">
+                <rect x="334" y="74" width="3" height="4" rx="1"></rect><rect x="339" y="72" width="3" height="6" rx="1"></rect><rect x="344" y="70" width="3" height="8" rx="1"></rect><rect x="349" y="68" width="3" height="10" rx="1"></rect>
+                <rect x="360" y="69" width="13" height="6" rx="1.5"></rect><rect x="379.5" y="70" width="2" height="4" rx="1"></rect>
+              </g>
+              <rect x="358" y="67" width="20" height="10" rx="3" stroke="var(--ink)" stroke-width="1.5"></rect>
+              <!-- caller -->
+              <text x="280" y="126" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="-0.2" fill="var(--ink)" stroke="none">Maya Ortiz</text>
+              <text class="mono" x="280" y="146" text-anchor="middle" font-size="10.5" fill="var(--muted-2)" stroke="none">Incoming · Atlas Fix · 00:42</text>
+              <!-- ViFi, the voice on the line -->
+              <circle class="halo" cx="280" cy="236" r="68" stroke="var(--tint-3)" stroke-width="3"></circle>
+              <circle cx="280" cy="236" r="54" fill="var(--tint)" stroke-width="6"></circle>
+              <circle cx="263" cy="229" r="6" fill="var(--accent)" stroke="none"></circle>
+              <circle cx="297" cy="229" r="6" fill="var(--accent)" stroke="none"></circle>
+              <path d="M262 250 q18 20 36 0" stroke-width="6"></path>
+              <g stroke="none" fill="var(--accent)">
+              <rect class="bar" style="--i: 0; --a: 0.5;" x="229" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 1; --a: 0.85;" x="241" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 2; --a: 0.6;" x="253" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 3; --a: 1;" x="265" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 4; --a: 0.75;" x="277" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 5; --a: 1;" x="289" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 6; --a: 0.55;" x="301" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 7; --a: 0.9;" x="313" y="316" width="6" height="48" rx="3"></rect>
+              <rect class="bar" style="--i: 8; --a: 0.5;" x="325" y="316" width="6" height="48" rx="3"></rect>
+              </g>
+              <circle class="live" cx="222" cy="398" r="4.5" fill="var(--green)" stroke="none"></circle>
+              <text class="mono" x="234" y="402" font-size="10" letter-spacing="1.6" fill="var(--accent)" stroke="none">VIFI ANSWERING</text>
+              <!-- call controls: mute, keypad, speaker, end -->
+              <g fill="var(--tint)" stroke="var(--tint-2)" stroke-width="2">
+                <circle cx="206" cy="458" r="18"></circle><circle cx="255" cy="458" r="18"></circle><circle cx="305" cy="458" r="18"></circle>
+              </g>
+              <g stroke-width="2.2">
+                <rect x="202" y="447" width="8" height="13" rx="4"></rect><path d="M199.5 456 a6.5 6.5 0 0 0 13 0 M206 462.5 v3.5"></path>
+                <path d="M297 454 h4 l6 -5 v18 l-6 -5 h-4 z" fill="var(--accent)"></path><path d="M311 452 q5 6 0 12"></path>
+              </g>
+              <g fill="var(--accent)" stroke="none"><circle cx="250" cy="453" r="1.7"></circle><circle cx="255" cy="453" r="1.7"></circle><circle cx="260" cy="453" r="1.7"></circle><circle cx="250" cy="458" r="1.7"></circle><circle cx="255" cy="458" r="1.7"></circle><circle cx="260" cy="458" r="1.7"></circle><circle cx="250" cy="463" r="1.7"></circle><circle cx="255" cy="463" r="1.7"></circle><circle cx="260" cy="463" r="1.7"></circle></g>
+              <circle cx="354" cy="458" r="18" fill="var(--ink)" stroke="none"></circle>
+              <g transform="translate(345.6 449.6) scale(0.7)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" transform="rotate(135 12 12)" stroke="#fff" stroke-width="2.6"></path></g>
+              <!-- home indicator -->
+              <rect x="236" y="537" width="88" height="5" rx="2.5" fill="var(--tint-3)" stroke="none"></rect>
             </g>
-            <circle class="live" cx="222" cy="450" r="5" fill="var(--green)" stroke="none"></circle>
-            <text x="236" y="455" font-family="JetBrains Mono, ui-monospace, Menlo, monospace" font-size="12.5" letter-spacing="1.6" fill="var(--accent)" stroke="none">VIFI ANSWERING</text>
           </g>
         </svg>
 
         <div class="float f-brief">
           <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
-          <div><small>After the call</small><strong>Briefing ready</strong><span class="sub2">Urgent repair · call back before 11:30</span></div>
+          <div><small>After the call</small><strong>Briefing ready</strong><span class="sub2">Urgent repair · call back by 11:30</span></div>
         </div>
         <div class="float f-memory">
           <span class="avatar">MO</span>
-          <div><small>Caller memory</small><strong>Maya Ortiz</strong><span class="sub2">3rd call · prefers a text first</span></div>
+          <div><small>Caller memory</small><strong>Maya Ortiz</strong><span class="sub2">3rd call · prefers texts</span></div>
         </div>
       </div>
     </section>
