@@ -2,12 +2,15 @@
 title: "What Is an AI Phone Assistant? How It Works for Small Businesses"
 description: "Learn what an AI phone assistant does, how it handles business calls, how it differs from voicemail and IVR, and what to evaluate before choosing one."
 publishedAt: 2026-03-05
+updatedAt: 2026-09-17
 tags: ["education", "ai"]
 ---
 
 An AI phone assistant is software that answers and handles phone calls through a natural spoken conversation. Businesses use one to respond when staff are busy, capture what callers need, and make follow-up easier.
 
 It is also called an **AI receptionist**, **virtual phone assistant**, or **AI answering service**. Those labels overlap, but the important question is what the system can reliably do during and after a call.
+
+> **Try it with one call before changing your phone setup.** <a href="https://app.vifi.us/register" data-cta="blog-ai-phone-assistant-start" data-cta-version="phone-assistant-2026-09-v1" data-cta-intent="evaluation">Start a 7-day ViFi trial — no card required</a>, add your business instructions, and make a test call. Keep your normal routing in place. Prefer to evaluate the options first? Use the [free test-call scorecard](/resources/ai-receptionist-test-scorecard/) with ViFi or another provider; no account is required for the worksheet.
 
 ## The basics
 
@@ -50,6 +53,24 @@ An AI phone assistant is most useful when an unanswered call can become a missed
 
 The assistant should not be presented as a replacement for professional judgment. Sensitive, unusual, or high-impact situations need an explicit escalation path.
 
+For a service business, start with the [home-services call workflow](/solutions/home-services/). There are also examples for [HVAC teams](/solutions/hvac/), [plumbers](/solutions/plumbing/), and [electricians](/solutions/electricians/).
+
+## An example: from a missed call to a useful callback
+
+Imagine a homeowner calling a plumbing business while the crew is on a job. The caller says, “There's a leak under the kitchen sink. Can someone call me back this afternoon?”
+
+With approved intake instructions, the assistant can ask for the caller's name, callback number, service address, and a description of the problem. It should describe the next step your business has approved, without promising a repair price or confirming an appointment.
+
+A useful briefing for this **fictional example** might read:
+
+> **Request:** Leak under kitchen sink. Caller wants a callback this afternoon.
+>
+> **Details to confirm:** Contact number, service address, and whether the address is in the service area.
+>
+> **Next step:** Office team reviews the request and returns the call. No visit or price has been confirmed.
+
+The check is practical: can the person returning the call find the right details and understand what was promised? Use [these seven test-call scripts](/blog/test-ai-receptionist-home-services/) to test corrections, unknown answers, after-hours calls, and requests for a person.
+
 ## What happens after the call
 
 This is where AI phone assistants differ from each other. Some simply take messages. Others route calls to staff. The most useful ones give you a detailed record of the call so you can follow up effectively.
@@ -88,4 +109,4 @@ Then make several test calls. Try a normal request, an incomplete answer, a requ
 
 The best AI phone assistant is not the one that claims to handle everything. It is the one that reliably handles the calls you define, makes its limits clear, and gives your team enough context to take the next action.
 
-<a href="https://app.vifi.us/register" data-cta="blog-ai-phone-assistant-inline">Start a free ViFi trial</a> or read [how ViFi works](/how-it-works/) before making a test call.
+<a href="https://app.vifi.us/register" data-cta="blog-ai-phone-assistant-inline" data-cta-version="phone-assistant-2026-09-v1" data-cta-intent="evaluation">Start a free ViFi trial and make your first test call</a>. Your trial lasts seven days and does not require a credit card. Compare [current plans](/pricing/) or read [how ViFi works](/how-it-works/) before choosing the call type to test.
