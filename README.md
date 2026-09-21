@@ -159,6 +159,12 @@ See `AGENTS.md` for architecture rules, content safety guidelines, and contribut
 
 ## Acquisition resources and measurement
 
+The sitemap uses each blog article's `updatedAt`, or `publishedAt` when it has
+not been revised, from its rendered BlogPosting metadata. Set `updatedAt` only
+for substantive content changes; routine deployments must not refresh dates.
+The build integration reads the static directory output before sitemap
+generation. Other pages omit `lastmod` until they have a reliable content date.
+
 The ungated `/resources/ai-receptionist-test-scorecard/` worksheet uses the
 validated `resources` content collection, includes a print layout, and links to
 an editable CSV in `public/resources/`. Keep its seven scenarios and the CSV in
