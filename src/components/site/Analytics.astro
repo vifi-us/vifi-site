@@ -187,15 +187,21 @@ import OpenAIAds from "./OpenAIAds.astro";
       }
     }
     var decorateAppDestination = function (destination) {
-      // An explicitly attributed destination is one whole touch. Never mix it
-      // with either a current-URL or a stored source/campaign/click-ID bundle.
-      if (attributionKeys.some(function (key) { return destination.searchParams.has(key); })) {
+      // An explicit campaign is one whole touch. Never mix it with a current
+      // or stored source/campaign/click-ID bundle. AffiliateReferral runs first
+      // and may add a 90-day first-touch ref; that referral is independent of
+      // the latest 30-minute marketing campaign and must not suppress it.
+      if (attributionKeys.some(function (key) {
+        return key !== "ref" && destination.searchParams.has(key);
+      })) {
         return destination;
       }
       var current = currentTouch();
       var stored = current.provided ? null : readStoredTouch();
       var values = current.provided ? current.values : stored ? stored.values : {};
       Object.keys(values).forEach(function (key) {
+        // Preserve an explicit or remembered first-touch affiliate referral.
+        if (key === "ref" && destination.searchParams.has(key)) return;
         destination.searchParams.set(key, values[key]);
       });
       return destination;

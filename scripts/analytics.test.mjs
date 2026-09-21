@@ -5,6 +5,8 @@ import { test } from 'node:test';
 
 const source = readFileSync('src/components/site/Analytics.astro', 'utf8')
   .match(/<script is:inline>([\s\S]*?)<\/script>/)[1];
+const affiliateSource = readFileSync('src/components/site/AffiliateReferral.astro', 'utf8')
+  .match(/<script[^>]*>([\s\S]*?)<\/script>/)[1];
 
 const touchKey = 'vifi_marketing_touch_v1';
 const touchLifetime = 30 * 60 * 1000;
@@ -52,10 +54,21 @@ function analytics(hostname = 'vifi.us', globalPrivacyControl = false, pageHref,
       createElement: () => ({}),
       head: { appendChild: value => scripts.push(value) },
       getElementsByTagName: () => [{ parentNode: { insertBefore: value => scripts.push(value) } }],
-      addEventListener: (name, listener) => { listeners[name] = listener; },
+      addEventListener: (name, listener) => {
+        const previous = listeners[name];
+        listeners[name] = previous
+          ? event => { previous(event); listener(event); }
+          : listener;
+      },
     },
   };
   context.window = context;
+  if (options.referralStorage) {
+    context.localStorage = options.referralStorage;
+    context.toltPublicKey = '';
+    // Match the production component order, including both click listeners.
+    runInNewContext(affiliateSource, context);
+  }
   runInNewContext(source, context);
   return { context, scripts, listeners, Element };
 }
@@ -153,6 +166,57 @@ test('explicit destination attribution is never combined with current or saved c
       page.listeners.click({ type: 'click', target: signup });
       assert.equal(signup.href, destination);
     }
+  }
+});
+
+test('affiliate first touch and the current marketing campaign both reach registration', () => {
+  for (const type of ['click', 'auxclick']) {
+    const referralStorage = tabStorage();
+    referralStorage.data.set('vifi_affiliate_referral', JSON.stringify({ value: 'first-partner', captured_at: now }));
+    const page = analytics('vifi.us', false,
+      'https://vifi.us/partners/?ref=later-partner&utm_source=linkedin&utm_medium=social&utm_campaign=partner_guide&li_fat_id=click-abc',
+      { referralStorage });
+    const signup = new page.Element('https://app.vifi.us/register?plan=starter#trial');
+    page.listeners[type]({ type, button: type === 'auxclick' ? 1 : 0, target: signup });
+    const destination = new URL(signup.href);
+    assert.deepEqual(Object.fromEntries(destination.searchParams), {
+      plan: 'starter', ref: 'first-partner', utm_source: 'linkedin',
+      utm_medium: 'social', utm_campaign: 'partner_guide', li_fat_id: 'click-abc',
+    });
+    assert.equal(destination.hash, '#trial');
+    assert.equal(page.context.posthog[0][2].destination, signup.href);
+  }
+});
+
+test('affiliate referral does not suppress a campaign saved before internal navigation', () => {
+  const storage = tabStorage();
+  const referralStorage = tabStorage();
+  analytics('vifi.us', false,
+    'https://vifi.us/?ref=first-partner&utm_source=linkedin&utm_campaign=partner_guide',
+    { storage, referralStorage });
+  const page = analytics('vifi.us', false, 'https://vifi.us/pricing/', { storage, referralStorage });
+  const signup = new page.Element('https://app.vifi.us/register');
+  page.listeners.click({ type: 'click', target: signup });
+  assert.deepEqual(Object.fromEntries(new URL(signup.href).searchParams), {
+    ref: 'first-partner', utm_source: 'linkedin', utm_campaign: 'partner_guide',
+  });
+});
+
+test('affiliate and marketing listeners preserve explicit destination attribution and privacy guards', () => {
+  const referralStorage = tabStorage();
+  referralStorage.data.set('vifi_affiliate_referral', JSON.stringify({ value: 'first-partner', captured_at: now }));
+  const tagged = 'https://vifi.us/?utm_source=linkedin&utm_campaign=partner_guide';
+  const page = analytics('vifi.us', false, tagged, { referralStorage });
+  const explicit = new page.Element('https://app.vifi.us/register?ref=explicit-partner&utm_source=explicit');
+  page.listeners.click({ type: 'click', target: explicit });
+  assert.equal(explicit.href, 'https://app.vifi.us/register?ref=explicit-partner&utm_source=explicit');
+
+  for (const [host, gpc] of [['vifi.us', true], ['localhost', false]]) {
+    referralStorage.calls.length = 0;
+    const guarded = analytics(host, gpc, tagged, { referralStorage });
+    assert.equal(Object.keys(guarded.listeners).length, 0);
+    assert.equal(guarded.scripts.length, 0);
+    assert.deepEqual(referralStorage.calls, []);
   }
 });
 
