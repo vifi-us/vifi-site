@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import sitemap from "@astrojs/sitemap";
+import articleSitemap from "./src/integrations/articleSitemap";
 
 export default defineConfig({
   site: "https://vifi.us",
@@ -14,7 +14,7 @@ export default defineConfig({
   },
   // Preserve prose spacing across inline elements after Astro 7's JSX default.
   compressHTML: true,
-  integrations: [sitemap()],
+  integrations: articleSitemap(),
   vite: {
     plugins: [tailwindcss()],
     server: {
