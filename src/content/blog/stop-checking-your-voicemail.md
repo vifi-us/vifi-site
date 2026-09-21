@@ -2,6 +2,7 @@
 title: "Stop Checking Your Voicemail"
 description: "Voicemail was built for a different era. Here's why it's costing your business more than you think, and what the alternative looks like."
 publishedAt: 2026-03-01
+updatedAt: 2026-09-21
 tags: ["business", "opinion"]
 ---
 
@@ -41,6 +42,8 @@ Imagine getting a text the moment a call ends. It says: "Sarah Johnson called ab
 You know who called. You know what they need. You know the urgency. And you can call back right away with context: "Hi Sarah, I understand you've got a leak in the kitchen. I can be there tomorrow morning. Does 9 AM work?"
 
 That's a completely different experience for you and for the caller.
+
+A useful briefing still needs someone to act on it. If your team uses call transfers, agree on the fallback before a colleague misses one. Our [callback handoff plan for unanswered AI receptionist transfers](/blog/ai-receptionist-no-answer-handoff/) includes an owner worksheet and a test that follows the request all the way to the human callback.
 
 ## Voicemail had its moment
 
