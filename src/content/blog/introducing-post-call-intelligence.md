@@ -2,6 +2,7 @@
 title: "Post-Call Intelligence: Know What Happened on Every Call"
 description: "Most AI phone tools focus on answering. The real value is what you know after the call ends and how prepared you are to follow up."
 publishedAt: 2026-03-03
+updatedAt: 2026-09-21
 tags: ["product", "thought-leadership"]
 ---
 
@@ -26,6 +27,8 @@ With a post-call briefing, you call back already knowing:
 - The exact words they used
 
 That changes the callback completely. You sound prepared. You sound professional. And you can jump straight to booking the job or solving the problem.
+
+The next operational step is to assign the follow-up. For calls where nobody answers a transfer, use our [no-answer handoff worksheet](/blog/ai-receptionist-no-answer-handoff/) to choose a primary owner, define the fallback, and verify that the request reaches the person who will call back.
 
 ## What a post-call briefing includes
 
