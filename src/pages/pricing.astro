@@ -7,6 +7,8 @@ import PricingCards from "../components/blocks/PricingCards.astro";
 import FAQList from "../components/blocks/FAQList.astro";
 import CTABanner from "../components/blocks/CTABanner.astro";
 import HomeServicesPath from "../components/blocks/HomeServicesPath.astro";
+import PricingEstimator from "../components/blocks/PricingEstimator.astro";
+import TrialPath from "../components/blocks/TrialPath.astro";
 import { pricingTiers } from "../data/pricing";
 
 const structuredData = {
@@ -42,6 +44,8 @@ const structuredData = {
         subtitle="Every plan includes call briefings, transcripts, and a 7-day free trial."
       />
       <PricingCards />
+      <PricingEstimator />
+      <TrialPath placement="pricing" />
       <FAQList category="pricing" />
       <HomeServicesPath />
       <CTABanner
@@ -49,7 +53,7 @@ const structuredData = {
         description="Try ViFi free for 7 days. No credit card required."
         buttonText="Start free — no card"
         ctaId="pricing-banner"
-        ctaVersion="pricing-2026-08-v1"
+        ctaVersion="pricing-clarity-2026-09-v1"
       />
     </main>
     <Footer />

@@ -1,5 +1,5 @@
 ---
-import { pricingTiers } from "../../data/pricing";
+import { pricingTiers, overageRates } from "../../data/pricing";
 import { siteConfig } from "../../data/site";
 
 // On the two-column tablet grid the last tier sits centered on its own row.
@@ -59,10 +59,15 @@ const lastIndex = pricingTiers.length - 1;
               ))}
             </ul>
 
+            <p class="mt-5 text-sm leading-relaxed text-muted">
+              Extra usage: ${overageRates.find((rate) => rate.tier === tier.name)?.ratePerMinute.toFixed(2)}/AI minute
+              and ${overageRates.find((rate) => rate.tier === tier.name)?.ratePerSmsSegment.toFixed(2)}/eligible SMS segment.
+            </p>
+
             <a
               href={siteConfig.registerUrl}
               data-cta={`pricing-${tier.name.toLowerCase()}`}
-              data-cta-version="pricing-2026-08-v1"
+              data-cta-version="pricing-clarity-2026-09-v1"
               class:list={["btn mt-8 w-full justify-center", !tier.highlighted && "outline"]}
             >
               {tier.cta}

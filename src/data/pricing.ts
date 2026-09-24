@@ -4,6 +4,7 @@ export interface PricingTier {
   period: string;
   description: string;
   includedMinutes: number;
+  includedSmsSegments: number;
   features: string[];
   cta: string;
   highlighted?: boolean;
@@ -17,6 +18,7 @@ export const pricingTiers: PricingTier[] = [
     period: "/mo",
     description: "For solo operators who need every call covered.",
     includedMinutes: 100,
+    includedSmsSegments: 100,
     features: [
       "100 AI minutes + 100 eligible ViFi SMS segments included",
       "Post-call summaries & transcripts",
@@ -32,6 +34,7 @@ export const pricingTiers: PricingTier[] = [
     period: "/mo",
     description: "For busy teams that need room to grow.",
     includedMinutes: 500,
+    includedSmsSegments: 500,
     features: [
       "500 AI minutes + 500 eligible ViFi SMS segments included",
       "Everything in Starter",
@@ -39,7 +42,6 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: "Start free — no card",
     highlighted: true,
-    badge: "Most Popular",
   },
   {
     name: "Business",
@@ -47,6 +49,7 @@ export const pricingTiers: PricingTier[] = [
     period: "/mo",
     description: "For high-volume businesses where every call counts.",
     includedMinutes: 2000,
+    includedSmsSegments: 2000,
     features: [
       "2,000 AI minutes + 2,000 eligible ViFi SMS segments included",
       "Everything in Growth",
@@ -56,8 +59,7 @@ export const pricingTiers: PricingTier[] = [
   },
 ];
 
-// Overage rates - not shown on the pricing page but available for
-// internal reference and other surfaces (e.g. docs, terms)
+// Published rates shared by the pricing cards and usage estimator.
 export interface OverageRate {
   tier: string;
   ratePerMinute: number;
@@ -79,7 +81,7 @@ export const pricingFAQs: PricingFAQ[] = [
   {
     question: "What are AI minutes?",
     answer:
-      "AI minutes measure the time ViFi spends actively on your calls. Each plan includes a set number per month. If you need more, you can add minutes at a per-minute rate based on your plan.",
+      "AI minutes measure the time your agent spends on a call, rounded up to a whole minute for each call. A 2-minute, 10-second call uses 3 AI minutes. Browser test calls and website widget conversations also count. Time talking to your team after a transfer does not count.",
   },
   {
     question: "What happens if I use all my included minutes?",
@@ -94,7 +96,12 @@ export const pricingFAQs: PricingFAQ[] = [
   {
     question: "Do I need a new phone number?",
     answer:
-      "No. You keep your existing business number and forward calls to ViFi. Your callers won't notice a thing.",
+      "You can keep your business number and forward calls to ViFi once your paid service is active and you have tested the setup. During the free trial, keep customer calls on your existing routing and test with approved callers.",
+  },
+  {
+    question: "What can I test before paying?",
+    answer:
+      "The 7-day trial needs no card and includes 25 AI minutes and 50 eligible text segments. Test your agent and review its call records using up to three approved caller numbers. Transfers to a person are unavailable during the trial. Choose a paid activation option in Billing when you are ready for customer calls.",
   },
   {
     question: "Can I cancel anytime?",
