@@ -1,0 +1,23 @@
+---
+import { siteConfig } from "../../data/site";
+interface Props { placement: string; }
+const { placement } = Astro.props;
+---
+<section class="py-12 sm:py-16" aria-labelledby={`${placement}-trial-title`}>
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="panel bg-tint p-6 sm:p-9">
+      <p class="eyebrow mb-4">Hear it work before you switch</p>
+      <h2 id={`${placement}-trial-title`}>Your first test call, in three steps</h2>
+      <ol class="my-7 grid gap-6 md:grid-cols-3">
+        <li><h3 class="text-xl">1. Teach it your business</h3><p class="mt-2 text-muted">Create your account and follow the Setup Guide. Add your hours, service area, and the details callers usually ask for.</p></li>
+        <li><h3 class="text-xl">2. Make a realistic test call</h3><p class="mt-2 text-muted">Use your browser or an approved caller number. Ask a typical customer question, then correct a detail to see how your agent handles it.</p></li>
+        <li><h3 class="text-xl">3. Read the briefing</h3><p class="mt-2 text-muted">Check the saved summary and transcript. Could your team follow up from this record? Use our <a class="underline underline-offset-4" href="/resources/ai-receptionist-test-scorecard/">free test-call scorecard</a>.</p></li>
+      </ol>
+      <div class="flex flex-wrap items-center gap-5">
+        <a class="btn" href={siteConfig.registerUrl} data-cta={`${placement}-first-call`} data-cta-version="first-call-path-2026-09-v1" data-cta-intent="proof">Start my free test</a>
+        <p class="text-sm text-muted">7 days · 25 AI minutes · No card required</p>
+      </div>
+      <p class="mt-5 text-sm leading-relaxed text-muted">Keep your customer call routing in place while you test. The trial allows up to three approved caller numbers and does not include transfers to a person. Activate a paid plan when you are ready for customer calls. <a class="underline underline-offset-4" href="https://docs.vifi.us/billing/free-trial/">See trial details</a>.</p>
+    </div>
+  </div>
+</section>

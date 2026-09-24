@@ -8,6 +8,7 @@ import { comparisonCategories, comparisonFeatures } from "../../data/comparisons
 import { secondaryFeatures } from "../../data/featurePage";
 import { pricingTiers } from "../../data/pricing";
 import HomeServicesPath from "../blocks/HomeServicesPath.astro";
+import TrialPath from "../blocks/TrialPath.astro";
 
 // "Stacked up": one column per comparison category; this one gets the highlighted treatment.
 const VIFI = "ViFi";
@@ -142,6 +143,8 @@ const postArt = [
       </div>
     </section>
 
+    <TrialPath placement="home" />
+
     <!-- PRODUCT TOUR (pinned, 5 steps) -->
     <section class="tour" id="tour" data-pin data-steps="5" data-active="0">
       <div class="tour-sticky">
@@ -272,7 +275,7 @@ const postArt = [
     <section class="stack shell" id="why">
       <div data-reveal>
         <h2 class="center">Stacked up against the alternatives</h2>
-        <p class="sub">Every column answers the phone. Only one tells you what happened on the call.</p>
+        <p class="sub">Compare what you receive after the call, as well as who answers it.</p>
       </div>
       <p class="swipe-cue" aria-hidden="true">Swipe to compare →</p>
       <div class="table-wrap" data-reveal style="--d: 120ms;" tabindex="0" role="region" aria-label="Comparison table, scrolls sideways on small screens">
@@ -338,11 +341,11 @@ const postArt = [
         <div class="switch-copy">
           <p class="eyebrow"><i></i> Nothing to rip out</p>
           <h2>Switch from voicemail</h2>
-          <p class="lede">Keep your number. Forward your calls to ViFi. Callers won't notice a thing, and you'll get a briefing instead of a beep.</p>
+          <p class="lede">Keep your business number. Test your agent first, then forward calls when your paid service is active and your team is ready.</p>
           <div class="steps">
-            <div class="step"><i>01</i><div><b>Get a local number</b> <span>in minutes, or keep the one you have.</span></div></div>
-            <div class="step"><i>02</i><div><b>Forward your calls</b> <span>from your phone settings. That's the migration.</span></div></div>
-            <div class="step"><i>03</i><div><b>Take a test call</b> <span>from your browser and hear your agent answer.</span></div></div>
+            <div class="step"><i>01</i><div><b>Set up your agent</b> <span>with the information your callers need.</span></div></div>
+            <div class="step"><i>02</i><div><b>Test and review</b> <span>from your browser or an approved caller number.</span></div></div>
+            <div class="step"><i>03</i><div><b>Activate, then forward</b> <span>after you have checked the briefing and routing.</span></div></div>
           </div>
         </div>
 
@@ -489,19 +492,19 @@ const postArt = [
     <!-- HANDOFF -->
     <section class="handoff shell">
       <div data-reveal>
-        <h2 class="center">Live in minutes</h2>
-        <p class="sub">No hardware. No IT team. No scripts to write.</p>
+        <h2 class="center">Start with one test call</h2>
+        <p class="sub">Hear your agent. Read the briefing. Decide with evidence.</p>
       </div>
       <div class="handoff-stage blob-card" data-reveal style="--d: 120ms;">
         <svg class="blob" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true"><path d="M20 36 Q18 8 48 10 L752 4 Q788 2 784 36 L792 362 Q794 396 758 392 L46 398 Q10 400 14 364 Z"></path></svg>
         <div class="checklist">
           <div><i>01</i><span>Create your account. Seven days free, no card required.</span></div>
-          <div><i>02</i><span>Pick a local number, or forward the number you already have.</span></div>
+          <div><i>02</i><span>Follow the Setup Guide and add your business information.</span></div>
           <div><i>03</i><span>Hear your agent take a test call, right from your browser.</span></div>
-          <div><i>04</i><span>Watch the first briefing land in your inbox.</span></div>
+          <div><i>04</i><span>Review the saved briefing before changing customer call routing.</span></div>
         </div>
         <div class="handoff-cta">
-          <a class="btn" href={siteConfig.registerUrl} data-cta="home-banner" data-cta-version="home-positioning-2026-08-v1">Start free — no card
+          <a class="btn" href={siteConfig.registerUrl} data-cta="home-banner" data-cta-version="first-call-path-2026-09-v1" data-cta-intent="proof">Start free — no card
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7 M8 7h9v9"></path></svg>
           </a>
           <small>Questions first? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></small>
