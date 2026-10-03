@@ -309,8 +309,8 @@ When the grace period ends, we:
   account ID with no contact details;
 - delete your Apple and Google sign-in links, revoke Sign in with Apple, and
   delete your two-step verification methods and notification settings;
-- remove you from businesses you are a member of; what you added there stays
-  with that business;
+- remove you from businesses you are a member of; what you added there, and
+  their audit log of your actions, stays with that business;
 - close each business that only you use: we release its ViFi phone numbers,
   cancel its subscription, and delete its call recordings and uploaded
   knowledge-base files. Its other records, such as call history, transcripts,
