@@ -1,18 +1,19 @@
 ---
 title: "Privacy Policy"
 description: "How ViFi collects, uses, shares, and retains personal information for its website and communications platform."
-effectiveDate: 2026-09-10
+effectiveDate: 2026-10-03
 ---
 
 ViFi LLC ("ViFi," "we," "our," or "us") operates `vifi.us` and provides
 AI-assisted business communications tools. This Privacy Policy explains how we
 collect, use, disclose, and retain personal information when you visit our
-website, submit forms, create an account, or use the ViFi platform.
+website, submit forms, create an account, or use the ViFi platform, including
+the ViFi apps for iPhone and Android.
 
 ## Scope
 
-If you are a website visitor or account holder, this Policy applies directly to
-our collection and use of your personal information.
+If you are a website visitor, app user, or account holder, this Policy applies
+directly to our collection and use of your personal information.
 
 If you call a phone number powered by ViFi, ViFi may process call metadata,
 transcripts, summaries, and recordings on an account holder's behalf. That
@@ -39,6 +40,9 @@ We may collect the following categories of information:
   subscription-related identifiers, and usage records;
 - device, browser, and website usage data, including cookies and similar
   technologies;
+- mobile app data, such as push notification tokens, device names, and
+  microphone audio from test calls you place in the app, as described in
+  [Mobile Apps](#mobile-apps);
 - integration, audit, and operational data, such as connected-service metadata,
   webhook payloads, and troubleshooting logs.
 
@@ -219,6 +223,109 @@ Our website honors the Global Privacy Control signal: if your browser sends
 it, we do not load analytics for your visit. To opt out of analytics another
 way, or to request deletion of analytics data about you, email <!--email_off-->hello@vifi.us<!--/email_off-->.
 
+## Mobile Apps
+
+ViFi offers apps for iPhone and Android. They use the same ViFi account as
+`app.vifi.us`, and the rest of this Policy applies to them. This section
+describes what is specific to the apps.
+
+### Information the apps collect
+
+- **Account information.** Your name, email address, and, if you add one, your
+  mobile number.
+- **Sign in with Apple and Google.** If you choose **Continue with Apple**
+  (iPhone) or **Continue with Google**, Apple or Google confirms who you are
+  and gives us your name, your email address, and an account identifier. If you
+  use Apple's Hide My Email, we receive a private relay address instead of your
+  email address. Google may also give us a link to your profile picture. For
+  Sign in with Apple we keep an encrypted token so that we can revoke ViFi's
+  access when you delete your account. We never receive your Apple or Google
+  password.
+- **Push notification tokens and device names.** If you allow notifications,
+  your phone's operating system gives the app a push token from Apple Push
+  Notification service or Firebase Cloud Messaging. The app sends us that
+  token with the device platform, the app version, and the device's name, which
+  can include your name if you set it that way. We use them to send the
+  notifications you choose and to tell your devices apart.
+  Notification text, such as a caller's name or the first sentence of a call
+  summary, passes through Apple's or Google's push service to reach your
+  device. We delete a device's token when you sign out of the app on that
+  device, when all of your sessions end, or when you delete your account.
+- **Microphone audio during test calls only.** The apps ask for microphone
+  access only so that you can place a test call to your business's AI agent.
+  They use the microphone only while a test call you started is in progress,
+  including if you switch to another app during the call, and at no other
+  time. Your voice is streamed to ViFi and handled like a call to your ViFi
+  number: the test call appears in your business's call history with a
+  transcript and a summary, and with a recording if call recording is on.
+- **Content you add.** Business settings, knowledge-base articles, files you
+  choose to upload (such as documents or images), notes, approved and blocked
+  numbers, appointments, and similar content. When you upload a file, the app
+  sends only the file you pick.
+- **Billing information.** If you manage billing, the apps show your business's
+  billing status and invoices. The apps do not collect payment card details.
+- **Usage information.** The apps do not include third-party analytics,
+  advertising, or crash-reporting software. When you use the apps, our servers
+  record which features were used, such as playing a recording, linked to your
+  account ID, and we analyze these records with PostHog to operate and improve
+  ViFi.
+
+The apps display calls, recordings, transcripts, and text conversations that
+ViFi already holds for your business. They do not access the contacts, photos,
+camera, location, calendar, call log, or text messages on your device. Data
+the apps send and receive is encrypted in transit.
+
+### No ad tracking in the apps
+
+The apps do not contain advertising software, do not access your device's
+advertising identifier, and do not track you across apps or websites owned by
+other companies. We do not use activity in the apps for advertising
+measurement: the OpenAI Ads measurement described in
+[Cookies and Analytics](#cookies-and-analytics) does not apply to the apps or
+to ViFi web pages opened from the apps. We do not sell personal information
+collected through the apps, and we do not share it with third parties for their
+own marketing or advertising. Service providers that help us run
+ViFi, such as providers of hosting, telephony, voice and AI processing, push
+notification delivery, email, and analytics, process it on our behalf as
+described in [How We Share Information](#how-we-share-information).
+
+### Deleting your account
+
+You can delete your ViFi account in the apps: open **More**, then
+**Account & security**, then **Delete my account**. You can also delete it on
+the web at `app.vifi.us/account`, or by emailing
+<!--email_off-->support@vifi.us<!--/email_off--> from the address you sign in
+with. Step-by-step instructions are in our
+[Help Center](https://docs.vifi.us/team-and-account/delete-your-account/).
+
+Deletion takes effect after a 30-day grace period. When you ask, you are signed
+out on every device, your push tokens are deleted, and each business that only
+you use is paused. Signing in again before the 30 days end cancels the
+deletion and restores those businesses.
+
+When the grace period ends, we:
+
+- erase your name, email address, password, and mobile number, leaving only an
+  account ID with no contact details;
+- delete your Apple and Google sign-in links, revoke Sign in with Apple, and
+  delete your two-step verification methods and notification settings;
+- remove you from businesses you are a member of; what you added there stays
+  with that business;
+- close each business that only you use: we release its ViFi phone numbers,
+  cancel its subscription, and delete its call recordings and uploaded
+  knowledge-base files. Its other records, such as call history, transcripts,
+  summaries, caller profiles, text messages, and settings, are marked deleted
+  and are no longer accessible in ViFi, and you can ask us to erase them.
+
+We keep billing records, such as invoices and payment records, for as long as
+tax and accounting laws require. We keep security and delivery records, such
+as sign-in records with IP addresses and records of messages we sent you,
+linked to the anonymized account ID, to protect the service, investigate
+misuse, and demonstrate consent. Usage records in our analytics service remain
+linked to the account ID and, if you used our web application, to the name and
+email address from those visits; you can ask us to delete them. Database
+backups are deleted after 30 days.
+
 ## Retention
 
 We retain personal information only as long as reasonably necessary for the
@@ -228,7 +335,8 @@ needs.
 Call recordings, where enabled, are retained for the configured recording
 period, which is 90 days by default unless lawfully changed. Other retention
 periods may vary by data category, customer configuration, and legal
-requirements.
+requirements. When you delete your account, we delete and keep information as
+described in [Deleting your account](#deleting-your-account).
 
 ## Your Rights
 
@@ -237,6 +345,8 @@ deletion, restriction, portability, or objection, and to opt out of certain
 sharing or limit certain uses of sensitive personal information where
 applicable.
 
+You can delete your account yourself in the ViFi apps or at
+`app.vifi.us/account`; see [Deleting your account](#deleting-your-account).
 To submit a privacy request, email <!--email_off-->hello@vifi.us<!--/email_off-->. We
 may need to verify your request before responding.
 
