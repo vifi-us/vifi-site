@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "How ViFi collects, uses, shares, and retains personal information for its website and communications platform."
-effectiveDate: 2026-10-03
+effectiveDate: 2026-10-04
 ---
 
 ViFi LLC ("ViFi," "we," "our," or "us") operates `vifi.us` and provides
